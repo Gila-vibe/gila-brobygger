@@ -2,139 +2,152 @@
 <html lang="da">
 
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Gila Brobygger</title>
-
+    <meta name="description"
+        content="Din bro til forståelse og samarbejde – professionel tolkning, mentorforløb og konsulentbistand.">
+    <link rel="icon" href="Snipped_logo.png">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-
     <style>
-        /* Top banner */
-        .top-banner {
-            background-color: #5462e1;
-            color: white;
-            padding: 8px 20px;
-            font-size: 0.95rem;
-            position: fixed;
+        :root {
+            --blue: #006994;
+            --green: #00a86b;
+            --soft: #e6f7f1;
+            --card-shadow: 0 6px 18px rgba(0, 0, 0, .08)
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        html {
+            scroll-behavior: smooth
+        }
+
+        section {
+            scroll-margin-top: 165px
+        }
+
+        body {
+            font-family: 'Poppins', Arial, Helvetica, sans-serif;
+            margin: 0;
+            background: #f8fdf9;
+            color: #333;
+            line-height: 1.8;
+            -webkit-font-smoothing: antialiased
+        }
+
+        /* Sticky top: banner + header together, so they never overlap */
+        .site-top {
+            position: sticky;
             top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 2000;
-            x-index: var(--green)
+            z-index: 2000
+        }
+
+        .top-banner {
+            background: #5462e1;
+            color: #fff;
+            padding: 8px 20px;
+            font-size: .95rem
         }
 
         .top-banner-content {
             display: flex;
             justify-content: center;
             gap: 20px;
-            flex-wrap: wrap;
+            flex-wrap: wrap
         }
 
         .top-banner a {
-            color: white;
+            color: #fff;
             text-decoration: none;
-            font-weight: 600;
+            font-weight: 600
         }
 
         .top-banner a:hover {
-            text-decoration: underline;
+            text-decoration: underline
         }
 
         .contact-item {
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 6px
         }
 
-        :root {
-            --blue: #006994;
-            --green: #00a86b;
-            --soft: #e6f7f1;
-            --card-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
-        }
-
-        * {
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Poppins', Arial, Helvetica, sans-serif;
-            margin: 0;
-            background-color: #f8fdf9;
-            color: #333;
-            line-height: 1.8;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        /* Compact sticky header under banner */
         header {
-            position: sticky;
-            top: 42px;
-            /* matches blue banner height */
-            z-index: 1000;
             background: #fff;
             display: flex;
             align-items: center;
             padding: 8px 20px;
-            /* smaller vertical padding */
             border-bottom: 4px solid var(--green);
             gap: 30px;
             transition: box-shadow .2s;
+            overflow: visible
         }
 
         header.scrolled {
-            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, .06)
         }
 
-        /* Logo smaller */
         .logo img {
             height: 100px;
-            display: block;
+            display: block
         }
 
-        /* Navigation bigger and uniform text */
+        /* Navigation */
         nav {
             margin-left: auto;
             display: flex;
             gap: 14px;
             align-items: center;
-            flex-wrap: wrap;
+            flex-wrap: wrap
         }
 
         nav a,
         .dropdown>button {
             color: var(--blue);
-            text-decoration: none;
-            font-weight: 700;
             font-size: 1.05rem;
-            padding: 10px 12px;
+            text-decoration: none;
+            padding: 8px 10px;
             border-radius: 6px;
-            transition: all .18s;
+            transition: all .18s
+        }
+
+        nav a {
+            font-weight: 800
+        }
+
+        .dropdown>button {
+            font-family: inherit;
+            font-weight: 700;
+            background: none;
+            border: none;
+            cursor: pointer
         }
 
         nav a:hover,
         .dropdown>button:hover {
-            background: rgba(0, 168, 107, 0.06);
-            color: var(--green);
+            background: rgba(0, 168, 107, .06);
+            color: var(--green)
         }
 
-        /* Dropdown menu styling */
         .dropdown {
-            position: relative;
+            position: relative
         }
 
         .dropdown-menu {
             position: absolute;
-            top: calc(100% + 8px);
+            top: 100%;
             left: 0;
-            background: #fff;
-            min-width: 220px;
-            border-radius: 8px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+            min-width: 240px;
             display: none;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 10px 26px rgba(0, 0, 0, .15);
             overflow: hidden;
+            z-index: 3000
         }
 
         .dropdown-menu a {
@@ -142,15 +155,25 @@
             padding: 12px 14px;
             color: var(--blue);
             text-decoration: none;
-            font-weight: 600;
+            font-weight: 600
         }
 
         .dropdown-menu a:hover {
             background: var(--soft);
-            color: var(--green);
+            color: var(--green)
         }
 
-        /* Hero section */
+        .dropdown:hover .dropdown-menu,
+        .dropdown.open .dropdown-menu {
+            display: block
+        }
+
+        .dropdown.open>button {
+            color: var(--green);
+            background: rgba(0, 168, 107, .06)
+        }
+
+        /* Hero */
         .hero {
             position: relative;
             width: 100%;
@@ -158,43 +181,43 @@
             overflow: hidden;
             display: flex;
             align-items: center;
-            justify-content: center;
+            justify-content: center
         }
 
-        .hero img,
         .hero video {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            filter: brightness(70%);
+            filter: brightness(70%)
         }
 
         .hero-text {
             position: absolute;
             text-align: center;
-            color: white;
+            color: #fff;
             padding: 16px 22px;
             max-width: 880px;
-            text-shadow: 0 6px 22px rgba(0, 0, 0, 0.55);
+            text-shadow: 0 6px 22px rgba(0, 0, 0, .55)
         }
 
         .hero-text h1 {
             font-size: 3rem;
             margin: 0 0 8px;
             color: #dffbf0;
+            letter-spacing: .5px
         }
 
         .hero-text p {
             font-size: 1.2rem;
             margin: 0;
-            opacity: 0.95;
+            opacity: .95
         }
 
-        /* Main content */
+        /* Layout */
         main {
             max-width: 1200px;
             margin: 22px auto;
-            padding: 0 18px;
+            padding: 0 18px
         }
 
         section.card {
@@ -202,463 +225,17 @@
             border-radius: 10px;
             padding: 20px;
             margin-bottom: 20px;
-            box-shadow: var(--card-shadow);
+            box-shadow: var(--card-shadow)
         }
 
-        /* Services grid */
-        .service-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-            margin-top: 12px;
-        }
-
-        .service-box {
-            background: linear-gradient(145deg, var(--soft), #d4f4e3);
-            border-radius: 12px;
-            padding: 22px;
-            text-align: center;
-            transition: transform .22s ease, box-shadow .22s;
-            cursor: pointer;
-            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
-            min-height: 240px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-start;
-            gap: 12px;
-        }
-
-        .service-box:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 16px 30px rgba(0, 0, 0, 0.12);
-        }
-
-        .service-icon {
-            width: 130px;
-            height: 130px;
-        }
-
-        .service-box h3 {
-            margin: 6px 0 0;
-            color: var(--blue);
-            font-size: 1.15rem;
-        }
-
-        .service-box p {
-            margin: 6px 0 0;
-            color: #123;
-            text-align: center;
-            font-size: 0.98rem;
-            line-height: 1.45;
-        }
-
-        /* Booking form */
-        form .row {
-            display: flex;
-            gap: 12px;
-            flex-wrap: wrap;
-        }
-
-        label {
-            display: block;
-            font-weight: 700;
-            margin-bottom: 6px;
-            color: #123;
-        }
-
-        input[type="text"],
-        input[type="email"],
-        input[type="date"],
-        input[type="time"],
-        select,
-        textarea {
-            width: 100%;
-            padding: 10px 12px;
-            border-radius: 8px;
-            border: 1px solid #d6eae0;
-            font-size: 1rem;
-            background: #fff;
-        }
-
-        textarea {
-            min-height: 110px;
-            resize: vertical;
-        }
-
-        .btn {
-            display: inline-block;
-            background: var(--green);
-            color: white;
-            padding: 10px 16px;
-            border-radius: 8px;
-            border: none;
-            cursor: pointer;
-            font-weight: 700;
-            transition: transform .12s;
-        }
-
-        .btn:hover {
-            transform: translateY(-3px);
-            background: #008a57;
-        }
-
-        /* Responsive adjustments */
-        @media(max-width:980px) {
-            header {
-                gap: 20px;
-                padding: 8px 16px;
-            }
-
-            .service-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .hero {
-                height: 360px;
-            }
-
-            .hero-text h1 {
-                font-size: 2.2rem;
-            }
-        }
-
-        @media(max-width:640px) {
-            .service-grid {
-                grid-template-columns: 1fr;
-            }
-
-            header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 10px;
-            }
-
-            .logo img {
-                height: 80px;
-            }
-
-            nav a,
-            .dropdown>button {
-                font-size: 1rem;
-            }
-
-            .hero {
-                height: 260px;
-            }
-
-            .hero-text h1 {
-                font-size: 1.6rem;
-            }
-        }
-
-
-        nav a {
-            color: var(--blue);
-            text-decoration: none;
-            font-weight: 800;
-            padding: 8px 10px;
-            border-radius: 6px;
-            transition: all .18s;
-        }
-
-        nav a:hover {
-            background: rgba(0, 168, 107, 0.06);
-            color: var(--green);
-        }
-
-        /* dropdown */
-        .dropdown {
-            position: relative;
-        }
-
-        .dropdown>button {
-            background: none;
-            border: none;
-            cursor: pointer;
-            font-weight: 700;
-            color: var(--blue);
-            padding: 8px 10px;
-            border-radius: 6px;
-        }
-
-        .dropdown>button:hover {
-            color: var(--green);
-            background: rgba(0, 168, 107, 0.06);
-        }
-
-        .dropdown-menu {
-            position: absolute;
-            top: calc(100% + 8px);
-            left: 0;
-            background: #fff;
-            min-width: 220px;
-            border-radius: 8px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
-            display: none;
-            overflow: hidden;
-        }
-
-        .dropdown-menu a {
-            display: block;
-            padding: 12px 14px;
-            color: var(--blue);
-            text-decoration: none;
-            font-weight: 600;
-        }
-
-        .dropdown-menu a:hover {
-            background: var(--soft);
-            color: var(--green);
-        }
-
-        /* hero */
-        .hero {
-            position: relative;
-            width: 100%;
-            height: 560px;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .hero img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: brightness(72%);
-        }
-
-        .hero-text {
-            position: absolute;
-            text-align: center;
-            color: white;
-            padding: 16px 22px;
-            max-width: 880px;
-            text-shadow: 0 6px 22px rgba(0, 0, 0, 0.55);
-            transform: translateY(0);
-        }
-
-        .hero-text h1 {
-            font-size: 3rem;
-            margin: 0 0 8px;
-            color: #dffbf0;
-            letter-spacing: 0.5px;
-        }
-
-        .hero-text p {
-            font-size: 1.2rem;
-            margin: 0;
-            opacity: 0.95;
-        }
-
-        /* main content */
-        main {
-            max-width: 1200px;
-            margin: 22px auto;
-            padding: 0 18px;
-        }
-
-        section.card {
-            background: #fff;
-            border-radius: 10px;
-            padding: 20px;
-            margin-bottom: 20px;
-            box-shadow: var(--card-shadow);
-        }
-
-        /* services grid 3x2 */
-        .service-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-            margin-top: 12px;
-        }
-
-        .service-box {
-            background: linear-gradient(145deg, var(--soft), #d4f4e3);
-            border-radius: 12px;
-            padding: 22px;
-            text-align: center;
-            transition: transform .22s ease, box-shadow .22s;
-            cursor: pointer;
-            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
-            min-height: 240px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-start;
-            gap: 12px;
-        }
-
-        .service-box:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 16px 30px rgba(0, 0, 0, 0.12);
-        }
-
-        .service-icon {
-            width: 130px;
-            height: 130px;
-            display: block;
-        }
-
-        .service-box h3 {
-            margin: 6px 0 0;
-            color: var(--blue);
-            font-size: 1.15rem;
-        }
-
-        .service-box p {
-            margin: 6px 0 0;
-            color: #123;
-            text-align: center;
-            font-size: 0.98rem;
-            line-height: 1.45;
-        }
-
-        /* booking form */
-        form .row {
-            display: flex;
-            gap: 12px;
-            flex-wrap: wrap;
-        }
-
-        label {
-            display: block;
-            font-weight: 700;
-            margin-bottom: 6px;
-            color: #123;
-        }
-
-        input[type="text"],
-        input[type="email"],
-        input[type="date"],
-        input[type="time"],
-        select,
-        textarea {
-            width: 100%;
-            padding: 10px 12px;
-            border-radius: 8px;
-            border: 1px solid #d6eae0;
-            font-size: 1rem;
-            background: #fff;
-        }
-
-        textarea {
-            min-height: 110px;
-            resize: vertical;
-        }
-
-        .btn {
-            display: inline-block;
-            background: var(--green);
-            color: white;
-            padding: 10px 16px;
-            border-radius: 8px;
-            border: none;
-            cursor: pointer;
-            font-weight: 700;
-            transition: transform .12s;
-        }
-
-        .btn:hover {
-            transform: translateY(-3px);
-            background: #008a57;
-        }
-
-        /* small utilities */
         .muted {
             color: #556;
             font-weight: 500;
-            font-size: 0.95rem;
+            font-size: .95rem
         }
 
-        /* modals */
-        .modal-backdrop {
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.45);
-            display: none;
-            align-items: center;
-            justify-content: center;
-            z-index: 2000;
-        }
-
-        .modal {
-            background: #fff;
-            width: 100%;
-            max-width: 520px;
-            padding: 18px;
-            border-radius: 10px;
-            box-shadow: 0 18px 50px rgba(0, 0, 0, 0.3);
-        }
-
-        .modal h3 {
-            margin: 0 0 8px;
-            color: var(--blue);
-        }
-
-        .modal .close {
-            float: right;
-            cursor: pointer;
-            background: none;
-            border: none;
-            font-size: 18px;
-            color: #666;
-        }
-
-        /* small screens */
-        @media(max-width:980px) {
-            header {
-                gap: 20px;
-                padding: 10px 16px;
-            }
-
-            .service-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .hero {
-                height: 360px;
-            }
-
-            .hero-text h1 {
-                font-size: 2.2rem;
-            }
-
-            nav {
-                gap: 8px;
-            }
-        }
-
-        @media(max-width:640px) {
-            .service-grid {
-                grid-template-columns: 1fr;
-            }
-
-            header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 14px;
-            }
-
-            .logo img {
-                height: 100px;
-            }
-
-            .hero {
-                height: 260px;
-            }
-
-            .hero-text h1 {
-                font-size: 1.6rem;
-            }
-        }
-
-        /* small animations */
         .fade-in {
-            animation: fadeIn .6s ease both;
+            animation: fadeIn .6s ease both
         }
 
         @keyframes fadeIn {
@@ -673,235 +250,267 @@
             }
         }
 
-        /* success message */
-        .success {
-            background: #e6fff2;
-            border-left: 4px solid var(--green);
-            padding: 12px;
-            border-radius: 6px;
-            color: #045a3b;
-            margin-bottom: 12px;
-        }
-
-        .hero {
-            position: relative;
-            width: 100%;
-            height: 450px;
-            overflow: hidden;
-        }
-
-        .hero {
-            position: relative;
-            width: 100%;
-            height: 450px;
-            overflow: hidden;
-        }
-
-        .hero video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: brightness(70%);
-        }
-
+        /* About */
         #om {
             max-width: 1100px;
             margin: 0 auto;
             padding: 2rem;
             display: flex;
             flex-direction: column;
-            gap: 2rem;
+            gap: 2rem
         }
 
-        #om h1 {
-            font-size: 2.2rem;
-            text-align: center;
-            margin-bottom: 1rem;
-            margin-top: 0cm;
+        #om>div {
+            background: #fff;
+            padding: 1.5rem;
+            border-radius: .75rem;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, .06);
+            line-height: 1.6
+        }
+
+        #om h2 {
+            font-size: 1.4rem;
+            margin-bottom: .5rem;
+            color: #333
         }
 
         #om .highlight {
             font-size: 1.2rem;
             background: #f0f8ff;
             padding: 1.5rem;
-            border-radius: 0.75rem;
-            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+            border-radius: .75rem;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, .08);
             line-height: 1.6;
+            border-left: 4px solid #0077b6;
+            margin: 0 0 20px
         }
 
-        #om h2 {
-            font-size: 1.4rem;
-            margin-bottom: 0.5rem;
-            color: #333;
+        .about-container {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: flex-start;
+            gap: 10px
         }
 
-        #om h2+p,
-        #om h2+p+p {
-            margin-top: 0;
+        .about-image {
+            flex: 0 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start
         }
 
-        #om>div {
-            background: #fff;
-            padding: 1.5rem;
-            border-radius: 0.75rem;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+        .about-image img {
+            width: 220px;
+            height: 240px;
+            border-radius: 12px;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, .1);
+            margin-top: 70px
+        }
+
+        .about-text {
+            flex: 1 1 0
+        }
+
+        .fullwidth-section {
+            width: 100%
+        }
+
+        .section-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px 40px
+        }
+
+        .fullwidth-section h2 {
+            margin-top: 0
+        }
+
+        .fullwidth-section p {
+            font-size: 1rem;
             line-height: 1.6;
+            max-width: 1000px;
+            margin: 0 auto 15px
         }
 
-
+        /* Services */
         .service-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 2rem;
-            margin-top: 2rem;
+            margin-top: 2rem
         }
 
         .service-box {
-            background-color: #fff;
+            background: linear-gradient(145deg, var(--soft), #d4f4e3);
             padding: 1.5rem;
             border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease;
+            box-shadow: 0 0 10px rgba(0, 0, 0, .05);
+            text-align: center;
+            cursor: pointer;
+            min-height: 240px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 12px;
+            transition: transform .3s ease, box-shadow .22s
         }
 
         .service-box:hover {
             transform: translateY(-5px);
+            box-shadow: 0 16px 30px rgba(0, 0, 0, .12)
         }
 
+        .service-icon {
+            width: 130px;
+            height: 130px;
+            display: block
+        }
 
-        .more-text {
+        .service-box h3 {
+            margin: 6px 0 0;
+            color: var(--blue);
+            font-size: 1.15rem
+        }
+
+        .service-box p {
+            margin: 6px 0 0;
+            color: #123;
+            text-align: center;
+            font-size: .98rem;
+            line-height: 1.45
+        }
+
+        .more summary {
             display: inline-block;
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.4s ease;
-        }
-
-        .more-text.show {
-            max-height: 1000px;
-        }
-
-        .read-more {
-            display: inline-block;
-            background: var(--green, #008a57);
-            color: white;
+            list-style: none;
+            background: var(--green);
+            color: #fff;
             padding: 6px 12px;
             border-radius: 5px;
             font-weight: 600;
-            font-size: 0.85rem;
-            border: none;
+            font-size: .85rem;
             cursor: pointer;
             margin-top: 8px;
-            transition: background 0.2s ease;
+            transition: background .2s
         }
 
-        .read-more:hover {
-            background: #006944;
+        .more summary::-webkit-details-marker {
+            display: none
         }
 
-        @media (max-width: 1024px) {
-            .service-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
+        .more summary:hover {
+            background: #006944
         }
 
-        @media (max-width: 600px) {
-            .service-grid {
-                grid-template-columns: 1fr;
-            }
+        .more .l,
+        .more[open] .m {
+            display: none
         }
 
-        /* --- Dropdown fix --- */
-        header {
-            z-index: 1500;
-            overflow: visible;
+        .more[open] .l {
+            display: inline
         }
 
-        /* make sure menu can overflow header */
-        nav {
-            position: relative;
-            z-index: 1501;
+        .more-body {
+            margin-top: 8px;
+            font-size: .98rem;
+            line-height: 1.45;
+            color: #123
         }
 
-        .dropdown {
-            position: relative;
+        /* Forms */
+        label {
+            display: block;
+            font-weight: 700;
+            margin-bottom: 6px;
+            color: #123
         }
 
-        .dropdown>button {
-            background: none;
+        input[type=text],
+        input[type=email],
+        input[type=date],
+        input[type=time],
+        select,
+        textarea {
+            width: 100%;
+            padding: 10px 12px;
+            border-radius: 8px;
+            border: 1px solid #d6eae0;
+            font-size: 1rem;
+            background: #fff;
+            font-family: inherit
+        }
+
+        textarea {
+            min-height: 110px;
+            resize: vertical
+        }
+
+        .f {
+            margin-top: 8px
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--green);
+            color: #fff;
+            padding: 10px 16px;
+            border-radius: 8px;
             border: none;
             cursor: pointer;
             font-weight: 700;
-            color: var(--blue);
-            padding: 8px 10px;
+            transition: transform .12s
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            background: #008a57
+        }
+
+        .btn:disabled {
+            opacity: .6;
+            cursor: wait
+        }
+
+        .success {
+            background: #e6fff2;
+            border-left: 4px solid var(--green);
+            padding: 12px;
             border-radius: 6px;
+            color: #045a3b;
+            margin-bottom: 12px
         }
 
-        .dropdown>button:hover {
-            color: var(--green);
-            background: rgba(0, 168, 107, .06);
+        .success.error {
+            background: #ffecec;
+            border-left-color: #c0392b;
+            color: #7a1f16
         }
 
-        .dropdown-menu {
-            position: absolute;
-            top: calc(100% + 8px);
-            left: 0;
-            min-width: 240px;
-            display: none;
-            background: #fff;
-            border-radius: 10px;
-            box-shadow: 0 10px 26px rgba(0, 0, 0, .15);
-            overflow: hidden;
-            z-index: 3000;
-            /* ensure it sits above hero/video etc. */
-        }
-
-        .dropdown-menu a {
-            display: block;
-            padding: 12px 14px;
-            color: var(--blue);
-            text-decoration: none;
-            font-weight: 600;
-        }
-
-        .dropdown-menu a:hover {
-            background: var(--soft);
-            color: var(--green);
-        }
-
-        /* Open on hover (desktop) and when JS adds .open (mobile/click) */
-        .dropdown:hover .dropdown-menu,
-        .dropdown.open .dropdown-menu {
-            display: block;
-        }
-
-        /* Optional: keep button looking "active" when menu is open */
-        .dropdown.open>button {
-            color: var(--green);
-            background: rgba(0, 168, 107, .06);
-        }
-
+        /* Contact */
         #kontakt {
             background: #f5f7fa;
             padding: 50px 20px;
-            text-align: center;
+            text-align: center
         }
 
         #kontakt h2 {
             font-size: 2rem;
             color: #150d4b;
-            margin-bottom: 15px;
+            margin-bottom: 15px
         }
 
         #kontakt p {
             font-size: 1rem;
             color: #333;
-            margin-bottom: 20px;
+            margin-bottom: 20px
         }
 
         #kontakt form {
             max-width: 500px;
-            margin: 0 auto 30px auto;
-            text-align: left;
+            margin: 0 auto 30px;
+            text-align: left
         }
 
         #kontakt input,
@@ -912,246 +521,188 @@
             border: 1px solid #ccc;
             border-radius: 8px;
             font-size: 1rem;
-            font-family: Arial, sans-serif;
-            box-sizing: border-box;
-        }
-
-        #kontakt textarea {
-            resize: vertical;
+            font-family: Arial, sans-serif
         }
 
         #kontakt button {
-            background-color: #150d4b;
-            color: white;
+            background: #150d4b;
+            color: #fff;
             border: none;
             padding: 12px 20px;
             font-size: 1rem;
             border-radius: 8px;
             cursor: pointer;
-            transition: background 0.3s ease;
-            width: 100%;
+            transition: background .3s;
+            width: 100%
         }
 
         #kontakt button:hover {
-            background-color: #1f1570;
+            background: #1f1570
+        }
+
+        #kontakt button:disabled {
+            opacity: .6;
+            cursor: wait
         }
 
         #kontakt i {
             margin-right: 8px;
-            color: #150d4b;
+            color: #150d4b
         }
 
-        html {
-            scroll-behavior: smooth;
+        footer a {
+            text-decoration: none
+        }
 
-            section {
-                scroll-margin-top: 165px;
-                /* adjust to your navbar height */
+        /* Modal */
+        .modal-backdrop {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, .45);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 4000;
+            padding: 16px
+        }
+
+        .modal {
+            background: #fff;
+            width: 100%;
+            max-width: 520px;
+            padding: 18px;
+            border-radius: 10px;
+            box-shadow: 0 18px 50px rgba(0, 0, 0, .3);
+            max-height: 92vh;
+            overflow: auto
+        }
+
+        .modal h3 {
+            margin: 0 0 8px;
+            color: var(--blue)
+        }
+
+        .modal .close {
+            float: right;
+            cursor: pointer;
+            background: none;
+            border: none;
+            font-size: 18px;
+            color: #666
+        }
+
+        /* Responsive (must stay last) */
+        @media(max-width:1024px) {
+            .service-grid {
+                grid-template-columns: repeat(2, 1fr)
+            }
+        }
+
+        @media(max-width:980px) {
+            header {
+                gap: 20px;
+                padding: 8px 16px
             }
 
+            nav {
+                gap: 8px
+            }
+
+            .hero {
+                height: 360px
+            }
+
+            .hero-text h1 {
+                font-size: 2.2rem
+            }
         }
 
-        /* === ABOUT SECTION === */
-        .about-container {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: flex-start;
-            max-width: 1200px;
-            margin: 0 auto;
-            gap: 10px;
-            padding-top: 20px;
-        }
-
-        .about-image {
-            flex: 0 0 auto;
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-        }
-
-        .about-image img {
-            width: 220px;
-            height: 240px;
-            border-radius: 12px;
-            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
-            margin-top: 70px;
-        }
-
-        .about-text {
-            flex: 1 1 0;
-        }
-
-        .about-text h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            color: #222;
-            border-left: 5px solid #0077b6;
-            padding-left: 15px;
-            margin-left: -500px;
-            padding-top: 0;
-        }
-
-        .about-text .highlight {
-            background: #47a8e4;
-            border-left: 4px solid #0077b6;
-            padding: 10px;
-            border-radius: 6px;
-            margin: 0 0 20px 0;
-            font-size: 1.05rem;
-        }
-
-        /* === FULLWIDTH SECTIONS === */
-        .fullwidth-section {
-            width: 100%;
-            box-sizing: border-box;
-        }
-
-        .section-inner {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 40px 20px;
-            box-sizing: border-box;
-            padding-top: 0%;
-        }
-
-        .fullwidth-section h2 {
-            margin-top: 0;
-            font-size: 1.8rem;
-        }
-
-        .fullwidth-section p {
-            font-size: 1rem;
-            line-height: 1.6;
-            max-width: 1000px;
-            margin: 0 auto 15px auto;
-        }
-
-        /* === SECTION BACKGROUND COLORS === */
-
-        /* Dark background with white text */
-        .uddannelse {
-            background-color: #5353cc;
-            color: white;
-        }
-
-        .uddannelse h2,
-        .uddannelse p {
-            color: #222;
-        }
-
-        /* Light background with dark text */
-        .erfaring {
-            background-color: #5d8933;
-            color: #222;
-        }
-
-        .erfaring h2,
-        .erfaring p {
-            color: #222;
-        }
-
-        /* Another light background */
-        .tilbud {
-            background-color: #f0d9ff;
-            color: #222;
-        }
-
-        .tilbud h2,
-        .tilbud p {
-            color: #222;
-        }
-
-        /* === RESPONSIVE === */
-        @media (max-width: 900px) {
+        @media(max-width:900px) {
             .about-container {
                 flex-direction: column;
-                text-align: center;
+                text-align: center
             }
 
             .about-image img {
                 width: 60%;
                 max-width: 250px;
-                margin-top: 20px;
-                margin-bottom: 20px;
+                margin: 20px 0
             }
 
-            .about-text h1 {
-                border-left: none;
-                border-bottom: 3px solid #0077b6;
-                padding-left: 0;
-                padding-bottom: 10px;
-                display: inline-block;
-                margin-left: 0;
-            }
-
-            .about-text .highlight {
-                text-align: left;
+            #om .highlight {
+                text-align: left
             }
 
             .section-inner {
-                padding: 30px 15px;
+                padding: 0 15px 30px
             }
         }
 
-        footer a {
-            text-decoration: none;
+        @media(max-width:640px) {
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 14px
+            }
+
+            .hero {
+                height: 260px
+            }
+
+            .hero-text h1 {
+                font-size: 1.6rem
+            }
+        }
+
+        @media(max-width:600px) {
+            .service-grid {
+                grid-template-columns: 1fr
+            }
         }
     </style>
 </head>
 
 <body>
 
-    <!-- Top Contact Banner -->
-    <div class="top-banner">
-        <div class="top-banner-content">
-            <span class="contact-item">📞 <a href="tel:+4531847040">+45 31 84 70 40</a></span>
-            <span class="contact-item">✉ <a href="mailto:kontakt@gila-brobygger.dk">kontakt@gila-brobygger.dk</a></span>
-        </div>
-    </div>
-
-
-    <header id="siteHeader">
-        <div class="logo">
-            <a href="#forside">
-                <img src="Snipped_logo.png" alt="Gila Brobygger Logo">
-            </a>
-        </div>
-
-
-
-        <nav>
-            <a href="#forside" class="nav-link">Forside</a>
-
-            <a href="#om" class="nav-link">Om</a>
-
-
-            <div class="dropdown" id="serviceDropdown">
-                <button id="servicesToggle" aria-haspopup="true" aria-expanded="false" aria-controls="servicesMenu">
-                    Service ▾
-                </button>
-                <div class="dropdown-menu" id="servicesMenu" role="menu">
-                    <a href="fremmedtolkning.html">Fremmedtolkning</a>
-                    <a href="Telefontolkning.html">Telefontolkning</a>
-                    <a href="videotolkning.html">Videotolkning</a>
-                    <a href="skriftligoversættelse.html">Skriftlig Oversættelse</a>
-                    <a href="Mentorforløb.html">Social Mentor</a>
-                    <a href="familiekonsulent.html">Familiekonsulent</a>
-                </div>
+    <div class="site-top">
+        <div class="top-banner">
+            <div class="top-banner-content">
+                <span class="contact-item">📞 <a href="tel:+4531847040">+45 31 84 70 40</a></span>
+                <span class="contact-item">✉ <a
+                        href="mailto:kontakt@gila-brobygger.dk">kontakt@gila-brobygger.dk</a></span>
             </div>
+        </div>
 
-            <a href="#kontakt" class="nav-link">Kontakt</a>
-            <a href="#" id="loginBtn" class="nav-link">Login</a>
-            <a href="#booking" class="btn bestil-btn">Bestil tolk</a>
-            <a href="#" id="tilbudBtn" class="btn tilbud-btn">Få et tilbud</a>
-        </nav>
-    </header>
+        <header id="siteHeader">
+            <div class="logo"><a href="#forside"><img src="Snipped_logo.png" alt="Gila Brobygger Logo"></a></div>
+            <nav>
+                <a href="#forside" class="nav-link">Forside</a>
+                <a href="#om" class="nav-link">Om</a>
+                <div class="dropdown" id="serviceDropdown">
+                    <button type="button" id="servicesToggle" aria-haspopup="true" aria-expanded="false"
+                        aria-controls="servicesMenu">Service ▾</button>
+                    <div class="dropdown-menu" id="servicesMenu">
+                        <a href="fremmedtolkning.html">Fremmedtolkning</a>
+                        <a href="telefontolkning.html">Telefontolkning</a>
+                        <a href="videotolkning.html">Videotolkning</a>
+                        <a href="skriftligoversaettelse.html">Skriftlig Oversættelse</a>
+                        <a href="mentorforloeb.html">Social Mentor</a>
+                        <a href="familiekonsulent.html">Familiekonsulent</a>
+                    </div>
+                </div>
+                <a href="#kontakt" class="nav-link">Kontakt</a>
+                <a href="#booking" class="btn bestil-btn">Bestil tolk</a>
+                <a href="#" id="tilbudBtn" class="btn tilbud-btn">Få et tilbud</a>
+            </nav>
+        </header>
+    </div>
 
     <!-- HERO -->
     <section id="forside">
         <section class="hero">
             <video autoplay muted loop playsinline>
                 <source src="helping-hand.mp4" type="video/mp4">
-                Your browser does not support the video tag.
+                Din browser understøtter ikke videoafspilning.
             </video>
             <div class="hero-text">
                 <h1>Velkommen til Gila Brobygger</h1>
@@ -1164,38 +715,25 @@
         <!-- About -->
         <section id="om" class="about">
             <div class="about-container">
-                <div class="about-image">
-                    <img src="gilaa.jpeg" alt="Gila Brobygger">
-                </div>
+                <div class="about-image"><img src="gilaa.jpeg" alt="Gila Brobygger"></div>
                 <div class="about-text">
                     <h2>OM MIG</h2>
-
-
-
                     <p class="highlight"><strong>Mit navn er Gila</strong>, og jeg er stolt af at være brobygger mellem
                         mennesker, kulturer og sprog. Jeg kommer oprindeligt fra Eritrea og har boet i Danmark i ca. 11
-                        år.
-                        Min rejse har givet mig en unik kombination af sproglig, kulturel og faglig erfaring, som jeg i
-                        dag
-                        bruger til at skabe forståelse og gode samarbejder mellem familier, myndigheder og
-                        organisationer.
-                    </p>
+                        år. Min rejse har givet mig en unik kombination af sproglig, kulturel og faglig erfaring, som
+                        jeg i dag bruger til at skabe forståelse og gode samarbejder mellem familier, myndigheder og
+                        organisationer.</p>
                 </div>
             </div>
-
-            <!-- Full-width colored blocks -->
 
             <div class="fullwidth-section uddannelse">
                 <div class="section-inner">
                     <h2>UDDANNELSE OG FAGLIG BACKGROUND</h2>
                     <p>I Eritrea blev jeg uddannet lærer og underviste i naturfag. Efter min ankomst til Danmark lærte
-                        jeg
-                        hurtigt sproget og begyndte at videreuddanne mig.</p>
+                        jeg hurtigt sproget og begyndte at videreuddanne mig.</p>
                     <p>Jeg har en <strong>Bachelor i Erhvervssprog og IT-baseret Kommunikation</strong> fra
-                        <strong>UCSYD i
-                            Haderslev</strong> og læser i øjeblikket <strong>Kandidat i IT og Kommunikation</strong> på
-                        <strong>Syddansk Universitet i Kolding</strong>.
-                    </p>
+                        <strong>UCSYD i Haderslev</strong> og læser i øjeblikket <strong>Kandidat i IT og
+                            Kommunikation</strong> på <strong>Syddansk Universitet i Kolding</strong>.</p>
                 </div>
             </div>
 
@@ -1203,27 +741,20 @@
                 <div class="section-inner">
                     <h2>ERFARING</h2>
                     <p><strong>Tolkeerfaring:</strong> Over 8 års erfaring som tolk, herunder som politigodkendt tolk
-                        hos
-                        Tolk Service i Kolding. Jeg har arbejdet med fremmøde-, telefon- og videotolkning samt skriftlig
-                        oversættelse for flere anerkendte tolke­bureauer.</p>
+                        hos Tolk Service i Kolding. Jeg har arbejdet med fremmøde-, telefon- og videotolkning samt
+                        skriftlig oversættelse for flere anerkendte tolkebureauer.</p>
                     <p><strong>Familiekonsulent:</strong> Siden 2020 har jeg arbejdet som familiekonsulent hos Memøx,
-                        hvor
-                        jeg yder målrettet støtte og indsatser for familier fra Eritrea.</p>
+                        hvor jeg yder målrettet støtte og indsatser for familier fra Eritrea.</p>
                     <p><strong>Mentorarbejde:</strong> Erfaring som mentor i Kommunen, hvor jeg har støttet borgere i at
                         navigere i offentlige systemer, styrke deres ressourcer og skabe positive fremskridt i forhold
                         til uddannelse, beskæftigelse og integration.</p>
                     <p><strong>Asyl- og integrationsarbejde:</strong> Arbejder som centermedarbejder på AsylSyd, hvor
-                        jeg
-                        dagligt møder mennesker fra mange baggrunde og støtter deres trivsel og integration.</p>
+                        jeg dagligt møder mennesker fra mange baggrunde og støtter deres trivsel og integration.</p>
                     <p><strong>Undervisning i Danmark:</strong> Har undervist på FGU Tønder og Kolding Ungdomsskole,
-                        hvor
-                        jeg har støttet unge i deres faglige og personlige udvikling.</p>
-                    <p>
-                        <strong>Støtteperson efter Barnets Lov §75:</strong>
-                        Arbejder som støtteperson for anbragte børn og deres familier, hvor jeg skaber tryghed, styrker
-                        samarbejdet mellem familie og myndigheder samt bidrager til barnets trivsel, udvikling og
-                        stabile rammer.
-                    </p>
+                        hvor jeg har støttet unge i deres faglige og personlige udvikling.</p>
+                    <p><strong>Støtteperson efter Barnets Lov §75:</strong> Arbejder som støtteperson for anbragte børn
+                        og deres familier, hvor jeg skaber tryghed, styrker samarbejdet mellem familie og myndigheder
+                        samt bidrager til barnets trivsel, udvikling og stabile rammer.</p>
                 </div>
             </div>
 
@@ -1232,34 +763,22 @@
                     <h2>HVAD JEG TILBYDER</h2>
                     <p>Som <strong>Gila Brobygger</strong> kombinerer jeg sproglig præcision, kulturel forståelse og
                         pædagogisk indsigt. Min tilgang er helhedsorienteret – både sprogligt og kulturelt – for at
-                        sikre,
-                        at alle forstår hinanden og kan samarbejde effektivt.</p>
+                        sikre, at alle forstår hinanden og kan samarbejde effektivt.</p>
                     <p>Mit mål er at skabe <strong>klar, præcis og respektfuld kommunikation</strong>, der bygger
-                        tillid,
-                        løser konflikter og åbner nye muligheder.</p>
+                        tillid, løser konflikter og åbner nye muligheder.</p>
                     <p><em>Det er min passion at hjælpe og støtte mennesker i at skabe forståelse, tryghed og
-                            konstruktive
-                            løsninger – uanset hvilke sproglige eller kulturelle barrierer, der måtte stå i vejen.</em>
-                    </p>
+                            konstruktive løsninger – uanset hvilke sproglige eller kulturelle barrierer, der måtte stå i
+                            vejen.</em></p>
                 </div>
             </div>
         </section>
 
-
-        <!-- Services grid -->
+        <!-- Services -->
         <section id="Service" class="card fade-in">
-            <h2 style="color:var(--blue); text-align:center;">MINE TJENESTER</h2>
-
-
-
-
-
-            <!-- Grid container -->
+            <h2 style="color:var(--blue);text-align:center">MINE TJENESTER</h2>
             <div class="service-grid">
 
-                <!-- Service 1: Fremmedtolkning -->
                 <div class="service-box" tabindex="0" data-service="Fremmedtolkning">
-
                     <svg class="service-icon" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                         <g fill="none" fill-rule="evenodd">
                             <circle cx="32" cy="32" r="30" fill="#fff" />
@@ -1271,40 +790,18 @@
                             </g>
                         </g>
                     </svg>
-
                     <h3>Fremmedtolkning</h3>
-                    <p>
-                        Professionel tolkning ansigt-til-ansigt ved møder, hjemmebesøg og i institutioner.
-                        Jeg tilbyder professionel fremmedtolkning med fysisk tilstedeværelse ved møder, hjemmebesøg
-                        og i
-                        institutioner.
-                        <span id="dots1">...</span>
-                        <span id="more1" class="more-text">
-                            Min service sikrer, at kommunikationen bliver klar og forståelig, selv i situationer
-                            hvor
-                            nuancer, kropssprog og direkte dialog er afgørende. Jeg har erfaring med tolkeopgaver
-                            inden for områder
-                            som jura, sundhed, uddannelse og erhverv, og arbejder altid med diskretion, respekt og
-                            høj faglig standard.
-
-                            Ved fysisk fremmøde kan jeg opfange både sproglige og non-verbale signaler, hvilket gør
-                            kommunikationen mere præcis og nuanceret. Jeg tilpasser mig situationen, uanset om der
-                            er flere
-                            deltagere, komplekse emner eller behov for fleksibilitet. Mit mål er altid at sikre, at
-                            alle parter kan
-                            forstå hinanden klart og effektivt – uanset konteksten eller opgavens karakter.
-
-                            Hvis du har brug for en tigrinisk tolk, kan du kontakte mig nu for en personlig og
-                            professionel løsning.
-                        </span>
-                    </p>
-                    <button type="button" onclick="toggleReadMore(event, 'dots1', 'more1', this)" class="read-more">Læs
-                        mere</button>
+                    <p>Professionel tolkning ansigt-til-ansigt ved møder, hjemmebesøg og i institutioner. Jeg tilbyder
+                        professionel fremmedtolkning med fysisk tilstedeværelse ved møder, hjemmebesøg og i
+                        institutioner.</p>
+                    <details class="more">
+                        <summary><span class="m">Læs mere</span><span class="l">Læs mindre</span></summary>
+                        <div class="more-body">
+                            <!-- PASTE 1/6: the hidden text of Fremmedtolkning from your old file (inside <span id="more1">) -->
+                        </div>
+                    </details>
                 </div>
 
-
-
-                <!-- Service 2: Telefontolkning -->
                 <div class="service-box" tabindex="0" data-service="Telefontolkning">
                     <svg class="service-icon" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                         <g fill="none">
@@ -1318,41 +815,16 @@
                         </g>
                     </svg>
                     <h3>Telefontolkning</h3>
-                    <p>
-                        Hurtig, fleksibel tolk via telefon — når I har brug for øjeblikkelig hjælp.
-                        Jeg tilbyder professionel telefonisk tolkning som en fleksibel og hurtig løsning til at bryde
-                        sprogbarrierer.
-                        <span id="dots2">...</span>
-                        <span id="more2" class="more-text">
-                            Denne service er ideel i situationer, hvor fysisk fremmøde ikke er nødvendigt, men hvor
-                            præcis
-                            og effektiv kommunikation stadig er afgørende.
-
-                            Med telefonisk tolkning fungerer jeg som bindeled mellem dig og de andre deltagere, og
-                            sikrer,
-                            at alle parter kan forstå hinanden korrekt – uanset tid og sted. Jeg har erfaring med
-                            tolkeopgaver inden for områder som sundhed, jura, sociale tjenester, erhverv og uddannelse,
-                            og
-                            arbejder altid med høj faglig standard, diskretion og respekt for privatlivets fred.
-
-                            Telefonisk tolkning er en hurtig og praktisk løsning, der giver dig fleksibilitet og adgang
-                            til
-                            professionel assistance uden behov for transport eller fysisk fremmøde. Den er ideel til
-                            akutte
-                            opkald, rådgivning, møder med internationale samarbejdspartnere eller kommunikation med
-                            offentlige institutioner.
-
-                            Hvis du har brug for en tigrinisk tolk via telefon, kan du kontakte mig nu for en personlig
-                            og
-                            professionel løsning, der sikrer, at kommunikationen altid forløber klart og effektivt.
-                        </span>
+                    <p>Hurtig, fleksibel tolk via telefon — når I har brug for øjeblikkelig hjælp. Jeg tilbyder
+                        professionel telefonisk tolkning som en fleksibel og hurtig løsning til at bryde sprogbarrierer.
                     </p>
-                    <button type="button" onclick="toggleReadMore(event, 'dots2', 'more2', this)" class="read-more">Læs
-                        mere</button>
+                    <details class="more">
+                        <summary><span class="m">Læs mere</span><span class="l">Læs mindre</span></summary>
+                        <div class="more-body">
+                            <!-- PASTE 2/6: the hidden text of Telefontolkning (inside <span id="more2">) --></div>
+                    </details>
                 </div>
 
-
-                <!-- Service 3: Videotolkning -->
                 <div class="service-box" tabindex="0" data-service="Videotolkning">
                     <svg class="service-icon" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                         <g fill="none">
@@ -1362,47 +834,16 @@
                         </g>
                     </svg>
                     <h3>Videotolkning</h3>
-                    <p>
-                        Online video-opkobling med erfaren tolk — god til møder og akutte samtaler.
-                        Jeg tilbyder professionel video- eller videotolkning, som kombinerer fleksibiliteten fra
-                        telefonisk tolkning
-                        med fordelene ved visuel kontakt.
-
-                        <span id="dots3">...</span>
-                        <span id="more3" class="more-text">
-                            Denne løsning er ideel, når det er vigtigt at kunne se
-                            deltagerne, aflæse kropssprog og skabe en mere naturlig kommunikation, uden at fysisk
-                            fremmøde
-                            er muligt.
-
-                            Med video-tilstedeværelse fungerer jeg som bindeled mellem dig og andre deltagere, og
-                            sikrer, at
-                            samtaler foregår præcist og effektivt. Jeg har erfaring med tolkeopgaver inden for
-                            områder
-                            som
-                            sundhed, jura, sociale tjenester, erhverv og uddannelse, og arbejder altid med
-                            diskretion,
-                            respekt og høj faglig standard.
-
-                            Video-tolkning er både fleksibel og tidsbesparende. Den er velegnet til møder,
-                            konsultationer,
-                            undervisning og rådgivningssamtaler, hvor visuel kontakt forbedrer forståelsen og
-                            kommunikationens kvalitet. Du får hurtig adgang til professionel assistance, uanset hvor
-                            du
-                            befinder dig.
-
-                            Hvis du har brug for en tigrinisk tolk via video, kan du kontakte mig nu for en
-                            personlig og
-                            professionel løsning, der sikrer klar og effektiv kommunikation hver gang.
-                        </span>
-                    </p>
-                    <button type="button" onclick="toggleReadMore(event, 'dots3', 'more3', this)" class="read-more">Læs
-                        mere</button>
+                    <p>Online video-opkobling med erfaren tolk — god til møder og akutte samtaler. Jeg tilbyder
+                        professionel video- eller videotolkning, som kombinerer fleksibiliteten fra telefonisk tolkning
+                        med fordelene ved visuel kontakt.</p>
+                    <details class="more">
+                        <summary><span class="m">Læs mere</span><span class="l">Læs mindre</span></summary>
+                        <div class="more-body">
+                            <!-- PASTE 3/6: the hidden text of Videotolkning (inside <span id="more3">) --></div>
+                    </details>
                 </div>
 
-
-
-                <!-- Service 4: Skriftlig oversættelse -->
                 <div class="service-box" tabindex="0" data-service="Skriftlig Oversættelse">
                     <svg class="service-icon" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                         <g fill="none">
@@ -1415,54 +856,17 @@
                         </g>
                     </svg>
                     <h3>Skriftlig Oversættelse</h3>
-                    <p>
-                        Kvalitetssikrede oversættelser af breve, dokumenter og officielle papirer.
-                        Jeg tilbyder professionel skriftlig oversættelse fra og til tigrinisk, som sikrer præcis og
-                        korrekt
-                        formidling af indhold mellem sprog.
-                        <span id="dots4">...</span>
-                        <span id="more4" class="more-text">
-                            Denne service er ideel, når dokumenter, breve, rapporter eller andre skriftlige
-                            materialer
-                            skal oversættes
-                            med høj kvalitet og forståelighed.
-
-                            Med skriftlig oversættelse lægger jeg vægt på både sproglig nøjagtighed og kulturel
-                            forståelse, så
-                            budskabet fremstår naturligt og korrekt i målgruppen. Jeg har mange års studier bag mig,
-                            som
-                            har givet mig
-                            en dyb indsigt i både sprog og kultur. Jeg har desuden omfattende erfaring med
-                            oversættelser
-                            af dokumenter
-                            fra domstole samt informative hæfter, som for eksempel “Hvad er bedst for børnene”, der
-                            har
-                            modtaget stor
-                            anerkendelse. Min dybe forståelse af tigrinisk som modersmål gør, at jeg kan formidle
-                            nuancer og kulturelle
-                            elementer præcist og respektfuldt.
-
-                            Jeg har erfaring inden for jura, uddannelse, sociale ydelser og erhverv, og arbejder
-                            altid
-                            med diskretion
-                            og høj faglig standard. Uanset om det drejer sig om korte tekster, længere rapporter
-                            eller
-                            officielle
-                            dokumenter, leverer jeg oversættelser, der er præcise, tro mod originalen og
-                            letforståelige.
-
-                            Hvis du har brug for en tigrinisk skriftlig oversættelse, kan du kontakte mig nu for en
-                            personlig og
-                            professionel løsning, der sikrer, at dit budskab bliver korrekt og effektivt formidlet.
-                        </span>
-                    </p>
-                    <button type="button" onclick="toggleReadMore(event, 'dots4', 'more4', this)" class="read-more">Læs
-                        mere</button>
+                    <p>Kvalitetssikrede oversættelser af breve, dokumenter og officielle papirer. Jeg tilbyder
+                        professionel skriftlig oversættelse fra og til tigrinisk, som sikrer præcis og korrekt
+                        formidling af indhold mellem sprog.</p>
+                    <details class="more">
+                        <summary><span class="m">Læs mere</span><span class="l">Læs mindre</span></summary>
+                        <div class="more-body">
+                            <!-- PASTE 4/6: the hidden text of Skriftlig Oversættelse (inside <span id="more4">) -->
+                        </div>
+                    </details>
                 </div>
 
-
-
-                <!-- Service 5: Social mentor -->
                 <div class="service-box" tabindex="0" data-service="Social Mentor">
                     <svg class="service-icon" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                         <g fill="none">
@@ -1475,52 +879,15 @@
                         </g>
                     </svg>
                     <h3>Social Mentor</h3>
-                    <p>
-                        Social Mentor – Individuel Støtte og Mentorforløb.
-                        Hos Gila Brobygger tilbyder vi individuel støtte til integration, møde- og systemvejledning
-                        samt
-                        hverdagsrådgivning.
-                        <span id="dots5">...</span>
-                        <span id="more5" class="more-text">
-                            Vi arbejder tæt sammen med den enkelte borger for at skabe tryghed, overblik og
-                            handlemuligheder i mødet med det danske samfund.
-
-                            <strong>Mentorforløb på tigrinya:</strong>
-                            Vi tilbyder mentorforløb på tigrinya. Dette sikrer, at vi kan møde vores mentees på
-                            deres
-                            eget modersmål, hvilket styrker både forståelse og tillid.
-
-                            <strong>Indhold i et mentorforløb:</strong>
-                            Et mentorforløb tilpasses altid den enkeltes behov og kan omfatte:
-                            - Indsigt i dansk arbejdskultur, arbejdsmiljø, uddannelsessystem og sundhedsvæsen.
-                            - Udarbejdelse af CV samt vejledning i effektiv jobsøgning via relevante søgeplatforme.
-                            - Identificering og fremhævelse af kompetencer og arbejdspotentiale.
-                            - Støtte og motivation til at tage aktivt ansvar for eget liv.
-                            - Kendskab til rettigheder og pligter i det danske samfund.
-
-                            Derudover kan mentorforløbet omfatte praktisk støtte, fx:
-                            - Etablering i permanent bolig.
-                            - Oprettelse af NemID/MitID.
-                            - Hjælp til administrative og offentlige procedurer.
-
-                            <strong>Vores tilgang:</strong>
-                            Vi lægger vægt på at skabe et mentorforløb, der både styrker selvstændighed og fremmer
-                            aktiv
-                            deltagelse i samfundet.
-                            Med respekt for kulturelle forskelle og fokus på individuelle ressourcer arbejder vi for
-                            en
-                            bæredygtig integration, hvor mentees føler sig rustet til at navigere trygt i alle
-                            livets
-                            aspekter i Danmark.
-                        </span>
-                    </p>
-                    <button type="button" onclick="toggleReadMore(event, 'dots5', 'more5', this)" class="read-more">Læs
-                        mere</button>
+                    <p>Social Mentor – Individuel Støtte og Mentorforløb. Hos Gila Brobygger tilbyder vi individuel
+                        støtte til integration, møde- og systemvejledning samt hverdagsrådgivning.</p>
+                    <details class="more">
+                        <summary><span class="m">Læs mere</span><span class="l">Læs mindre</span></summary>
+                        <div class="more-body">
+                            <!-- PASTE 5/6: the hidden text of Social Mentor (inside <span id="more5">) --></div>
+                    </details>
                 </div>
 
-
-
-                <!-- Service 6: Family consulting -->
                 <div class="service-box" tabindex="0" data-service="Familiekonsulent">
                     <svg class="service-icon" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                         <g fill="none">
@@ -1530,67 +897,25 @@
                         </g>
                     </svg>
                     <h3>Familiekonsulent</h3>
-                    <p>
-                        Rådgivning til familier — kommunikation, konflikthåndtering og støtte i samarbejde med
-                        myndigheder.
-                        <span id="dots6">...</span>
-                        <span id="more6" class="more-text">
-                            Som familiekonsulent tilbyder jeg personlig og professionel vejledning til familier,
-                            der
-                            ønsker støtte i at håndtere udfordringer og skabe positive forandringer i deres
-                            hverdag
-                            og
-                            relationer.
-                            Jeg arbejder tæt sammen med familier for at finde løsninger, styrke kommunikation og
-                            fremme
-                            trivsel for både børn og voksne.
-
-                            <strong>Erfaring:</strong>
-                            Siden 2020 har jeg arbejdet som familiekonsulent hos Memøs, hvor jeg yder målrettet
-                            støtte
-                            og indsatser for både familier og enkeltpersoner.
-
-                            <strong>Min tilgang omfatter:</strong>
-                            - Støtte og vejledning: Hjælp til at navigere gennem konflikter,
-                            kommunikationsudfordringer
-                            og forældreskab.
-                            - Identifikation af ressourcer: Støtte til at opdage og udnytte familiens styrker.
-                            - Praktisk hjælp: Strukturering af hverdagen, relevante aktiviteter, stabilitet og
-                            løsninger
-                            på daglige udfordringer.
-                            - Forebyggende indsats: Vejledning før små problemer vokser.
-                            - Samarbejde med fagpersoner: Skoler, daginstitutioner, sundhedsplejen og
-                            myndigheder.
-
-                            <strong>Jeg arbejder med familier, der oplever:</strong>
-                            - Konflikter eller kommunikationsproblemer
-                            - Børn med særlige behov eller skolevanskeligheder
-                            - Økonomiske eller boligudfordringer
-                            - Behov for støtte i forældrerollen
-
-                            Som familiekonsulent stræber jeg efter at skabe tryghed og tillid, hvor familier
-                            føler
-                            sig
-                            hørt og støttet.
-                            Mit mål er at give værktøjer og vejledning, der styrker samspil og trivsel.
-                            Kontakt mig for en personlig og professionel løsning.
-                        </span>
-                    </p>
-                    <button type="button" onclick="toggleReadMore(event, 'dots6', 'more6', this)" class="read-more">Læs
-                        mere</button>
+                    <p>Rådgivning til familier — kommunikation, konflikthåndtering og støtte i samarbejde med
+                        myndigheder.</p>
+                    <details class="more">
+                        <summary><span class="m">Læs mere</span><span class="l">Læs mindre</span></summary>
+                        <div class="more-body">
+                            <!-- PASTE 6/6: the hidden text of Familiekonsulent (inside <span id="more6">) --></div>
+                    </details>
                 </div>
+
             </div>
         </section>
 
-        <!-- Booking card -->
+        <!-- Booking -->
         <section id="booking" class="card fade-in">
             <h2 style="color:var(--blue)">Bestil tolk</h2>
-
-            <div id="bookingAlert" style="display:none" class="success">Tak! Din booking er modtaget.</div>
-
+            <div id="bookingAlert" class="success" role="status" hidden></div>
             <form id="bookingForm" novalidate>
-                <div style="display:flex; gap:18px; flex-wrap:wrap;">
-                    <div style="flex:1; min-width:220px;">
+                <div style="display:flex;gap:18px;flex-wrap:wrap">
+                    <div style="flex:1;min-width:220px">
                         <label for="serviceSelect">Vælg service</label>
                         <select id="serviceSelect" name="service" required>
                             <option value="">-- vælg --</option>
@@ -1602,420 +927,176 @@
                             <option>Familiekonsulent</option>
                         </select>
                     </div>
-                    <div style="width:180px; min-width:150px;">
-                        <label for="date">Dato</label>
-                        <input id="date" name="date" type="date" required />
-                    </div>
-                    <div style="width:160px; min-width:140px;">
-                        <label for="time">Tidspunkt</label>
-                        <input id="time" name="time" type="time" required />
-                    </div>
+                    <div style="width:180px;min-width:150px"><label for="date">Dato</label><input id="date" name="date"
+                            type="date" required></div>
+                    <div style="width:160px;min-width:140px"><label for="time">Tidspunkt</label><input id="time"
+                            name="time" type="time" required></div>
                 </div>
-
-                <div style="display:flex; gap:18px; margin-top:12px; flex-wrap:wrap;">
-                    <div style="flex:1; min-width:220px;">
-                        <label for="name">Navn</label>
-                        <input id="name" name="name" type="text" required placeholder="Dit navn" />
-                    </div>
-                    <div style="flex:1; min-width:220px;">
-                        <label for="email">Email</label>
-                        <input id="email" name="email" type="email" required placeholder="din@mail.dk" />
-                    </div>
+                <div style="display:flex;gap:18px;margin-top:12px;flex-wrap:wrap">
+                    <div style="flex:1;min-width:220px"><label for="name">Navn</label><input id="name" name="name"
+                            type="text" required placeholder="Dit navn"></div>
+                    <div style="flex:1;min-width:220px"><label for="email">Email</label><input id="email" name="email"
+                            type="email" required placeholder="din@mail.dk"></div>
                 </div>
-
-                <div style="margin-top:12px;">
+                <div style="margin-top:12px">
                     <label for="message">Besked / info</label>
                     <textarea id="message" name="message" placeholder="Evt. sprog, sted eller ekstra info"></textarea>
                 </div>
-
-                <div style="margin-top:14px; display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
+                <div style="margin-top:14px;display:flex;gap:10px;align-items:center;flex-wrap:wrap">
                     <button type="submit" class="btn">Send forespørgsel</button>
                     <div class="muted">Vi svarer hurtigst muligt — eller brug telefon ved akut behov.</div>
                 </div>
             </form>
         </section>
 
-
-        <!-- Quote & contact -->
-        <section id="tilbudSection" class="card fade-in" style="display:none;">
-            <h2 style="color:var(--blue)">Forespørgsler / Tilbud</h2>
-            <div id="tilbudList"></div>
-        </section>
-
+        <!-- Contact -->
         <section id="kontakt">
             <h2>Kontakt</h2>
             <p>Har du brug for tolkning, oversættelse, mentorforløb eller familiekonsulent? Kontakt mig her:</p>
-
-            <form action="#" method="post">
+            <form id="contactForm">
                 <input type="text" name="name" placeholder="Dit navn" required>
                 <input type="email" name="email" placeholder="Din email" required>
                 <textarea name="message" placeholder="Din besked" rows="5" required></textarea>
                 <button type="submit">Send</button>
             </form>
-
-            <!-- Clickable phone -->
-            <p><i class="fas fa-phone"></i> Telefon:
-                <a href="tel:+4531847040">+45 31 84 70 40</a>
-            </p>
-
-            <!-- Clickable email -->
-            <p><i class="fas fa-envelope"></i> Email:
-                <a href="mailto:kontakt@gila-brobygger.dk">kontakt@gila-brobygger.dk</a>
-            </p>
+            <p id="contactMsg" role="status"></p>
+            <p><i class="fas fa-phone"></i> Telefon: <a href="tel:+4531847040">+45 31 84 70 40</a></p>
+            <p><i class="fas fa-envelope"></i> Email: <a
+                    href="mailto:kontakt@gila-brobygger.dk">kontakt@gila-brobygger.dk</a></p>
         </section>
-
-
     </main>
 
-    <!-- FOOTER -->
-
-    <footer style="background-color: #5462e1; color: white; text-align: center; padding: 20px;">
-        <p>© 2025 Gila Brobygger. Alle rettigheder forbeholdes</p>
-        <div style="margin-top: 10px;">
-            <a href="https://www.linkedin.com/" target="_blank"
-                style="color: white; margin: 0 10px; font-size: 1.5em; text-decoration: none;">
-                <i class="fab fa-linkedin"></i>
-            </a>
-            <a href="https://www.facebook.com/" target="_blank"
-                style="color: white; margin: 0 10px; font-size: 1.5em; text-decoration: none;">
-                <i class="fab fa-facebook"></i>
-            </a>
-            <a href="mailto:kontakt@gila-brobygger.dk"
-                style="color: white; margin: 0 10px; font-size: 1.5em; text-decoration: none;">
-                <i class="fas fa-envelope"></i>
-            </a>
+    <footer style="background-color:#5462e1;color:white;text-align:center;padding:20px">
+        <p>© <span id="year">2026</span> Gila Brobygger. Alle rettigheder forbeholdes</p>
+        <div style="margin-top:10px">
+            <a href="https://www.linkedin.com/" target="_blank" rel="noopener" aria-label="LinkedIn"
+                style="color:white;margin:0 10px;font-size:1.5em"><i class="fab fa-linkedin"></i></a>
+            <a href="https://www.facebook.com/" target="_blank" rel="noopener" aria-label="Facebook"
+                style="color:white;margin:0 10px;font-size:1.5em"><i class="fab fa-facebook"></i></a>
+            <a href="mailto:kontakt@gila-brobygger.dk" aria-label="Email"
+                style="color:white;margin:0 10px;font-size:1.5em"><i class="fas fa-envelope"></i></a>
         </div>
     </footer>
 
-
-    <!-- MODALS -->
+    <!-- Få et tilbud -->
     <div id="modalBackdrop" class="modal-backdrop" aria-hidden="true">
         <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-            <button class="close" id="closeModal">&times;</button>
-            <div id="modalContent"></div>
+            <button class="close" id="closeModal" type="button" aria-label="Luk">&times;</button>
+            <h3 id="modalTitle">Få et tilbud</h3>
+            <p class="muted">Fortæl kort hvad du har brug for — vi vender tilbage med pris og tid.</p>
+            <form id="tilbudForm">
+                <div class="f"><label for="tilbudName">Navn</label><input id="tilbudName" name="name" type="text"
+                        required></div>
+                <div class="f"><label for="tilbudEmail">Email</label><input id="tilbudEmail" name="email" type="email"
+                        required></div>
+                <div class="f"><label for="tilbudService">Service (kort)</label><input id="tilbudService" name="service"
+                        type="text" placeholder="fx Videotolkning" required></div>
+                <div class="f"><label for="tilbudMsg">Beskrivelse</label><textarea id="tilbudMsg"
+                        name="message"></textarea></div>
+                <div style="margin-top:12px;display:flex;gap:8px">
+                    <button type="submit" class="btn">Send forespørgsel</button>
+                    <button type="button" id="cancelTilbud" class="btn" style="background:#999">Annuller</button>
+                </div>
+                <div id="tilbudMsgBox" role="status" style="margin-top:10px"></div>
+            </form>
         </div>
     </div>
 
-
-
-
-
-    <!-- SCRIPTS: interactivity -->
     <script>
-        // Utilities
-        const $ = (s, root = document) => root.querySelector(s);
-        const $$ = (s, root = document) => Array.from(root.querySelectorAll(s));
+        (() => {
+            const $ = (s, r = document) => r.querySelector(s);
+            const $$ = (s, r = document) => [...r.querySelectorAll(s)];
 
-        // Sticky header shadow on scroll
-        const header = $('#siteHeader');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 10) header.classList.add('scrolled');
-            else header.classList.remove('scrolled');
-        });
-
-        // Dropdown show/hide
-        const dropdown = document.getElementById('serviceDropdown');
-        const ddBtn = dropdown.querySelector('button');
-        const ddMenu = dropdown.querySelector('.dropdown-menu');
-        ddBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            const open = ddMenu.style.display === 'block';
-            closeAllDropdowns();
-            ddMenu.style.display = open ? 'none' : 'block';
-        });
-        function closeAllDropdowns() { $$('.dropdown-menu').forEach(m => m.style.display = 'none'); }
-        document.addEventListener('click', closeAllDropdowns);
-
-        // Smooth scroll for nav links
-        $$('.nav-link').forEach(a => {
-            a.addEventListener('click', (e) => {
-                e.preventDefault();
-                const id = a.getAttribute('href').slice(1);
-                const el = document.getElementById(id);
-                if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            });
-        });
-
-        // make service-box clickable: prefill booking and scroll
-        $$('.service-box').forEach(box => {
-            box.addEventListener('click', () => {
-                const svc = box.dataset.service;
-                selectService(svc);
-                document.getElementById('serviceSelect').value = svc;
-                document.getElementById('booking').scrollIntoView({ behavior: 'smooth', block: 'start' });
-                // add small highlight
-                box.animate([{ transform: 'scale(1)' }, { transform: 'scale(0.98)' }, { transform: 'scale(1)' }], { duration: 220 });
-            });
-            box.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') box.click(); });
-        });
-
-        (function () {
-            const dropdown = document.getElementById('serviceDropdown');
-            const toggleBtn = document.getElementById('servicesToggle');
-
-            // Toggle on click/tap (good for mobile)
-            toggleBtn.addEventListener('click', function (e) {
-                e.preventDefault();
-                const isOpen = dropdown.classList.toggle('open');
-                toggleBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-            });
-
-            // Close on outside click
-            document.addEventListener('click', function (e) {
-                if (!dropdown.contains(e.target)) {
-                    dropdown.classList.remove('open');
-                    toggleBtn.setAttribute('aria-expanded', 'false');
-                }
-            });
-
-            // Close on Escape
-            document.addEventListener('keydown', function (e) {
-                if (e.key === 'Escape') {
-                    dropdown.classList.remove('open');
-                    toggleBtn.setAttribute('aria-expanded', 'false');
-                    toggleBtn.focus();
-                }
-            });
-        })();
-
-        // Pre-select selectService helper
-        function selectService(name) {
-            const sel = $('#serviceSelect');
-            if (sel) {
-                for (let opt of sel.options) if (opt.value === name) { sel.value = name; break; }
-            }
-        }
-
-        // Booking form: validate & store
-        const bookingForm = $('#bookingForm');
-        bookingForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const data = {
-                id: 'bk_' + Date.now(),
-                service: bookingForm.service.value,
-                date: bookingForm.date.value,
-                time: bookingForm.time.value,
-                name: bookingForm.name.value.trim(),
-                email: bookingForm.email.value.trim(),
-                message: bookingForm.message.value.trim(),
-                created: new Date().toISOString()
+            // 1) Put your Formspree (or similar) endpoint here. All three forms use it.
+            const FORM_URL = 'https://formspree.io/f/YOUR_FORM_ID';
+            const FAIL = 'Noget gik galt. Prøv igen eller ring på +45 31 84 70 40.';
+            const post = async d => {
+                try {
+                    const r = await fetch(FORM_URL, { method: 'POST', headers: { Accept: 'application/json', 'Content-Type': 'application/json' }, body: JSON.stringify(d) });
+                    return r.ok;
+                } catch (e) { return false; }
             };
-            // simple validation
-            if (!data.service || !data.date || !data.time || !data.name || !data.email) {
-                alert('Udfyld venligst alle obligatoriske felter.');
-                return;
-            }
-            // store locally (simulated)
-            const stored = JSON.parse(localStorage.getItem('gila_bookings') || '[]');
-            stored.unshift(data);
-            localStorage.setItem('gila_bookings', JSON.stringify(stored));
-            // show success and clear
-            $('#bookingAlert').style.display = 'block';
-            setTimeout(() => $('#bookingAlert').style.display = 'none', 4000);
-            bookingForm.reset();
-        });
 
-        // Modal logic (for login & tilbud)
-        const modalBackdrop = $('#modalBackdrop');
-        const modalContent = $('#modalContent');
-        const closeModalBtn = $('#closeModal');
+            // Header shadow, year, minimum booking date
+            const header = $('#siteHeader');
+            addEventListener('scroll', () => header.classList.toggle('scrolled', scrollY > 10));
+            $('#year').textContent = new Date().getFullYear();
+            const t = new Date();
+            $('#date').min = `${t.getFullYear()}-${String(t.getMonth() + 1).padStart(2, '0')}-${String(t.getDate()).padStart(2, '0')}`;
 
-        function openModal(html) {
-            modalContent.innerHTML = html;
-            modalBackdrop.style.display = 'flex';
-            modalBackdrop.setAttribute('aria-hidden', 'false');
-        }
-        function closeModal() { modalBackdrop.style.display = 'none'; modalBackdrop.setAttribute('aria-hidden', 'true'); }
+            // Service dropdown (hover via CSS, click/tap via .open)
+            const dd = $('#serviceDropdown'), ddBtn = $('#servicesToggle');
+            const setOpen = o => { dd.classList.toggle('open', o); ddBtn.setAttribute('aria-expanded', o); };
+            ddBtn.addEventListener('click', e => { e.stopPropagation(); setOpen(!dd.classList.contains('open')); });
+            document.addEventListener('click', e => { if (!dd.contains(e.target)) setOpen(false); });
 
-        closeModalBtn.addEventListener('click', closeModal);
-        modalBackdrop.addEventListener('click', (e) => { if (e.target === modalBackdrop) closeModal(); });
-
-        // LOGIN modal
-        $('#loginBtn').addEventListener('click', (e) => {
-            e.preventDefault();
-            openModal(loginHtml());
-            attachLoginHandlers();
-        });
-
-        function loginHtml() {
-            return `
-      <h3 id="modalTitle">Log ind / Opret bruger</h3>
-      <p class="muted">Demo-login: du kan oprette en lokal konto (gemmes i din browser). Ikke sikker til produktion.</p>
-      <div style="margin-top:12px">
-        <label>Brugernavn</label>
-        <input id="modalUsername" type="text" placeholder="brugernavn eller email" />
-      </div>
-      <div style="margin-top:10px">
-        <label>Password</label>
-        <input id="modalPass" type="password" placeholder="adgangskode" />
-      </div>
-      <div style="margin-top:14px; display:flex; gap:8px;">
-        <button id="doLogin" class="btn">Log ind</button>
-        <button id="doSignup" class="btn" style="background:var(--blue)">Opret bruger</button>
-      </div>
-      <div id="loginMsg" style="margin-top:10px"></div>
-    `;
-        }
-
-        function attachLoginHandlers() {
-            $('#doSignup').addEventListener('click', () => {
-                const u = $('#modalUsername').value.trim();
-                const p = $('#modalPass').value;
-                if (!u || !p) { $('#loginMsg').innerText = 'Udfyld brugernavn og adgangskode.'; return; }
-                // save user (insecure demo)
-                const users = JSON.parse(localStorage.getItem('gila_users') || '{}');
-                if (users[u]) { $('#loginMsg').innerText = 'Brugernavn findes allerede.'; return; }
-                users[u] = { password: p };
-                localStorage.setItem('gila_users', JSON.stringify(users));
-                $('#loginMsg').innerText = 'Konto oprettet. Du er nu logget ind.';
-                setTimeout(() => { closeModal(); showLoggedIn(u); }, 900);
+            // Service cards preselect the booking form
+            const selectService = n => {
+                const s = $('#serviceSelect');
+                for (const o of s.options) if (o.value.toLowerCase() === n.toLowerCase()) { s.value = o.value; break; }
+            };
+            $$('.service-box').forEach(b => {
+                b.addEventListener('click', e => {
+                    if (e.target.closest('.more')) return;
+                    selectService(b.dataset.service);
+                    $('#booking').scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    b.animate([{ transform: 'scale(1)' }, { transform: 'scale(.98)' }, { transform: 'scale(1)' }], { duration: 220 });
+                });
+                b.addEventListener('keydown', e => { if (e.target === b && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); b.click(); } });
             });
-            $('#doLogin').addEventListener('click', () => {
-                const u = $('#modalUsername').value.trim();
-                const p = $('#modalPass').value;
-                if (!u || !p) { $('#loginMsg').innerText = 'Udfyld brugernavn og adgangskode.'; return; }
-                const users = JSON.parse(localStorage.getItem('gila_users') || '{}');
-                if (users[u] && users[u].password === p) {
-                    $('#loginMsg').innerText = 'Velkommen tilbage, ' + u;
-                    setTimeout(() => { closeModal(); showLoggedIn(u); }, 700);
-                } else $('#loginMsg').innerText = 'Forkert brugernavn eller kode.';
-            });
-        }
+            const q = new URLSearchParams(location.search).get('service');
+            if (q) selectService(q);
 
-        // Simple "logged-in" indicator
-        function showLoggedIn(username) {
-            // replace login link with username + logout
-            const loginLink = $('#loginBtn');
-            loginLink.textContent = username + ' ▾';
-            loginLink.removeEventListener('click', () => { });
-            loginLink.href = '#';
-            // clicking allows logout
-            loginLink.addEventListener('click', (e) => {
+            // Booking form
+            const form = $('#bookingForm'), box = $('#bookingAlert');
+            const show = (el, msg, ok) => { el.textContent = msg; el.className = ok ? 'success' : 'success error'; el.hidden = false; };
+            form.addEventListener('submit', async e => {
                 e.preventDefault();
-                if (confirm('Vil du logge ud?')) { localStorage.removeItem('gila_current'); location.reload(); }
+                const d = Object.fromEntries(new FormData(form));
+                d.name = d.name.trim(); d.email = d.email.trim();
+                if (!d.service || !d.date || !d.time || !d.name || !d.email) { show(box, 'Udfyld venligst alle obligatoriske felter.', false); return; }
+                const btn = $('button[type=submit]', form);
+                btn.disabled = true;
+                const ok = await post({ formular: 'Bestil tolk', ...d });
+                btn.disabled = false;
+                if (ok) { form.reset(); show(box, 'Tak! Din booking er modtaget.', true); setTimeout(() => { box.hidden = true; }, 6000); }
+                else show(box, FAIL, false);
             });
-            localStorage.setItem('gila_current', username);
-        }
-        // initialize if logged in
-        (function initLogin() {
-            const cur = localStorage.getItem('gila_current');
-            if (cur) showLoggedIn(cur);
-        })();
 
-        // Få et tilbud modal
-        $('#tilbudBtn').addEventListener('click', (e) => {
-            e.preventDefault();
-            openModal(tilbudHtml());
-            attachTilbudHandlers();
-        });
-
-        function tilbudHtml() {
-            return `
-      <h3 id="modalTitle">Få et tilbud</h3>
-      <p class="muted">Fortæl kort hvad du har brug for — vi vender tilbage med pris og tid.</p>
-      <div style="margin-top:8px;">
-        <label>Navn</label><input id="tilbudName" type="text" />
-      </div>
-      <div style="margin-top:8px;">
-        <label>Email</label><input id="tilbudEmail" type="email" />
-      </div>
-      <div style="margin-top:8px;">
-        <label>Service (kort)</label><input id="tilbudService" type="text" placeholder="fx Videotolkning" />
-      </div>
-      <div style="margin-top:8px;">
-        <label>Beskrivelse</label><textarea id="tilbudMsg"></textarea>
-      </div>
-      <div style="margin-top:12px; display:flex; gap:8px;">
-        <button id="sendTilbud" class="btn">Send forespørgsel</button>
-        <button id="cancelTilbud" class="btn" style="background:#999">Annuller</button>
-      </div>
-      <div id="tilbudMsgBox" style="margin-top:10px"></div>
-    `;
-        }
-        function attachTilbudHandlers() {
-            $('#cancelTilbud').addEventListener('click', () => closeModal());
-            $('#sendTilbud').addEventListener('click', () => {
-                const name = $('#tilbudName').value.trim();
-                const email = $('#tilbudEmail').value.trim();
-                const service = $('#tilbudService').value.trim();
-                const msg = $('#tilbudMsg').value.trim();
-                if (!name || !email || !service) { $('#tilbudMsgBox').innerText = 'Udfyld navn, email og service.'; return; }
-                const offers = JSON.parse(localStorage.getItem('gila_offers') || '[]');
-                const item = { id: 'off_' + Date.now(), name, email, service, msg, created: new Date().toISOString() };
-                offers.unshift(item);
-                localStorage.setItem('gila_offers', JSON.stringify(offers));
-                $('#tilbudMsgBox').innerText = 'Tak — vi har modtaget din forespørgsel.';
-                // show offers list section
-                renderOffers();
-                setTimeout(() => closeModal(), 1100);
+            // Contact form
+            const cf = $('#contactForm'), cm = $('#contactMsg');
+            cf.addEventListener('submit', async e => {
+                e.preventDefault();
+                const btn = $('button', cf);
+                btn.disabled = true;
+                const ok = await post({ formular: 'Kontakt', ...Object.fromEntries(new FormData(cf)) });
+                btn.disabled = false;
+                if (ok) { cf.reset(); cm.textContent = 'Tak! Din besked er sendt.'; } else cm.textContent = FAIL;
             });
-        }
 
-        // render offers if exist
-        function renderOffers() {
-            const offers = JSON.parse(localStorage.getItem('gila_offers') || '[]');
-            const el = $('#tilbudList');
-            if (!el) return;
-            if (offers.length === 0) { $('#tilbudSection').style.display = 'none'; return; }
-            $('#tilbudSection').style.display = 'block';
-            el.innerHTML = offers.map(o => `
-      <div style="border:1px solid #e6f7f1; padding:10px; border-radius:8px; margin-bottom:8px;">
-        <strong>${o.service}</strong> — ${o.name} <span style="color:#556">(${new Date(o.created).toLocaleString()})</span>
-        <div class="muted">${o.email}</div>
-        <div style="margin-top:6px">${escapeHtml(o.msg)}</div>
-      </div>
-    `).join('');
-        }
-        renderOffers();
+            // "Få et tilbud" modal
+            const mb = $('#modalBackdrop');
+            const openModal = () => { mb.style.display = 'flex'; mb.setAttribute('aria-hidden', 'false'); $('#tilbudName').focus(); };
+            const closeModal = () => { mb.style.display = 'none'; mb.setAttribute('aria-hidden', 'true'); };
+            $('#tilbudBtn').addEventListener('click', e => { e.preventDefault(); openModal(); });
+            $('#closeModal').addEventListener('click', closeModal);
+            $('#cancelTilbud').addEventListener('click', closeModal);
+            mb.addEventListener('click', e => { if (e.target === mb) closeModal(); });
+            const tf = $('#tilbudForm'), tm = $('#tilbudMsgBox');
+            tf.addEventListener('submit', async e => {
+                e.preventDefault();
+                const d = Object.fromEntries(new FormData(tf));
+                if (!d.name.trim() || !d.email.trim() || !d.service.trim()) { tm.textContent = 'Udfyld navn, email og service.'; return; }
+                const btn = $('button[type=submit]', tf);
+                btn.disabled = true;
+                const ok = await post({ formular: 'Få et tilbud', ...d });
+                btn.disabled = false;
+                if (ok) { tm.textContent = 'Tak — vi har modtaget din forespørgsel.'; tf.reset(); setTimeout(() => { closeModal(); tm.textContent = ''; }, 1500); }
+                else tm.textContent = FAIL;
+            });
 
-        // initialize booking select if clicked from dropdown or grid: handled above
-        // Also support URL hash preselect: ?service=Videotolkning
-        (function preselectFromHash() {
-            const hash = location.hash.slice(1);
-            const params = new URLSearchParams(location.search);
-            const svc = params.get('service') || hash;
-            if (svc) {
-                const sel = $('#serviceSelect');
-                if (sel) {
-                    for (let o of sel.options) if (o.value.toLowerCase() === svc.toLowerCase()) { sel.value = o.value; break; }
-                }
-            }
+            document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeModal(); setOpen(false); } });
         })();
-
-        // small helper: escape HTML for display
-        function escapeHtml(str = '') { return String(str).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c])); }
-
-        // accessibility: keyboard open dropdown
-        ddBtn.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); ddBtn.click(); }
-        });
-
-        // close modal on ESC
-        document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { closeModal(); closeAllDropdowns(); } });
-        function toggleReadMore(event, dotsId, moreId, btn) {
-            event.preventDefault();
-            event.stopPropagation();
-
-            const dots = document.getElementById(dotsId);
-            const moreText = document.getElementById(moreId);
-
-            if (moreText.classList.contains("show")) {
-                dots.style.display = "inline";
-                moreText.classList.remove("show");
-                btn.textContent = "Læs mere";
-            } else {
-                dots.style.display = "none";
-                moreText.classList.add("show");
-                btn.textContent = "Læs mindre";
-            }
-        }
-
-
-
-
-
-
-
     </script>
 </body>
 
