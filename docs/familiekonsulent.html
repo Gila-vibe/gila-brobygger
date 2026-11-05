@@ -1,271 +1,79 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="da">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Familiekonsulent | Gila Brobygger</title>
-
-    <meta name="description"
-        content="Gila Brobygger tilbyder professionel støtte og vejledning til familier med fokus på trivsel, kommunikation og samarbejde.">
-
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            font-family: 'Segoe UI', Arial, sans-serif;
-            background-color: #f9faf7;
-            color: #333;
-            line-height: 1.6;
-        }
-
-        /* Navigation */
-        .back-navigation {
-            padding: 15px 30px;
-            background: #fff;
-            border-bottom: 1px solid #e5e7eb;
-        }
-
-        .back-button {
-            display: inline-block;
-            color: #2e8b57;
-            text-decoration: none;
-            font-weight: 600;
-            padding: 10px 18px;
-            border: 1px solid #2e8b57;
-            border-radius: 25px;
-            transition: 0.3s ease;
-        }
-
-        .back-button:hover {
-            background: #2e8b57;
-            color: white;
-        }
-
-        /* Header */
-        header {
-            background: linear-gradient(120deg, #2e8b57, #66bb6a);
-            color: white;
-            padding: 60px 20px;
-            text-align: center;
-        }
-
-        header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-        }
-
-        header p {
-            font-size: 1.2rem;
-            max-width: 750px;
-            margin: auto;
-        }
-
-        /* Main content */
-        main {
-            max-width: 1100px;
-            margin: 40px auto;
-            padding: 0 20px;
-        }
-
-        section {
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
-            padding: 30px;
-            margin-bottom: 30px;
-        }
-
-        h2 {
-            color: #2e8b57;
-            margin-bottom: 15px;
-            font-size: 1.5rem;
-        }
-
-        p {
-            margin-bottom: 15px;
-            font-size: 1.05rem;
-        }
-
-        ul {
-            list-style: none;
-        }
-
-        ul li {
-            position: relative;
-            padding-left: 30px;
-            margin-bottom: 12px;
-            font-size: 1.05rem;
-        }
-
-        ul li::before {
-            content: "✓";
-            position: absolute;
-            left: 0;
-            color: #2e8b57;
-            font-weight: bold;
-        }
-
-        /* Contact button */
-        .contact-container {
-            text-align: center;
-            margin: 40px 0;
-            position: relative;
-            z-index: 5;
-        }
-
-        .cta {
-            display: inline-block;
-            cursor: pointer;
-            pointer-events: auto;
-            position: relative;
-            z-index: 10;
-        }
-
-        .cta:hover {
-            background: linear-gradient(120deg, #1b5e20, #4caf50);
-            transform: scale(1.03);
-        }
-
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 20px;
-            font-size: 0.9rem;
-            color: #666;
-            background-color: #edf5ed;
-            margin-top: 40px;
-        }
-
-        /* Mobile responsiveness */
-        @media (max-width: 768px) {
-            header {
-                padding: 45px 20px;
-            }
-
-            header h1 {
-                font-size: 2rem;
-            }
-
-            header p {
-                font-size: 1rem;
-            }
-
-            section {
-                padding: 22px;
-            }
-
-            .back-navigation {
-                padding: 12px 15px;
-            }
-
-            .contact-container {
-                padding: 0 10px;
-            }
-
-            .cta {
-                display: block;
-                width: fit-content;
-                margin: auto;
-            }
-        }
-    </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Læs om Gila Brobyggers støtte og vejledning til familier – med fokus på trivsel, kommunikation og samarbejde.">
+  <meta name="theme-color" content="#246b45">
+  <title>Familiekonsulent | Gila Brobygger</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
 </head>
-
 <body>
-
-    <!-- Navigation -->
-    <nav class="back-navigation" aria-label="Hovednavigation">
-        <a href="index.html" class="back-button">
-            &#8592; Tilbage til forsiden
-        </a>
-    </nav>
-
-    <!-- Header -->
-    <header>
+  <a class="skip-link" href="#main">Gå til indhold</a>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="index.html" aria-label="Gila Brobygger – forsiden"><span class="brand-mark" aria-hidden="true">G</span><span>Gila <strong>Brobygger</strong></span></a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav"><span class="sr-only">Åbn menu</span><span aria-hidden="true">☰</span></button>
+      <nav id="site-nav" class="site-nav" aria-label="Hovednavigation">
+        <a href="index.html">Forside</a><a href="familiekonsulent.html" aria-current="page">Familiekonsulent</a>
+        <a class="nav-cta" href="mailto:kontakt@gila-brobygger.dk?subject=Henvendelse%20om%20familiekonsulent">Kontakt</a>
+      </nav>
+    </div>
+  </header>
+  <main id="main">
+    <section class="page-hero">
+      <div class="container narrow">
+        <p class="eyebrow">Gila Brobygger · Støtte og vejledning</p>
         <h1>Familiekonsulent</h1>
-        <p>
-            Professionel støtte og vejledning til familier –
-            med fokus på trivsel, kommunikation og samarbejde.
-        </p>
-    </header>
-
-    <!-- Main content -->
-    <main>
-
-        <section>
-            <h2>Familiekonsulent – støtte til familier</h2>
-
-            <p>
-                Hos Gila Brobygger tilbyder vi målrettet støtte til
-                familier, der har brug for hjælp til at navigere i
-                systemer, kommunikere med myndigheder og styrke
-                relationerne i hjemmet.
-            </p>
-
-            <p>
-                Vores arbejde bygger på respekt, forståelse og
-                praktiske løsninger, der tager udgangspunkt i
-                den enkelte families behov.
-            </p>
+        <p class="lead">Professionel støtte og vejledning til familier – med fokus på trivsel, kommunikation og samarbejde.</p>
+      </div>
+    </section>
+    <div class="container content-layout">
+      <article class="content-main">
+        <section class="content-section">
+          <h2>Støtte til familier</h2>
+          <p>Hos Gila Brobygger tilbyder vi målrettet støtte til familier, der har brug for hjælp til at navigere i systemer, kommunikere med myndigheder og styrke relationerne i hjemmet.</p>
+          <p>Vores arbejde bygger på respekt, forståelse og praktiske løsninger, der tager udgangspunkt i den enkelte families behov.</p>
         </section>
-
-        <section>
-            <h2>Vores indsats kan inkludere</h2>
-
-            <ul>
-                <li>Rådgivning om børns trivsel og udvikling</li>
-                <li>Støtte i kontakten med skoler, institutioner og myndigheder</li>
-                <li>Vejledning om sociale ydelser og familierettigheder</li>
-                <li>Håndtering af konflikter og styrkelse af kommunikationen i familien</li>
-                <li>Praktisk hjælp i dagligdagen og planlægning af aktiviteter</li>
-            </ul>
+        <section class="content-section">
+          <h2>Vores indsats kan inkludere</h2>
+          <ul class="check-list">
+            <li>Rådgivning om børns trivsel og udvikling</li>
+            <li>Støtte i kontakten med skoler, institutioner og myndigheder</li>
+            <li>Vejledning om sociale ydelser og familierettigheder</li>
+            <li>Håndtering af konflikter og styrkelse af kommunikationen i familien</li>
+            <li>Praktisk hjælp i dagligdagen og planlægning af aktiviteter</li>
+          </ul>
         </section>
-
-        <section>
-            <h2>Vores tilgang</h2>
-
-            <p>
-                Vi arbejder helhedsorienteret og tilpasser vores
-                indsats til hver families unikke situation og behov.
-            </p>
-
-            <p>
-                Målet er at skabe tryghed, styrke relationer og
-                give familien konkrete værktøjer til at håndtere
-                udfordringer i hverdagen.
-            </p>
+        <section class="content-section">
+          <h2>Vores tilgang</h2>
+          <p>Vi arbejder helhedsorienteret og tilpasser vores indsats til hver families unikke situation og behov.</p>
+          <p>Målet er at skabe tryghed, styrke relationer og give familien konkrete værktøjer til at håndtere udfordringer i hverdagen.</p>
         </section>
-
-        <!-- Contact -->
-
-        <!-- Contact Section -->
-        <div class="contact-container">
-            <a href="mailto:kontakt@gila-brobygger.dk" class="cta"
-                style="position: relative; z-index: 10; cursor: pointer;"
-                onclick="window.location.href='mailto:kontakt@gila-brobygger.dk'; return false;">
-
-                📩 Kontakt os om familiekonsulent
-
-            </a>
-        </div>
-
-
-    </main>
-
-    <!-- Footer -->
-    <footer>
-        <p>
-            &copy; 2026 Gila Brobygger – Familiekonsulent.
-            Alle rettigheder forbeholdes.
-        </p>
-    </footer>
-
+      </article>
+      <aside class="contact-card">
+        <span class="service-icon" aria-hidden="true">✉</span>
+        <h2>Har du spørgsmål?</h2>
+        <p>Kontakt os for en indledende dialog om familiekonsulent-støtte.</p>
+        <a class="button button-primary button-full" href="mailto:kontakt@gila-brobygger.dk?subject=Henvendelse%20om%20familiekonsulent">Skriv til familiekonsulenten</a>
+        <p class="email-note">E-mail: <a href="mailto:kontakt@gila-brobygger.dk">kontakt@gila-brobygger.dk</a></p>
+      </aside>
+    </div>
+    <section class="contact-band">
+      <div class="container contact-band-inner">
+        <div><p class="eyebrow">Vi er klar til at lytte</p><h2>Tag kontakt til Gila Brobygger</h2><p>Fortæl kort, hvad du har brug for hjælp til.</p></div>
+        <a class="button button-white" href="mailto:kontakt@gila-brobygger.dk?subject=Henvendelse%20om%20familiekonsulent">Send en e-mail <span aria-hidden="true">→</span></a>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <a class="brand brand-footer" href="index.html"><span class="brand-mark" aria-hidden="true">G</span><span>Gila <strong>Brobygger</strong></span></a>
+      <div class="footer-contact"><strong>Kontakt</strong><a href="mailto:kontakt@gila-brobygger.dk">kontakt@gila-brobygger.dk</a></div>
+      <p class="copyright">© <span id="year">2026</span> Gila Brobygger. Alle rettigheder forbeholdes.</p>
+    </div>
+  </footer>
+  <script src="assets/js/main.js" defer></script>
 </body>
-
 </html>
