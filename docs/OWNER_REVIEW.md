@@ -67,7 +67,7 @@ The owner decides which; the maintainer must not soften a claim into something m
 | O-28 | Palette and typography | Accept the green palette and system fonts, or supply brand colours/fonts? | OPEN |
 | O-29 | Portrait | May the portrait be published? Is the crop acceptable? | OPEN |
 | O-30 | Tagline "Bro mellem mennesker, sprog og systemer" | Approve, change or remove. | OPEN |
-| O-31 | Legal form, CVR, address | Should any of this appear in the footer or on the contact page? | OPEN |
+| O-31 | Legal form, CVR number, registered address, insurance | Required before a legal-info line can be added to the footer. Please supply: (a) CVR number, (b) juridisk form (e.g. enkeltmandsvirksomhed, ApS), (c) registered address, (d) any insurance/erhvervsansvarsforsikring to disclose. Nothing is published now. | OPEN |
 
 ## 6. Privacy, chatbot and legal review
 
@@ -98,6 +98,22 @@ The owner decides which; the maintainer must not soften a claim into something m
 | ID | Item | Question / action | Status |
 |---|---|---|---|
 | O-46 | Video `docs/assets/video/helping-hand.mp4` on the homepage | Confirm what the video depicts, that everyone appearing has consented to publication, and that no client/family-identifying content is shown. Provide or approve a transcript/captions file (currently missing – accessibility gap). Confirm placement and compression target. | OPEN |
+
+## 7c. Footer and contact details (new)
+
+| ID | Item | Supplied value | Question / action | Status |
+|---|---|---|---|---|
+| O-47 | Business address | Muninslund, 6500 Vojens | Confirmed by owner. Published in footer on all pages. | CONFIRMED |
+| O-48 | CVR number | "00000000" (owner-supplied, clearly a placeholder) | This is not a valid CVR. Please supply the real 8-digit CVR number, or confirm that no CVR should be published. | OPEN |
+| O-49 | Legal form | Enkeltmandsvirksomhed | Confirmed by owner. Published in footer on all pages. | CONFIRMED |
+| O-50 | Opening hours (kundeservice) | Mandag–torsdag 08:00–16:00, fredag 08:00–15:00 | Confirmed by owner. Published on kontakt.html. | CONFIRMED |
+| O-51 | HR/bogholderi hours | "Mandag–fredag 09:00–11:00" (owner-supplied) | Confirm. Is this relevant to publish on a public website? | OPEN |
+| O-52 | Terms and conditions page ("Forretningsbetingelser") | Not supplied | Should a terms-and-conditions page be created? If yes, content is required. | OPEN |
+| O-53 | Social media profiles | "Facebook, LinkedIn, Instagram …" (owner-supplied, no URLs) | Provide exact profile URLs and confirm they may be published. None are published now. | OPEN |
+| O-54 | Footer copyright line | © 2026 Gila Brobygger. Alle rettigheder forbeholdes. | Confirmed by owner (kept Danish wording). | CONFIRMED |
+
+**None of the above have been published.** They are recorded here for verification. Values that are
+clearly placeholders (CVR 00000000) have not been added to the website.
 
 ## 8. Items the maintainer must not decide alone
 
