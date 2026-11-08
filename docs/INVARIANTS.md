@@ -11,3 +11,4 @@
 9. Keep a visible path to contact on the homepage and service page.
 10. Do not describe an email link as a website form or claim that a message was delivered.
 11. The family consulting service is one part of Gila Brobygger's offering; the website must not be treated as exclusively about family consulting.
+12. Owner sign-off and legal/data-protection review are coordinated through the approval system in `AGENTS.md`; restricted actions require the appropriate approvals.

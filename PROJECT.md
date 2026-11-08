@@ -29,6 +29,10 @@ Families and caregivers seeking information about support and guidance. Write in
 4. Work well on mobile, tablet and desktop.
 5. Be accessible, fast and easy to maintain.
 
+## Approvals and legal review
+- Owner sign-off and legal/data-protection review operate as one coordinated approval system (see `AGENTS.md`).
+- Website deployment, data collection, chatbot use and significant changes require owner approval and legal/DPO review where applicable.
+
 ## Out of scope unless approved
 - Online booking, user accounts or case management.
 - Collection of sensitive family or health information.

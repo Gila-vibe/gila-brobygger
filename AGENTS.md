@@ -37,13 +37,45 @@ Read `docs/SECURITY.md` and `docs/TESTING.md` when a task touches forms, persona
 8. Report changed files, tests actually run, results, and anything not verified.
 
 ## Approval required
-Ask the owner before:
-- Publishing or deploying to the live domain.
-- Deleting or replacing existing live content.
-- Changing contact details or public service claims.
-- Adding forms that collect personal or sensitive information.
-- Adding analytics, advertising pixels, cookies or external services.
-- Changing hosting, DNS, email routing or security settings.
+
+### 1. Owner Sign-off
+The project owner must approve:
+- Major website design and branding changes.
+- Changes to organisational identity and services.
+- Important public-facing content.
+- Website deployment.
+- Paid services and subscriptions.
+- Significant infrastructure changes.
+- Deletion of important content or functionality.
+
+### 2. Legal/DPO Review
+Require appropriate legal or data protection review before:
+- Collecting or storing personal information.
+- Processing sensitive personal information.
+- Introducing client or family case-management features.
+- Implementing chatbots that process personal data.
+- Adding tracking, analytics or cookies.
+- Sharing personal information with third parties.
+- Changing privacy policies or data retention practices.
+
+### 3. Approval workflow
+For each proposed change:
+1. Identify the type of change.
+2. Assess business, security, privacy and legal risks.
+3. Identify required approvals.
+4. Explain the proposed change and its consequences.
+5. Request approval from the appropriate person.
+6. Wait for explicit approval before proceeding with restricted actions.
+7. Record the decision, date, approver and conditions in `docs/APPROVAL_LOG.md`.
+
+### 4. Important rules
+- Owner approval does not replace legal or DPO review.
+- Legal/DPO review does not replace owner approval.
+- Do not claim GDPR compliance without appropriate verification.
+- Do not invent legal approval or DPO approval.
+- Do not deploy without explicit owner approval.
+- Do not use real sensitive personal data in testing.
+- Do not block ordinary low-risk development unnecessarily.
 
 ## Definition of done
 A task is not complete merely because code was written. Relevant checks must pass, links must be verified, and any unverified behavior must be clearly disclosed.

@@ -17,3 +17,9 @@ Never say “tested”, “working”, “deployed” or “live” unless the c
 
 ## Human approval
 Production deployment, public content changes, data collection, third-party services, DNS/email/hosting changes and destructive operations require explicit owner approval.
+
+Owner sign-off and legal/data-protection review operate as one coordinated approval system (see `AGENTS.md`):
+- Owner sign-off covers major design/branding changes, organisational identity/services changes, important public-facing content, deployment, paid services/subscriptions, significant infrastructure changes and deletion of important content/functionality.
+- Legal/DPO review covers personal data collection/storage, sensitive data processing, case-management features, chatbots processing personal data, tracking/analytics/cookies, third-party sharing and privacy policy/retention changes.
+
+For each proposed change, follow the approval workflow in `AGENTS.md` and record outcomes in `docs/APPROVAL_LOG.md`.
