@@ -103,7 +103,7 @@ The owner decides which; the maintainer must not soften a claim into something m
 
 | ID | Item | Supplied value | Question / action | Status |
 |---|---|---|---|---|
-| O-47 | Business address | Muninslund, 6500 Vojens | Confirmed by owner. Published in footer on all pages. | CONFIRMED |
+| O-47 | Business address | 6500 Vojens (postcode + city only, street name withheld by owner) | Confirmed by owner. Published in footer on all pages. | CONFIRMED |
 | O-48 | CVR number | "00000000" (owner-supplied, clearly a placeholder) | This is not a valid CVR. Please supply the real 8-digit CVR number, or confirm that no CVR should be published. | OPEN |
 | O-49 | Legal form | Enkeltmandsvirksomhed | Confirmed by owner. Published in footer on all pages. | CONFIRMED |
 | O-50 | Opening hours (kundeservice) | Mandag–torsdag 08:00–16:00, fredag 08:00–15:00 | Confirmed by owner. Published on kontakt.html. | CONFIRMED |
