@@ -10,4 +10,4 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Check required pages, navigation and contact links
-        run: python3 harness/scripts/check_site.py
+        run: python3 docs/harness/scripts/check_site.py

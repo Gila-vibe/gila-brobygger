@@ -1,5 +1,7 @@
 .DS_Store
 Thumbs.db
+# Nested local copy of the original repo – not part of the website
+docs/gila-brobygger/
 .env
 .env.*
 !.env.example

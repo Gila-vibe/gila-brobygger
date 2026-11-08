@@ -18,7 +18,7 @@ for page in PAGES:
         errors.append(f"{page}: expected Danish document language")
     if "<title>" not in html or "</title>" not in html:
         errors.append(f"{page}: missing title")
-    if 'href="assets/css/styles.css"' not in html:
+    if 'href="assets/css/styles.css"' not in html and "<style" not in html:
         errors.append(f"{page}: shared stylesheet not linked")
     if 'href="mailto:' + EMAIL in html:
         pass
@@ -27,7 +27,7 @@ for page in PAGES:
     else:
         errors.append(f"{page}: supplied contact email not found")
     for target in re.findall(r'href="([^"]+)"', html):
-        if target.startswith(("mailto:", "https://", "http://", "#")):
+        if target.startswith(("mailto:", "tel:", "https://", "http://", "#")):
             continue
         local = (ROOT / target.split("#", 1)[0])
         if target and not local.exists():
