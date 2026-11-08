@@ -441,23 +441,6 @@ strong { color: var(--green-900); font-weight: 700; }
   transition: transform var(--dur-slow) var(--ease-out);
 }
 .portrait-frame:hover { transform: rotate(0deg); }
-.flag-badge {
-  position: absolute;
-  right: -10px;
-  bottom: 18px;
-  z-index: 2;
-  display: grid;
-  place-items: center;
-  width: 46px;
-  height: 36px;
-  border-radius: 8px;
-  background: var(--white);
-  box-shadow: var(--shadow-md);
-  border: 1px solid var(--line);
-  overflow: hidden;
-}
-.flag-badge svg { display: block; border-radius: 4px; }
-
 .portrait-frame img {
   width: 100%;
   aspect-ratio: 3 / 4;
