@@ -47,6 +47,7 @@ These values are descriptive, not claims of certification.
 | 4 | **Skriftlig oversættelse** | Written translation of letters, documents, official papers | Authorities, courts, information material, contracts | Language pair Danish ↔ Tigrinya *(review)*; turnaround *(unknown)*; certification of translations *(unknown)* |
 | 5 | **Social Mentor** | Individual mentoring, system guidance, everyday counselling | Integration, CV/job search, MitID, housing, public procedures | Target group and programme length *(unknown)* |
 | 6 | **Familiekonsulent** | Support and guidance for families | Children's wellbeing, school/authority contact, benefits and rights, conflict handling | Referral route and cooperation agreements *(unknown)* |
+| 7 | **Støtteperson (§ 75)** | Support person under Barnets Lov § 75 for children in care and their families | Understanding the case, meeting preparation, emotional support, neutral independent role | Added at owner's request 2026-11-08; legal scope to be confirmed *(review)* |
 
 All six are presented on `docs/tjenester.html` and have their own page. **Do not add, remove or
 rename a service without owner approval**, because it changes the organisation's identity.

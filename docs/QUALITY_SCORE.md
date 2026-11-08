@@ -10,7 +10,7 @@ granted. "Engineering quality" and "launch readiness" are therefore reported sep
 
 | Area | Score | Basis |
 |---|---:|---|
-| Structure, links and assets | 100 | `check_site.py`: 14 pages, 0 errors, 0 warnings |
+| Structure, links and assets | 100 | `check_site.py`: 15 pages, 0 errors, 0 warnings |
 | Metadata and SEO | 100 | Lighthouse SEO 1.0 on 5 representative pages; canonical, sitemap, robots, JSON-LD |
 | Accessibility | 95 | Lighthouse accessibility 1.0 on 5 pages; manual keyboard/skip-link checks; no formal audit |
 | Performance / weight | 90 | 102.3 kB first load, 4 requests, no third-party requests; no field performance data |
@@ -29,7 +29,7 @@ All commands were run from the repository root on 2026-11-08.
 
 | Check | Result | Detail |
 |---|---|---|
-| `python3 harness/scripts/check_site.py --report harness/reports/latest.json` | **PASS** | 14 pages, 0 errors, 0 warnings; now also validates mailto/tel syntax, shared shell classes, placeholder contact details |
+| `python3 harness/scripts/check_site.py --report harness/reports/latest.json` | **PASS** | 15 pages, 0 errors, 0 warnings; now also validates mailto/tel syntax, shared shell classes, placeholder contact details |
 | `python3 harness/scripts/check_secrets.py` | **PASS** | 54 files scanned, 0 errors, 0 warnings |
 | `python3 harness/scripts/check_docs.py` | **PASS** | 28 Markdown documents, 0 errors, 0 warnings |
 | Lighthouse accessibility | **1.0** | `index.html`, `kontakt.html`, `privatliv.html`, `familiekonsulent.html`, `404.html` |
@@ -61,7 +61,7 @@ Local server: `python3 -m http.server` from `docs/`.
 
 ### All pages
 
-- All 14 pages load with the correct title and exactly one `<h1>`.
+- All 15 pages load with the correct title and exactly one `<h1>`.
 - No console errors on any page.
 - Only same-origin requests: HTML, `styles.css`, `main.js`; portrait on the homepage. No external
   requests on any page.
@@ -118,7 +118,7 @@ A second pass applied a professional, coherent design system on top of the rebui
   approach panel with depth; page heroes with a faint pattern; refined footer columns; contact
   band and contact card polished.
 - **Consistency**: one button system (primary/secondary/white/accent), one focus ring (amber),
-  one navigation with an animated underline and active state, one footer across all 14 pages.
+  one navigation with an animated underline and active state, one footer across all 15 pages.
 - **Accessibility preserved**: skip link, landmarks, one `<h1>`, visible focus, reduced motion,
   no horizontal scroll at 320 px.
 - **Harness extended** (Phase 4): validates `mailto:`/`tel:` syntax, shared design-system shell

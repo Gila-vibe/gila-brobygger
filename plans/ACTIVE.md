@@ -46,16 +46,16 @@ documentation, and a practical Harness Engineering framework with automated chec
 - [x] Create `harness/config/site.json`, `check_site.py`, `check_secrets.py`, `check_docs.py` and
   `harness/reports/`.
 - [x] Update `.github/workflows/quality.yml` to run the root harness on push and pull request.
-- [x] Run all checks: site 14 pages / 0 errors / 0 warnings; secrets 54 files / 0; docs 28
+- [x] Run all checks: site 15 pages / 0 errors / 0 warnings; secrets 54 files / 0; docs 28
   documents / 0.
-- [x] Browser smoke test: all 14 pages, desktop 1280 px, mobile 375 px and 320 px, navigation,
+- [x] Browser smoke test: all 15 pages, desktop 1280 px, mobile 375 px and 320 px, navigation,
   skip link, chatbot, console and network panel.
 - [x] Fix responsive hero overlap, footer wordmark contrast and brand-link accessible name.
 - [x] Lighthouse: accessibility, best practices and SEO 1.0 on five representative pages.
 - [x] Professional redesign pass: expanded design tokens, refined hero/cards/footer,
   consistent button and navigation system, animated affordances, accent colour.
 - [x] Harness extended: mailto/tel syntax, shared shell classes, placeholder contact details.
-- [x] Contact audit across all 14 pages: all carry the owner-supplied mailto/tel links.
+- [x] Contact audit across all 15 pages: all carry the owner-supplied mailto/tel links.
 - [x] BRAND.md updated with the final token palette; QUALITY_SCORE.md updated with evidence.
 
 ## Open gates (not completed)

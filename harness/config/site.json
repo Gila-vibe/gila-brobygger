@@ -4,29 +4,45 @@
   "publish_dir": "docs",
   "entry_point": "index.html",
   "required_pages": [
-    "index.html",
-    "om.html",
-    "tjenester.html",
-    "fremmedtolkning.html",
-    "telefontolkning.html",
-    "videotolkning.html",
-    "skriftligoversaettelse.html",
-    "mentorforloeb.html",
     "familiekonsulent.html",
-    "projekter.html",
+    "fremmedtolkning.html",
+    "index.html",
     "kontakt.html",
+    "mentorforloeb.html",
+    "om.html",
     "privatliv.html",
-    "tilgaengelighed.html"
+    "projekter.html",
+    "skriftligoversaettelse.html",
+    "stoetteperson.html",
+    "telefontolkning.html",
+    "tilgaengelighed.html",
+    "tjenester.html",
+    "videotolkning.html"
   ],
   "noindex_pages": [
     "404.html"
   ],
   "navigation": [
-    { "href": "index.html", "label": "Forside" },
-    { "href": "om.html", "label": "Om" },
-    { "href": "tjenester.html", "label": "Tjenester" },
-    { "href": "projekter.html", "label": "Projekter" },
-    { "href": "kontakt.html", "label": "Kontakt" }
+    {
+      "href": "index.html",
+      "label": "Forside"
+    },
+    {
+      "href": "om.html",
+      "label": "Om"
+    },
+    {
+      "href": "tjenester.html",
+      "label": "Tjenester"
+    },
+    {
+      "href": "projekter.html",
+      "label": "Projekter"
+    },
+    {
+      "href": "kontakt.html",
+      "label": "Kontakt"
+    }
   ],
   "footer_links": [
     "om.html",

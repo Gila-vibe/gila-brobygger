@@ -53,6 +53,7 @@ Tilgængelighed. Every page is reachable in at most two clicks from the homepage
 | `skriftligoversaettelse.html` | Skriftlig oversættelse \| Gila Brobygger | Explain written translation | Document types, process, sensitive-data warning |
 | `mentorforloeb.html` | Social Mentor \| Gila Brobygger | Explain mentoring | Programme content, practical support, language |
 | `familiekonsulent.html` | Familiekonsulent \| Gila Brobygger | Explain family support | Support areas, approach, sensitive-data warning |
+| `stoetteperson.html` | Støtteperson (§ 75) \| Gila Brobygger | Explain support-person role under Barnets Lov § 75 | Tasks, approach, sensitive-data warning |
 | `projekter.html` | Projekter og initiativer \| Gila Brobygger | Show activity areas; placeholder for future projects | Four work areas, clearly marked placeholder |
 | `kontakt.html` | Kontakt \| Gila Brobygger | Convert to e-mail or phone | E-mail CTA, phone, what to write about, sensitive-data warning |
 | `privatliv.html` | Privatliv \| Gila Brobygger | Explain data handling | No cookies/tracking/forms, hosting, chatbot, rights |

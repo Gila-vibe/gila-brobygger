@@ -61,6 +61,12 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://gila-brobygger.dk/stoetteperson.html</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://gila-brobygger.dk/kontakt.html</loc>
     <lastmod>2026-11-08</lastmod>
     <changefreq>yearly</changefreq>

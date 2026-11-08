@@ -27,6 +27,7 @@ six services**, not the whole organisation. The site therefore covers:
 | Written translation | `docs/skriftligoversaettelse.html` | Translation of letters, documents and official papers, from and to Tigrinya |
 | Social mentoring | `docs/mentorforloeb.html` | Individual mentoring, system guidance and everyday counselling |
 | Family consultant | `docs/familiekonsulent.html` | Support and guidance for families, communication and cooperation with authorities |
+| Support person (§ 75) | `docs/stoetteperson.html` | Support person under Barnets Lov § 75 for children in care and their families |
 
 Working languages, availability, pricing and geographic coverage are **not** confirmed in this
 repository. Do not publish them until the owner confirms them. See
