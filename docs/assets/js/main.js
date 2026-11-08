@@ -71,6 +71,47 @@
   })();
 
   /* ----------------------------------------------------------------------
+     Copy-to-clipboard for [data-copy] buttons (e.g. e-mail address)
+     Privacy-safe: uses the Clipboard API, no network, no storage.
+     ---------------------------------------------------------------------- */
+
+  document.querySelectorAll('[data-copy]').forEach(function (button) {
+    button.addEventListener('click', function () {
+      var value = button.getAttribute('data-copy') || '';
+      var feedback = button.parentElement && button.parentElement.querySelector('.copy-feedback');
+      var done = function () {
+        if (feedback) feedback.textContent = 'Kopieret!';
+        button.textContent = 'Kopieret ✓';
+        setTimeout(function () {
+          if (feedback) feedback.textContent = '';
+          button.textContent = 'Kopier e-mailadresse';
+        }, 2000);
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(value).then(done).catch(function () {
+          fallbackCopy(value, done);
+        });
+      } else {
+        fallbackCopy(value, done);
+      }
+    });
+  });
+
+  function fallbackCopy(value, done) {
+    try {
+      var ta = document.createElement('textarea');
+      ta.value = value;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+      done();
+    } catch (e) { /* ignore */ }
+  }
+
+  /* ----------------------------------------------------------------------
      Current year
      ---------------------------------------------------------------------- */
 
