@@ -39,6 +39,7 @@ REQUIRED_DOCS = [
     "docs/ORGANISATION.md",
     "docs/OWNER_REVIEW.md",
     "docs/PRIVACY_NOTICE.md",
+    "docs/LAUNCH_CHECKLIST.md",
     "docs/_config.yml",
     "docs/sitemap.xml",
     "docs/robots.txt",

@@ -100,6 +100,7 @@ reviewed together.
 | [docs/QUALITY_SCORE.md](docs/QUALITY_SCORE.md) | Current quality scorecard |
 | [docs/APPROVAL_LOG.md](docs/APPROVAL_LOG.md) | Owner and legal/DPO approval log |
 | [docs/OWNER_REVIEW.md](docs/OWNER_REVIEW.md) | Facts and decisions awaiting the owner |
+| [docs/LAUNCH_CHECKLIST.md](docs/LAUNCH_CHECKLIST.md) | Launch checklist, owner tasks, external-provider tasks |
 | [plans/ACTIVE.md](plans/ACTIVE.md) | Current plan and open gates |
 
 ## Contact details used on the website

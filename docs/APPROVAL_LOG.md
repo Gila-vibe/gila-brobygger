@@ -62,6 +62,23 @@ its chatbot or its privacy notice.
 | A-14 | 2026-11-08 | GitHub security: 2FA, branch protection, access review | **Pending** | No | O-43; owner action, not verifiable from the repository |
 | A-15 | 2026-11-08 | E-mail authentication (SPF, DKIM, DMARC) | **Pending** | No | O-44; owner/mail-provider action |
 
+## 4b. Deployment record (factual, not an approval)
+
+| Item | Value |
+|---|---|
+| Deployment date | 2026-11-08 |
+| Commit | `1c953b1` ("Rebuild Gila Brobygger website and engineering harness") |
+| Repository | `Gila-vibe/gila-brobygger` (branch `main`) |
+| Publishing source | `/docs` |
+| Custom domain | `gila-brobygger.dk` |
+| Live URL | `https://gila-brobygger.dk/` (verified 200 OK, HTTPS, custom 404, sitemap, robots) |
+| Backup of previous site | `~/gila-brobygger-backup` (clone of `Gila-vibe/gila-brobygger` before force-push) |
+| Owner approval | **Pending** (A-01, A-41) — not granted; this record documents the technical deployment only |
+| Legal/DPO review | **Pending** (A-06, A-07, A-11, A-12) |
+
+> This record documents that a deployment occurred. It does **not** constitute owner approval or
+> legal review. Those remain pending until recorded in sections 4/5/6 by the respective parties.
+
 ## 5. Granted approvals
 
 | Date | Approver | Scope | Conditions | Recorded by |
