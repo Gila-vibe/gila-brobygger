@@ -1,0 +1,13 @@
+name: Website quality checks
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  site-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check required pages, navigation and contact links
+        run: python3 harness/scripts/check_site.py
