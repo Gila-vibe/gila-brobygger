@@ -8,3 +8,7 @@ docs/gila-brobygger/
 node_modules/
 dist/
 coverage/
+# Generated harness output
+harness/reports/latest.json
+__pycache__/
+*.pyc

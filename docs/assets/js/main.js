@@ -1,133 +1,244 @@
-/* =========================================
-   Gila Brobygger – Chatbot widget
-   Adds a floating chatbot to the site.
-   ========================================= */
+/* ==========================================================================
+   Gila Brobygger – shared behaviour
+   - Accessible mobile navigation
+   - Local, privacy-safe information chatbot (no network requests)
+   ========================================================================== */
+
 (function () {
-    if (document.getElementById('gb-chatbot')) return;
+  'use strict';
 
-    var BOT_NAME = 'Gila';
-    var GREETING = 'Hej! 👋 Jeg er Gila Brobygger. Jeg kan hjælpe dig med spørgsmål om tolkning, oversættelse, mentorforløb og familiekonsulent. Hvad kan jeg hjælpe dig med i dag?';
+  /* ----------------------------------------------------------------------
+     Mobile navigation
+     ---------------------------------------------------------------------- */
 
-    function botReply(text) {
-        var t = (text || '').toLowerCase();
-        if (/(pris|price|cost|øre|betalt|indkøb|pakke)/.test(t)) {
-            return 'Vi tilbyder forskellige priser afhængigt af service og varighed. Tolk/telefon/videotolk starter typisk ved 89 kr/ord/45 min, skriftlig oversættelse ved 89 kr/time, mentorforløb og familiekonsulent efter aftale. Skriv ”Få et tilbud” for en personlig pris.';
-        }
-        if (/(telefon|ring|book|bestil|vedrørende telefon|telefonsøgning)/.test(t)) {
-            return 'Du kan ringe mig direkte på +45 31 84 70 40, eller book via ”Bestil tolk” på forsiden. Jeg kan også sætte dig i kontakt med den rigtige tolk eller mentor.';
-        }
-        if (/(familie|familier|konflikt|hjælp til familien|barnet)/.test(t)) {
-            return 'For familier kan jeg hjælpe med vejledning om konflikthåndtering, kommunikation med myndigheder og støtte i hjemmet. Klik på ”Familiekonsulent” under Service for at læse mere, eller brug kontaktformularen så laver jeg en indledende dialog.';
-        }
-        if (/(mentor|social mentor|integration)/.test(t)) {
-            return 'Jeg kan fortælle mere om vores social mentorforløb – individuel støtte og vejledning til integration, møde- og systemvejledning. Findes under ”Social Mentor” under Service, eller skriv ”Få et tilbud”.';
-        }
-        if (/(sprog|tolk|tolkning|fremmed|beskyttet|migrant|migreret|eritrea)/.test(t)) {
-            return 'Vi tilbyder fremmedtolkning, telefon- og videotolkning samt skriftlig oversættelse. Jeg kan hjælpe dig med at finde den rigtige løsning – skriv hvad situationen drejer, så foreslår jeg den bedste service.';
-        }
-        if (/(oversættelse|skriftlig|breve|dokumenter)/.test(t)) {
-            return 'Vi tilbyder skriftlig oversættelse af breve, dokumenter og offentlige papirer – fra og til tyrkisk, med sprollig præcision. Læs mere under ”Skriftlig Oversættelse” eller bestil via ”Få et tilbud”.';
-        }
-        if (/(møde|video|videotolk|videoopkobling)/.test(t)) {
-            return 'Vi tilbyder videotolkning for møder og akutte samtaler – online video med forbindelse til tolkken. Se ”Videotolkning” under Service eller bestil via ”Bestil tolk”.';
-        }
-        if (/(hej|halløj|hi|hello|godmorgen|godmorgen|godeftermiddag|godeftermiddag|tak|thank)/.test(t)) {
-            return 'Hej! 😊 Tak for at kontakte mig. Hvad ved du om vores tolkning eller støtte? Jeg kan hjælpe med at finde den rette løsning.';
-        }
-        return 'Jeg forstår. Jeg kan hjælpe dig med at finde den rigtige tolkning, oversættelse, mentorforløb eller støtte. Skriv mere om din situation, eller brug kontaktformularen / telefon +45 31 84 70 40 så sørger jeg for en menneskelig samtale.';
-    }
+  var menuButton = document.querySelector('.menu-toggle');
+  var nav = document.getElementById('site-nav');
 
-    var style = document.createElement('style');
-    style.textContent = [
-        '#gb-chat-fab{position:fixed;right:22px;bottom:22px;width:58px;height:58px;border-radius:50%;',
-        'background:#00a86b;border:none;color:#fff;font-size:26px;cursor:pointer;z-index:12000;',
-        'box-shadow:0 10px 26px rgba(0,0,0,.25);transition:transform .2s;}',
-        '#gb-chat-fab:hover{transform:scale(1.06);}',
-        '#gb-chat-panel{position:fixed;right:22px;bottom:92px;width:360px;max-width:calc(100vw - 32px);height:480px;max-height:calc(100vh - 120px);',
-        'background:#fff;border-radius:16px;box-shadow:0 18px 50px rgba(0,0,0,.28);z-index:12001;',
-        'display:none;flex-direction:column;overflow:hidden;font-family:inherit;}',
-        '#gb-chat-panel.open{display:flex;}',
-        '#gb-chat-head{background:linear-gradient(120deg,#2e8b57,#66bb6a);color:#fff;padding:14px 16px;display:flex;align-items:center;gap:10px;}',
-        '#gb-chat-head .gb-title{font-weight:700;flex:1;}',
-        '#gb-chat-head button{background:none;border:none;color:#fff;font-size:20px;cursor:pointer;line-height:1;}',
-        '#gb-chat-body{padding:14px;overflow-y:auto;flex:1;display:flex;flex-direction:column;gap:8px;}',
-        '.gb-msg{max-width:82%;padding:10px 13px;border-radius:14px;font-size:.92rem;line-height:1.45;white-space:pre-wrap;}',
-        '.gb-msg.bot{background:#f1f5f3;color:#333;align-self:flex-start;border-bottom-left-radius:4px;}',
-        '.gb-msg.user{background:#00a86b;color:#fff;align-self:flex-end;border-bottom-right-radius:4px;}',
-        '#gb-chat-form{display:flex;gap:8px;padding:10px;border-top:1px solid #e5e7f0;}',
-        '#gb-chat-input{flex:1;border:1px solid #d6eae0;border-radius:20px;padding:10px 14px;font-size:.92rem;font-family:inherit;outline:none;}',
-        '#gb-chat-send{background:#00a86b;color:#fff;border:none;border-radius:20px;padding:10px 16px;font-weight:700;cursor:pointer;}'
-    ].join('\n');
+  if (menuButton && nav) {
+    var setMenu = function (open) {
+      menuButton.setAttribute('aria-expanded', String(open));
+      nav.classList.toggle('is-open', open);
+      var label = menuButton.querySelector('.sr-only');
+      if (label) label.textContent = open ? 'Luk menu' : 'Åbn menu';
+    };
 
-    var el = document.createElement('div');
-    el.id = 'gb-chatbot';
-    var fab = document.createElement('button');
-    fab.id = 'gb-chat-fab';
-    fab.type = 'button';
-    fab.setAttribute('aria-label', 'Start chat');
-    fab.innerHTML = '💬';
-    var panel = document.createElement('div');
-    panel.id = 'gb-chat-panel';
-    panel.setAttribute('role', 'dialog');
-    panel.setAttribute('aria-label', 'Chat with Gila Brobygger');
-    panel.innerHTML =
-        '<div class="gb-head" style="display:flex;align-items:center;gap:10px;padding:14px 16px;background:linear-gradient(120deg,#2e8b57,#66bb6a);color:#fff;">' +
-            '<div style="font-weight:700;flex:1;">💬 Chat med Gila</div>' +
-            '<button type="button" id="gb-chat-close" aria-label="Close chat" style="background:none;border:none;color:#fff;font-size:20px;cursor:pointer;">✕</button>' +
-        '</div>' +
-        '<div class="gb-body" id="gb-chat-body"></div>' +
-        '<form class="gb-form" id="gb-chat-form">' +
-            '<input class="gb-input" id="gb-chat-input" type="text" placeholder="Skriv besked..." autocomplete="off" />' +
-            '<button class="gb-send" id="gb-chat-send" type="submit">Send</button>' +
-        '</form>';
-    document.head.appendChild(style);
-    document.body.appendChild(fab);
-    document.body.appendChild(panel);
-
-    var body = panel.querySelector('#gb-chat-body');
-    var input = panel.querySelector('#gb-chat-input');
-    var form = panel.querySelector('#gb-chat-form');
-    var fabEl = fab;
-
-    function addMsg(text, who) {
-        var d = document.createElement('div');
-        d.className = 'gb-msg ' + who;
-        d.textContent = text;
-        body.appendChild(d);
-        body.scrollTop = body.scrollHeight;
-        return d;
-    }
-
-    function open() {
-        panel.classList.add('open');
-        fabEl.setAttribute('aria-label', 'Close chat');
-        fabEl.innerHTML = '✕';
-        if (!body.childElementCount) addMsg(GREETING, 'bot');
-    }
-
-    function close() {
-        panel.classList.remove('open');
-        fabEl.setAttribute('aria-label', 'Start chat');
-        fabEl.innerHTML = '💬';
-    }
-
-    fabEl.addEventListener('click', function () {
-        if (panel.classList.contains('open')) close(); else open();
+    menuButton.addEventListener('click', function () {
+      setMenu(menuButton.getAttribute('aria-expanded') !== 'true');
     });
 
-    panel.querySelector('#gb-chat-close').addEventListener('click', close);
-
-    form.addEventListener('submit', function (e) {
-        e.preventDefault();
-        var txt = input.value.trim();
-        if (!txt) return;
-        addMsg(txt, 'user');
-        input.value = '';
-        var reply = botReply(txt);
-        setTimeout(function () { addMsg(reply, 'bot'); }, 650);
+    nav.addEventListener('click', function (event) {
+      if (event.target.closest('a')) setMenu(false);
     });
 
-    document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape' && panel.classList.contains('open')) close();
+    document.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape' && nav.classList.contains('is-open')) {
+        setMenu(false);
+        menuButton.focus();
+      }
     });
+
+    window.addEventListener('resize', function () {
+      if (window.innerWidth > 760) setMenu(false);
+    });
+  }
+
+  /* ----------------------------------------------------------------------
+     Autoplay muted video when it scrolls into view
+     Privacy-safe: no network requests, no storage. Respects reduced motion.
+     ---------------------------------------------------------------------- */
+
+  (function () {
+    var videos = document.querySelectorAll('video[data-autoplay-on-view]');
+    if (!videos.length || !('IntersectionObserver' in window)) return;
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    videos.forEach(function (video) {
+      video.muted = true;
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            var playPromise = video.play();
+            if (playPromise && typeof playPromise.catch === 'function') {
+              playPromise.catch(function () { /* autoplay blocked; controls remain */ });
+            }
+          } else {
+            video.pause();
+          }
+        });
+      }, { threshold: 0.5 });
+      observer.observe(video);
+    });
+  })();
+
+  /* ----------------------------------------------------------------------
+     Current year
+     ---------------------------------------------------------------------- */
+
+  document.querySelectorAll('[data-year]').forEach(function (node) {
+    node.textContent = String(new Date().getFullYear());
+  });
+
+  /* ----------------------------------------------------------------------
+     Local information chatbot
+     All text stays in the browser. No messages are sent or stored.
+     ---------------------------------------------------------------------- */
+
+  if (document.getElementById('gb-chatbot')) return;
+
+  var CONTACT_EMAIL = 'kontakt@gila-brobygger.dk';
+  var CONTACT_PHONE = '+45 31 84 70 40';
+
+  var GREETING =
+    'Hej! Jeg er en automatisk guide på Gila Brobyggers hjemmeside. ' +
+    'Jeg kan give kort information om tjenesterne og henvise til kontakt. ' +
+    'Hvad vil du vide?';
+
+  function botReply(raw) {
+    var t = (raw || '').toLowerCase();
+
+    if (/(pris|koster|kost|tilbud|honorar|betaling)/.test(t)) {
+      return 'Pris og tid aftales ud fra opgavens art og omfang. Kontakt os på ' +
+        CONTACT_EMAIL + ' eller ' + CONTACT_PHONE + ', så får du et konkret svar.';
+    }
+    if (/(cpr|helse|sygdom|diagnose|journal|fortrolig|følsom)/.test(t)) {
+      return 'Skriv ikke CPR-nummer, helseoplysninger eller følsomme familieoplysninger i chatten. ' +
+        'Kontakt os i stedet direkte på ' + CONTACT_EMAIL + ' eller ' + CONTACT_PHONE + '.';
+    }
+    if (/(book|bestil|aftale|møde|tid|dato|ledig)/.test(t)) {
+      return 'Du booker ved at skrive eller ringe. Fortæl kort om opgaven, sproget, dato og sted, ' +
+        'så vender vi tilbage med en aftale. E-mail: ' + CONTACT_EMAIL + ' · Telefon: ' + CONTACT_PHONE + '.';
+    }
+    if (/(telefon|ring|nummer|kontakt|email|e-mail|mail)/.test(t)) {
+      return 'Du kan kontakte Gila Brobygger på ' + CONTACT_EMAIL + ' eller ' + CONTACT_PHONE + '.';
+    }
+    if (/(familie|familier|konflikt|barn|sag|myndighed)/.test(t)) {
+      return 'Familiekonsulent tilbyder støtte og vejledning til familier – blandt andet kommunikation, ' +
+        'konflikthåndtering og samarbejde med myndigheder. Læs mere under Tjenester → Familiekonsulent.';
+    }
+    if (/(mentor|integration|jobsøgning|cv|system|hverdag)/.test(t)) {
+      return 'Social Mentor er individuel støtte, møde- og systemvejledning og hverdagsrådgivning. ' +
+        'Mentorforløb kan foregå på tigrinya. Læs mere under Tjenester → Social Mentor.';
+    }
+    if (/(oversæt|oversættelse|skriftlig|dokument|brev|papir)/.test(t)) {
+      return 'Skriftlig oversættelse omfatter breve, dokumenter og officielle papirer – fra og til tigrinya. ' +
+        'Læs mere under Tjenester → Skriftlig oversættelse.';
+    }
+    if (/(video|online|skærm)/.test(t)) {
+      return 'Videotolkning foregår online og passer til møder og samtaler, hvor I har brug for visuel kontakt. ' +
+        'Læs mere under Tjenester → Videotolkning.';
+    }
+    if (/(tolk|tolkning|sprog|tigrinya|fremmed|telefon)/.test(t)) {
+      return 'Gila Brobygger tilbyder fremmedtolkning, telefontolkning, videotolkning og skriftlig oversættelse. ' +
+        'Fortæl kort om situationen, eller kontakt os på ' + CONTACT_EMAIL + ' / ' + CONTACT_PHONE + '.';
+    }
+    if (/(hej|halløj|godmorgen|goddag|tak)/.test(t)) {
+      return 'Hej! Hvad kan jeg hjælpe med – tolkning, oversættelse, mentorforløb eller familiekonsulent?';
+    }
+    return 'Jeg kan svare kort om tolkning, oversættelse, mentorforløb, familiekonsulent og kontakt. ' +
+      'Skriv gerne et nøgleord, eller kontakt os direkte på ' + CONTACT_EMAIL + ' eller ' + CONTACT_PHONE + '.';
+  }
+
+  var root = document.createElement('div');
+  root.id = 'gb-chatbot';
+
+  var fab = document.createElement('button');
+  fab.type = 'button';
+  fab.className = 'gb-fab';
+  fab.setAttribute('aria-label', 'Åbn chat');
+  fab.setAttribute('aria-expanded', 'false');
+  fab.setAttribute('aria-controls', 'gb-chat-panel');
+  fab.textContent = '💬';
+
+  var panel = document.createElement('section');
+  panel.id = 'gb-chat-panel';
+  panel.className = 'gb-panel';
+  panel.hidden = true;
+  panel.setAttribute('role', 'dialog');
+  panel.setAttribute('aria-modal', 'true');
+  panel.setAttribute('aria-labelledby', 'gb-chat-title');
+  panel.setAttribute('aria-describedby', 'gb-chat-disclaimer');
+  panel.innerHTML =
+    '<div class="gb-head">' +
+      '<span class="gb-title" id="gb-chat-title">Gila Brobygger – guide</span>' +
+      '<button type="button" class="gb-close" aria-label="Luk chat">✕</button>' +
+    '</div>' +
+    '<div class="gb-messages" id="gb-chat-messages" role="log" aria-live="polite" aria-relevant="additions"></div>' +
+    '<form class="gb-form" id="gb-chat-form">' +
+      '<label class="sr-only" for="gb-chat-input">Skriv en besked</label>' +
+      '<input class="gb-input" id="gb-chat-input" name="message" type="text" ' +
+        'placeholder="Skriv en besked…" autocomplete="off" maxlength="500">' +
+      '<button class="gb-send" type="submit">Send</button>' +
+    '</form>' +
+    '<p class="gb-disclaimer" id="gb-chat-disclaimer">' +
+      'Automatisk guide. Chatten kører kun i din browser, og beskeder gemmes eller sendes ikke. ' +
+      'Skriv ikke CPR-nummer, helseoplysninger eller andre følsomme oplysninger.' +
+    '</p>';
+
+  root.appendChild(fab);
+  root.appendChild(panel);
+  document.body.appendChild(root);
+
+  var messages = panel.querySelector('#gb-chat-messages');
+  var input = panel.querySelector('#gb-chat-input');
+  var form = panel.querySelector('#gb-chat-form');
+  var closeButton = panel.querySelector('.gb-close');
+
+  function addMessage(text, who) {
+    var item = document.createElement('div');
+    item.className = 'gb-msg ' + who;
+    item.textContent = text;
+    messages.appendChild(item);
+    messages.scrollTop = messages.scrollHeight;
+  }
+
+  function openChat() {
+    panel.hidden = false;
+    fab.setAttribute('aria-expanded', 'true');
+    fab.setAttribute('aria-label', 'Luk chat');
+    if (!messages.childElementCount) addMessage(GREETING, 'bot');
+    input.focus();
+  }
+
+  function closeChat() {
+    panel.hidden = true;
+    fab.setAttribute('aria-expanded', 'false');
+    fab.setAttribute('aria-label', 'Åbn chat');
+    fab.focus();
+  }
+
+  fab.addEventListener('click', function () {
+    if (panel.hidden) openChat(); else closeChat();
+  });
+
+  closeButton.addEventListener('click', closeChat);
+
+  form.addEventListener('submit', function (event) {
+    event.preventDefault();
+    var text = input.value.trim();
+    if (!text) return;
+    addMessage(text, 'user');
+    input.value = '';
+    addMessage(botReply(text), 'bot');
+    input.focus();
+  });
+
+  panel.addEventListener('keydown', function (event) {
+    if (event.key === 'Escape') {
+      event.preventDefault();
+      closeChat();
+      return;
+    }
+    if (event.key !== 'Tab') return;
+    var focusable = panel.querySelectorAll('button, input, a[href]');
+    if (!focusable.length) return;
+    var first = focusable[0];
+    var last = focusable[focusable.length - 1];
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first.focus();
+    }
+  });
 })();

@@ -1,0 +1,62 @@
+{
+  "domain": "gila-brobygger.dk",
+  "base_url": "https://gila-brobygger.dk",
+  "publish_dir": "docs",
+  "entry_point": "index.html",
+  "required_pages": [
+    "index.html",
+    "om.html",
+    "tjenester.html",
+    "fremmedtolkning.html",
+    "telefontolkning.html",
+    "videotolkning.html",
+    "skriftligoversaettelse.html",
+    "mentorforloeb.html",
+    "familiekonsulent.html",
+    "projekter.html",
+    "kontakt.html",
+    "privatliv.html",
+    "tilgaengelighed.html"
+  ],
+  "noindex_pages": [
+    "404.html"
+  ],
+  "navigation": [
+    { "href": "index.html", "label": "Forside" },
+    { "href": "om.html", "label": "Om" },
+    { "href": "tjenester.html", "label": "Tjenester" },
+    { "href": "projekter.html", "label": "Projekter" },
+    { "href": "kontakt.html", "label": "Kontakt" }
+  ],
+  "footer_links": [
+    "om.html",
+    "tjenester.html",
+    "projekter.html",
+    "kontakt.html",
+    "privatliv.html",
+    "tilgaengelighed.html"
+  ],
+  "contact": {
+    "email": "kontakt@gila-brobygger.dk",
+    "phone_display": "+45 31 84 70 40",
+    "phone_href": "+4531847040"
+  },
+  "assets": {
+    "stylesheet": "assets/css/styles.css",
+    "script": "assets/js/main.js",
+    "favicon": "assets/images/favicon.svg",
+    "portrait": "assets/images/gila-portrait.jpg"
+  },
+  "policy": {
+    "allow_forms": false,
+    "allow_external_resources": false,
+    "allow_analytics": false,
+    "allow_inline_scripts": false,
+    "require_skip_link": true,
+    "require_meta_description": true,
+    "require_canonical": true,
+    "require_og_tags": true,
+    "max_title_length": 70,
+    "max_description_length": 165
+  }
+}

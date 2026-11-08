@@ -1,49 +1,46 @@
-# Gila Brobygger – agent instructions
+# AGENTS.md – website scope
 
-## Mission
-Maintain a clear, trustworthy, accessible Danish website for Gila Brobygger as a complete organisation. Preserve the organisation's actual identity and only publish claims that have been confirmed by the owner. The family consultant service is one part of the organisation's offering, not the entirety of the project.
+The canonical, project-wide instructions are in the root [`AGENTS.md`](../AGENTS.md). Read that
+first. This file adds rules specific to the **website content and pages** in `docs/`.
 
-## Read first
-For every substantial task, read:
-1. `PROJECT.md`
-2. `docs/WEBSITE_SPEC.md`
-3. `docs/BRAND.md`
-4. `docs/INVARIANTS.md`
-5. The relevant page and shared assets
+## Scope of this file
 
-Read `docs/SECURITY.md` and `docs/TESTING.md` when a task touches forms, personal data, dependencies, deployment or site behavior.
+Use this file when editing HTML, CSS, JavaScript, public copy, images, `CNAME`, `robots.txt`,
+`sitemap.xml` or `_config.yml`.
 
-## Working rules
-- Inspect the current files before editing.
-- The website is not exclusively about family consulting; all services and pages of Gila Brobygger must be handled consistently.
-- Make small, focused changes; do not rewrite unrelated pages.
-- Keep all public-facing website copy in Danish unless explicitly requested otherwise.
-- Use plain, respectful, inclusive language. Avoid stigmatizing language about children or families.
-- Do not invent qualifications, approvals, testimonials, partnerships, service guarantees, prices, availability, addresses, phone numbers or legal status.
-- Preserve the supplied contact email until the owner confirms a change.
-- Keep navigation, contact links and page titles consistent.
-- Prefer semantic HTML, responsive CSS and minimal JavaScript.
-- Do not add tracking, analytics, cookies, forms, chat widgets or external embeds without an explicit requirement and privacy review.
-- Never put secrets, credentials, personal case information or sensitive family data in the repository.
+## Website-specific rules
 
-## Task workflow
-1. Summarize the goal and inspect relevant files.
-2. Identify affected pages, risks and acceptance criteria.
-3. For non-trivial changes, write a plan in `plans/ACTIVE.md`.
-4. Implement the smallest complete change.
-5. Run `python3 harness/scripts/check_site.py`.
-6. Run a browser-based smoke test when browser tooling is available; verify mobile navigation and every contact CTA.
-7. Review the diff and update documentation if behavior or architecture changed.
-8. Report changed files, tests actually run, results, and anything not verified.
+- Public copy is Danish. Documentation may be English.
+- Every page uses the shared shell: skip link, header, `nav#site-nav`, `<main id="main">`,
+  footer and `assets/js/main.js`.
+- Exactly one `<h1>` per page; unique `<title>` and meta description; canonical URL; Open Graph.
+- All internal paths are relative. No leading `/`, no external CSS, fonts, scripts or images.
+- No forms, cookies, analytics, tracking, iframes or embeds.
+- Contact is `mailto:kontakt@gila-brobygger.dk` and `tel:+4531847040`.
+- Do not invent services, prices, qualifications, partners, testimonials or coverage areas.
+- Do not publish anything that identifies a family or a case.
+- Keep service names and navigation labels consistent with `docs/WEBSITE_SPEC.md`.
+- Keep `docs/CNAME` exactly `gila-brobygger.dk`.
+- Keep `docs/_config.yml` excluding `*.md` so this documentation is not published.
+- When adding a page: update `harness/config/site.json`, `docs/sitemap.xml` (unless `noindex`),
+  `docs/WEBSITE_SPEC.md` and any relevant navigation.
+- When changing content that needs approval, update `docs/OWNER_REVIEW.md` and
+  `docs/APPROVAL_LOG.md` in the same change.
 
-## Approval required
-Ask the owner before:
-- Publishing or deploying to the live domain.
-- Deleting or replacing existing live content.
-- Changing contact details or public service claims.
-- Adding forms that collect personal or sensitive information.
-- Adding analytics, advertising pixels, cookies or external services.
-- Changing hosting, DNS, email routing or security settings.
+## Before you finish
 
-## Definition of done
-A task is not complete merely because code was written. Relevant checks must pass, links must be verified, and any unverified behavior must be clearly disclosed.
+```bash
+python3 harness/scripts/check_site.py
+python3 harness/scripts/check_secrets.py
+python3 harness/scripts/check_docs.py
+```
+
+Then serve `docs/` locally and check:
+
+- desktop and mobile navigation;
+- skip link and visible focus;
+- every contact link;
+- the chatbot (open, answer, Escape, focus return);
+- no console errors and no third-party network requests.
+
+Do not claim the site is live or approved. Check `docs/APPROVAL_LOG.md`.

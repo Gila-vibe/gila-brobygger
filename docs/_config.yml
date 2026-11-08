@@ -1,0 +1,16 @@
+# GitHub Pages configuration (publishing source: main branch, /docs).
+#
+# The engineering documentation lives next to the website so that content and
+# implementation are reviewed together, but it must not be published as part
+# of the public site. GitHub Pages runs Jekyll for this directory, so these
+# exclusions keep Markdown, plans and decision records out of the published
+# output.
+
+exclude:
+  - "*.md"
+  - "plans"
+  - "decisions"
+  - "gila-brobygger"
+
+# Do not run plugins or generate feeds; this is a hand-written static site.
+plugins: []

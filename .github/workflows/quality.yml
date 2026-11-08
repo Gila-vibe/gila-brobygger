@@ -4,10 +4,35 @@ on:
   push:
   pull_request:
 
+permissions:
+  contents: read
+
 jobs:
-  site-check:
+  quality:
+    name: Site, secrets and documentation
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - name: Check required pages, navigation and contact links
-        run: python3 docs/harness/scripts/check_site.py
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Validate site structure, links, metadata and accessibility basics
+        run: python3 harness/scripts/check_site.py --report harness/reports/latest.json
+
+      - name: Scan for secrets and credentials
+        run: python3 harness/scripts/check_secrets.py
+
+      - name: Validate documentation consistency
+        run: python3 harness/scripts/check_docs.py
+
+      - name: Upload site check report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: site-check-report
+          path: harness/reports/latest.json
+          if-no-files-found: warn

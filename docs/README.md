@@ -1,36 +1,62 @@
-# Gila Brobygger – website & engineering harness
+# Engineering documentation
 
-This repository contains a lightweight, static Danish website starter and a project-specific AI engineering harness.
+This folder contains the website **and** the documentation that governs it. The public pages are
+the `*.html` files; the Markdown files are engineering documents and are excluded from the
+published site through `docs/_config.yml`.
 
-## Included pages
-- `index.html` – homepage
-- `familiekonsulent.html` – family consultant service page
-- `assets/` – shared CSS, JavaScript and favicon
+Start with the root [README](../README.md) for an overview and run instructions.
 
-> The project scope covers the complete Gila Brobygger organisation. Additional service pages from the existing website content (interpretation, mentor, etc.) are subject to integration planning.
+## Documents
 
-## Run locally
-No build system or package installation is required. Open `index.html` in a browser, or run a local server:
+| Document | What it covers |
+|---|---|
+| [WEBSITE_SPEC.md](WEBSITE_SPEC.md) | Information architecture, page inventory, components, change rules |
+| [ORGANISATION.md](ORGANISATION.md) | Services, activities, experience, audiences and known gaps |
+| [BRAND.md](BRAND.md) | Visual identity, typography, logo, voice and tone |
+| [INVARIANTS.md](INVARIANTS.md) | Rules that must never be broken, and how they are checked |
+| [SECURITY.md](SECURITY.md) | Data flows, threat model, secrets, third parties, incident response |
+| [PRIVACY_NOTICE.md](PRIVACY_NOTICE.md) | Draft privacy notice (Danish), pending legal review |
+| [TESTING.md](TESTING.md) | Automated checks and manual test procedures |
+| [ACCESSIBILITY.md](ACCESSIBILITY.md) | WCAG 2.1 AA target, implementation, known gaps |
+| [SEO.md](SEO.md) | Metadata, canonical URLs, sitemap, structured data |
+| [HARNESS.md](HARNESS.md) | Harness architecture, gates and extension guide |
+| [QUALITY_SCORE.md](QUALITY_SCORE.md) | Current scorecard and evidence |
+| [APPROVAL_LOG.md](APPROVAL_LOG.md) | Owner and legal/DPO approval register |
+| [OWNER_REVIEW.md](OWNER_REVIEW.md) | Facts and decisions awaiting the owner |
+| [AGENTS.md](AGENTS.md) | Website-scoped agent instructions (root `AGENTS.md` is canonical) |
+| [PROJECT.md](PROJECT.md) | Pointer to the canonical project document |
 
-```bash
-python3 -m http.server 8000
-```
+## Decisions
 
-Then visit `http://localhost:8000`.
+Architecture and policy decisions with lasting consequences are recorded in
+[`decisions/`](decisions/):
 
-## Contact links
-The supplied contact address is used consistently:
-`kontakt@gila-brobygger.dk`
+- [0001 – Static site without a build step](decisions/0001-static-site-no-build.md)
+- [0002 – No forms; contact by e-mail and phone](decisions/0002-no-forms-mailto-contact.md)
+- [0003 – Local-only chatbot](decisions/0003-local-only-chatbot.md)
+- [0004 – System fonts, no third-party requests](decisions/0004-system-fonts-no-third-party.md)
+- [0005 – Archive, do not delete](decisions/0005-archive-not-delete.md)
+- [0006 – Engineering docs co-located and excluded](decisions/0006-docs-co-located-excluded.md)
 
-The `mailto:` links open the visitor's configured email application. This does not send messages through the website or guarantee that the mailbox exists. Verify the mailbox before launch.
+## Website files
 
-## Before publishing
-1. Confirm the legal business name, service descriptions and contact email.
-2. Add verified phone number, address, opening hours and social links if desired.
-3. Add a real privacy notice and cookie handling only after confirming what data, analytics and third-party services the live site uses.
-4. Test the contact links on desktop and mobile devices with an email app configured.
-5. Check all navigation paths and the deployed domain.
-6. Configure HTTPS and backups at the hosting provider.
+| File | Purpose |
+|---|---|
+| `index.html` | Homepage, required entry point |
+| `om.html`, `tjenester.html`, `projekter.html`, `kontakt.html` | Main pages |
+| `fremmedtolkning.html`, `telefontolkning.html`, `videotolkning.html` | Interpreting services |
+| `skriftligoversaettelse.html`, `mentorforloeb.html`, `familiekonsulent.html` | Other services |
+| `privatliv.html`, `tilgaengelighed.html` | Privacy and accessibility |
+| `404.html` | Error page, `noindex` |
+| `assets/css/styles.css` | Shared design system |
+| `assets/js/main.js` | Mobile navigation and local chatbot |
+| `assets/images/` | Portrait, logo and favicon |
+| `CNAME` | Custom domain |
+| `robots.txt`, `sitemap.xml` | Crawler configuration |
+| `_config.yml` | Excludes engineering documents from publication |
 
-## Deploy
-Upload the contents of this folder to the website's document root using your hosting provider's approved workflow. Do not overwrite the live website until you have a backup and have reviewed the preview.
+## A note on status
+
+Nothing in this folder is approved for publication simply because it exists. Check
+[APPROVAL_LOG.md](APPROVAL_LOG.md) before deploying. The current rebuild has **not** been
+committed, pushed or deployed.
