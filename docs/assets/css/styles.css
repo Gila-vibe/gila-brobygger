@@ -361,35 +361,89 @@ strong { color: var(--green-900); font-weight: 700; }
 /* Quote request template (mailto-based, no data collection) */
 .quote-form {
   display: grid;
-  gap: var(--space-4);
-  max-width: 640px;
-  margin: var(--space-4) 0 var(--space-6);
-  padding: var(--space-6);
+  gap: var(--space-5);
+  max-width: 720px;
+  margin: var(--space-6) 0 var(--space-8);
+  padding: clamp(var(--space-5), 4vw, var(--space-8));
   border: 1px solid var(--line);
-  border-radius: var(--radius);
-  background: var(--surface-soft);
+  border-radius: var(--radius-lg);
+  background: linear-gradient(180deg, var(--white), var(--surface-soft));
+  box-shadow: var(--shadow-md);
 }
 .quote-field { display: grid; gap: var(--space-2); }
-.quote-field label { font-weight: 700; font-size: var(--text-sm); color: var(--green-900); }
+.quote-field label {
+  font-weight: 700;
+  font-size: var(--text-sm);
+  color: var(--green-900);
+  letter-spacing: .01em;
+}
+.quote-field label .req { color: var(--accent); margin-left: 2px; }
 .quote-field input,
 .quote-field select,
 .quote-field textarea {
-  padding: 10px 14px;
+  padding: 12px 16px;
   border: 1px solid var(--line);
   border-radius: var(--radius-sm);
   font: inherit;
   font-size: var(--text-base);
   background: var(--white);
-  transition: border-color var(--dur-fast) var(--ease-out), box-shadow var(--dur-fast) var(--ease-out);
+  transition: border-color var(--dur-fast) var(--ease-out),
+              box-shadow var(--dur-fast) var(--ease-out),
+              background var(--dur-fast) var(--ease-out);
 }
+.quote-field input:hover,
+.quote-field select:hover,
+.quote-field textarea:hover { border-color: var(--green-200); }
 .quote-field input:focus,
 .quote-field select:focus,
 .quote-field textarea:focus {
   border-color: var(--green-600);
-  box-shadow: 0 0 0 3px var(--green-100);
+  box-shadow: 0 0 0 4px var(--green-100);
   outline: none;
+  background: var(--white);
 }
-.quote-actions { display: flex; flex-wrap: wrap; gap: var(--space-3); align-items: center; }
+.quote-field textarea { resize: vertical; min-height: 110px; line-height: 1.5; }
+.quote-field select { cursor: pointer; }
+.quote-field .field-note {
+  font-size: var(--text-xs);
+  color: var(--muted-soft);
+  margin-top: 2px;
+}
+.quote-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  align-items: center;
+  padding-top: var(--space-2);
+  border-top: 1px solid var(--line-soft);
+}
+.quote-actions .button { min-height: 46px; }
+.quote-feedback {
+  flex-basis: 100%;
+  font-size: var(--text-sm);
+  color: var(--green-700);
+  font-weight: 600;
+  min-height: 1.2em;
+}
+.quote-file-note {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-sm);
+  background: var(--accent-soft);
+  border-left: 3px solid var(--accent);
+  font-size: var(--text-sm);
+  color: var(--ink-soft);
+}
+.quote-file-note strong { color: var(--accent-dark); }
+
+@media (max-width: 640px) {
+  .quote-form { padding: var(--space-4); }
+  .quote-actions { flex-direction: column; align-items: stretch; }
+  .quote-actions .button { width: 100%; }
+  .quote-actions .copy-feedback { text-align: center; }
+}
 .text-link span { padding-left: var(--space-1); transition: transform var(--dur-fast) var(--ease-out); display: inline-block; }
 .text-link:hover span { transform: translateX(3px); }
 
