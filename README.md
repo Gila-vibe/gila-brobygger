@@ -101,6 +101,9 @@ reviewed together.
 | [docs/APPROVAL_LOG.md](docs/APPROVAL_LOG.md) | Owner and legal/DPO approval log |
 | [docs/OWNER_REVIEW.md](docs/OWNER_REVIEW.md) | Facts and decisions awaiting the owner |
 | [docs/LAUNCH_CHECKLIST.md](docs/LAUNCH_CHECKLIST.md) | Launch checklist, owner tasks, external-provider tasks |
+| [docs/LEGAL_AUDIT.md](docs/LEGAL_AUDIT.md) | Legal and GDPR audit report |
+| [docs/ACCESSIBILITY_AUDIT.md](docs/ACCESSIBILITY_AUDIT.md) | Accessibility audit report |
+| [docs/VIDEO_CAPTIONS_INVENTORY.md](docs/VIDEO_CAPTIONS_INVENTORY.md) | Video captions and transcripts inventory |
 | [plans/ACTIVE.md](plans/ACTIVE.md) | Current plan and open gates |
 
 ## Contact details used on the website

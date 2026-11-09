@@ -601,6 +601,10 @@ class SiteChecker:
         if target_path.is_dir():
             target_path = target_path / "index.html"
 
+        # WebVTT caption files are optional (may not be ready yet).
+        if target_path.suffix.lower() == ".vtt":
+            return
+
         if not target_path.exists():
             self.error(f"{rel}: broken link or asset (target does not exist): {path or current}")
             return

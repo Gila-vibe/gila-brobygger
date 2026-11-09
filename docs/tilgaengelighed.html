@@ -4,14 +4,14 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Tilgængelighed | Gila Brobygger</title>
-  <meta name="description" content="Gila Brobyggers arbejde med tilgængelighed og WCAG 2.1 AA.">
+  <meta name="description" content="Gila Brobyggers tilgængelighedserklæring – WCAG 2.1 AA målsætning, kendte begrænsninger og kontakt.">
   <meta name="theme-color" content="#246b45">
   <link rel="canonical" href="https://gila-brobygger.dk/tilgaengelighed.html">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="da_DK">
   <meta property="og:site_name" content="Gila Brobygger">
   <meta property="og:title" content="Tilgængelighed | Gila Brobygger">
-  <meta property="og:description" content="Gila Brobyggers arbejde med tilgængelighed og WCAG 2.1 AA.">
+  <meta property="og:description" content="Gila Brobyggers tilgængelighedserklæring – WCAG 2.1 AA målsætning, kendte begrænsninger og kontakt.">
   <meta property="og:url" content="https://gila-brobygger.dk/tilgaengelighed.html">
   <meta property="og:image" content="https://gila-brobygger.dk/assets/images/gila-portrait.jpg">
   <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
@@ -21,18 +21,8 @@
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     "itemListElement": [
-      {
-        "@type": "ListItem",
-        "position": 1,
-        "name": "Forside",
-        "item": "https://gila-brobygger.dk/"
-      },
-      {
-        "@type": "ListItem",
-        "position": 2,
-        "name": "Tilgængelighed",
-        "item": "https://gila-brobygger.dk/tilgaengelighed.html"
-      }
+      { "@type": "ListItem", "position": 1, "name": "Forside", "item": "https://gila-brobygger.dk/" },
+      { "@type": "ListItem", "position": 2, "name": "Tilgængelighed", "item": "https://gila-brobygger.dk/tilgaengelighed.html" }
     ]
   }
   </script>
@@ -64,32 +54,58 @@
     <section class="page-hero">
       <div class="container narrow">
         <p class="eyebrow">Tilgængelighed</p>
-        <h1>Tilgængelighed</h1>
+        <h1>Tilgængelighedserklæring</h1>
         <p class="lead">Vi ønsker, at flest muligt kan bruge hjemmesiden – uanset funktionsnedsættelse, enhed eller hjælpemiddel.</p>
       </div>
     </section>
     <div class="container content-layout">
       <article class="prose">
-        <h2>Målsætning</h2>
-        <p>Vi tilstræber at følge retningslinjerne i WCAG 2.1 på niveau AA. Det er en målsætning, ikke en garanti for, at alle dele af hjemmesiden er fejlfrie.</p>
+        <h2>Forpligtelse</h2>
+        <p>Gila Brobygger tilstræber at gøre hjemmesiden tilgængelig for alle brugere. Vi arbejder løbende med at forbedre tilgængeligheden og følger bedste praksis for webtilgængelighed.</p>
 
-        <h2>Det har vi arbejdet med</h2>
+        <h2>Standard</h2>
+        <p>Målsætningen er at følge <strong>WCAG 2.1 på niveau AA</strong>. Dette er et teknisk mål, ikke en certificering. Der er ikke gennemført en uafhængig tilgængelighedsaudit.</p>
+        <p>Om danske tilgængelighedsregler (f.eks. lov om tilgængelighed af websteder og mobilapplikationer) gælder for denne organisation, er endnu ikke afklaret. Dette vurderes af ejeren med juridisk rådgivning.</p>
+
+        <h2>Hvad vi har arbejdet med</h2>
         <ul class="check-list">
           <li>Semantisk HTML med header, navigation, main og footer.</li>
-          <li>Skip-link direkte til indholdet.</li>
-          <li>Tastaturnavigation og synlig fokusmarkering.</li>
-          <li>Mobilmenu med <code>aria-expanded</code> og <code>aria-controls</code>.</li>
+          <li>Skip-link direkte til indholdet som første fokuserbare element.</li>
+          <li>Tastaturnavigation og synlig fokusmarkering (3 px amber ring).</li>
+          <li>Mobilmenu med <code>aria-expanded</code> og <code>aria-controls</code>, lukkes med Escape.</li>
           <li>Alternativ tekst på billeder og ledetekster på formularfelter.</li>
-          <li>Responsivt layout og respekt for reduceret bevægelse.</li>
+          <li>Responsivt layout, der fungerer fra 320 px bredde.</li>
+          <li>Respekt for <code>prefers-reduced-motion</code>.</li>
           <li>Kontrast og læsbare tekststørrelser.</li>
+          <li>Chatbot med fokushåndtering og tastaturnavigation.</li>
         </ul>
 
         <h2>Kendte begrænsninger</h2>
-        <p>Vi har endnu ikke gennemført en ekstern tilgængelighedsaudit. Hvis du oplever en barriere, vil vi gerne høre om det, så vi kan rette den.</p>
+        <ul class="check-list">
+          <li>Der er ikke gennemført en ekstern tilgængelighedsaudit eller brugertest med hjælpemidler.</li>
+          <li>Chatboten er en simpel nøgleordsbaseret guide – den er ikke en erstatning for menneskelig kontakt.</li>
+          <li>Emoji-baserede ikoner kan gengives forskelligt på tværs af platforme; alle er dekorative.</li>
+          <li>Videoen på forsiden har ikke undertekster eller transskription endnu (afventer ejerens levering).</li>
+          <li>Automatiserede kontroller dækker struktur og grundlæggende tilgængelighed, ikke fuld WCAG-overholdelse.</li>
+        </ul>
 
-        <h2>Kontakt</h2>
-        <p>Skriv til <a href="mailto:kontakt@gila-brobygger.dk">kontakt@gila-brobygger.dk</a> eller ring på <a href="tel:+4531847040">+45 31 84 70 40</a>, hvis du har brug for hjælp eller vil gøre opmærksom på et problem.</p>
-        <p class="muted">Senest opdateret: 8. november 2026.</p>
+        <h2>Tredjepartsindhold</h2>
+        <p>Hjemmesiden bruger ingen tredjepartsscripts, embeds, iframes eller eksterne ressourcer. Der er ingen tredjepartsindhold, der kan påvirke tilgængeligheden.</p>
+
+        <h2>Rapportér et problem</h2>
+        <p>Hvis du oplever en barriere eller har svært ved at bruge hjemmesiden, vil vi gerne høre om det:</p>
+        <ul class="check-list">
+          <li>E-mail: <a href="mailto:kontakt@gila-brobygger.dk">kontakt@gila-brobygger.dk</a></li>
+          <li>Telefon: <a href="tel:+4531847040">+45 31 84 70 40</a></li>
+        </ul>
+        <p>Vi bestræber os på at svare inden for en rimelig frist. En formel responstid er ikke fastlagt og kan ikke loves.</p>
+
+        <h2>Klageprocedure</h2>
+        <p>Hvis du ikke er tilfreds med vores håndtering af en tilgængelighedsanmodning, kan du klage til Datatilsynet eller den relevante myndighed. Vi vil samarbejde om at finde en løsning.</p>
+
+        <h2>Vurderingsmetode og dato</h2>
+        <p>Siden er vurderet af udvikleren ved hjælp af automatiserede kontroller (harness) og manuelle gennemgange i browser. Der er ikke gennemført en uafhængig audit.</p>
+        <p class="muted">Senest vurderet: 9. november 2026.</p>
       </article>
       <aside class="contact-card">
         <span class="service-icon" aria-hidden="true">✉</span>

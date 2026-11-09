@@ -228,11 +228,17 @@
         </blockquote>
         <div style="max-width: 760px;">
           <video controls muted playsinline preload="metadata" data-autoplay-on-view
-            style="width:100%; border-radius: var(--radius); box-shadow: var(--shadow-md);">
+            style="width:100%; border-radius: var(--radius); box-shadow: var(--shadow-md);"
+            aria-describedby="video-transcript">
             <source src="assets/video/helping-hand.mp4" type="video/mp4">
+            <track kind="captions" src="assets/video/helping-hand.vtt" srclang="da" label="Dansk" default>
             Din browser understøtter ikke videoafspilning. <a href="assets/video/helping-hand.mp4">Download videoen (1,9
               MB)</a>.
           </video>
+          <details class="video-transcript" id="video-transcript" style="margin-top: 16px;">
+            <summary style="cursor: pointer; font-weight: 700; color: var(--green-900);">Transskription af videoen</summary>
+            <p style="margin-top: 12px; color: var(--ink-soft); font-style: italic;">Transskription afventer ejerens levering. Videoen viser Gila Brobygger og organisationens arbejde. Kontakt os for yderligere information.</p>
+          </details>
 
         </div>
       </div>
