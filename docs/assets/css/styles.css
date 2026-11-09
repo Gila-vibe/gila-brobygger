@@ -362,15 +362,34 @@ strong { color: var(--green-900); font-weight: 700; }
 .quote-form {
   display: grid;
   gap: var(--space-5);
-  max-width: 720px;
+  max-width: 760px;
   margin: var(--space-6) 0 var(--space-8);
-  padding: clamp(var(--space-5), 4vw, var(--space-8));
+  padding: clamp(var(--space-6), 5vw, var(--space-10));
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
-  background: linear-gradient(180deg, var(--white), var(--surface-soft));
-  box-shadow: var(--shadow-md);
+  background: linear-gradient(160deg, var(--white) 0%, var(--surface-soft) 100%);
+  box-shadow: var(--shadow-lg);
+  position: relative;
+  overflow: hidden;
+}
+.quote-form::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--green-600), var(--green-800), var(--accent));
 }
 .quote-field { display: grid; gap: var(--space-2); }
+.quote-form .quote-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-5);
+}
+@media (max-width: 640px) {
+  .quote-form .quote-row { grid-template-columns: 1fr; }
+}
 .quote-field label {
   font-weight: 700;
   font-size: var(--text-sm);
@@ -430,20 +449,22 @@ strong { color: var(--green-900); font-weight: 700; }
 .upload-area {
   display: grid;
   place-items: center;
-  gap: var(--space-2);
-  padding: var(--space-6);
-  border: 2px dashed var(--green-200);
+  gap: var(--space-3);
+  padding: var(--space-8) var(--space-6);
+  border: 2px dashed var(--green-300, var(--green-200));
   border-radius: var(--radius);
-  background: var(--surface-tint);
+  background: linear-gradient(180deg, var(--surface-tint), var(--green-050));
   cursor: pointer;
   text-align: center;
   transition: border-color var(--dur-fast) var(--ease-out),
               background var(--dur-fast) var(--ease-out),
-              transform var(--dur-fast) var(--ease-out);
+              transform var(--dur-fast) var(--ease-out),
+              box-shadow var(--dur-fast) var(--ease-out);
 }
 .upload-area:hover {
   border-color: var(--green-600);
   background: var(--green-100);
+  box-shadow: var(--shadow-sm);
 }
 .upload-area:focus-visible {
   outline: 3px solid var(--accent);
@@ -453,7 +474,9 @@ strong { color: var(--green-900); font-weight: 700; }
   border-color: var(--green-700);
   background: var(--green-100);
   transform: scale(1.01);
+  box-shadow: var(--shadow-md);
 }
+
 .upload-icon { font-size: 2.2rem; line-height: 1; }
 .upload-text { margin: 0; font-weight: 600; color: var(--green-900); }
 .upload-text strong { color: var(--green-700); text-decoration: underline; }

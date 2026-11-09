@@ -35,7 +35,7 @@
         <a href="projekter.html">Projekter</a>
         <a href="kontakt.html">Kontakt</a>
         <a href="faa-et-tilbud.html" aria-current="page">Få et tilbud</a>
-        <a class="nav-cta" href="mailto:kontakt@gila-brobygger.dk?subject=Henvendelse%20fra%20hjemmesiden">Skriv til os</a>
+        <a class="nav-cta" href="kontakt.html">Skriv til os</a>
       </nav>
     </div>
   </header>
@@ -51,39 +51,45 @@
     <div class="container content-layout">
       <article class="prose">
         <div class="quote-form" aria-label="Skabelon til tilbudshenvendelse" id="quote-form">
-          <div class="quote-field">
-            <label for="q-navn">Navn <span class="req">*</span></label>
-            <input type="text" id="q-navn" name="navn" required maxlength="100" placeholder="Dit fulde navn" autocomplete="name">
+          <div class="quote-row">
+            <div class="quote-field">
+              <label for="q-navn">Navn <span class="req">*</span></label>
+              <input type="text" id="q-navn" name="navn" required maxlength="100" placeholder="Dit fulde navn" autocomplete="name">
+            </div>
+            <div class="quote-field">
+              <label for="q-virksomhed">Virksomhedsnavn eller CVR-nummer</label>
+              <input type="text" id="q-virksomhed" name="virksomhed" maxlength="100" placeholder="Virksomhed eller CVR-nummer">
+            </div>
           </div>
-          <div class="quote-field">
-            <label for="q-virksomhed">Virksomhedsnavn eller CVR-nummer</label>
-            <input type="text" id="q-virksomhed" name="virksomhed" maxlength="100" placeholder="Virksomhed eller CVR-nummer">
+          <div class="quote-row">
+            <div class="quote-field">
+              <label for="q-email">E-mail <span class="req">*</span></label>
+              <input type="email" id="q-email" name="email" required maxlength="120" placeholder="din@email.dk" autocomplete="email">
+            </div>
+            <div class="quote-field">
+              <label for="q-service">Vælg service <span class="req">*</span></label>
+              <select id="q-service" name="service" required>
+                <option value="">Vælg en service…</option>
+                <option value="Fremmedtolkning">Fremmedtolkning</option>
+                <option value="Telefontolkning">Telefontolkning</option>
+                <option value="Videotolkning">Videotolkning</option>
+                <option value="Skriftlig oversættelse">Skriftlig oversættelse</option>
+                <option value="Social Mentor">Social Mentor</option>
+                <option value="Familiekonsulent">Familiekonsulent</option>
+                <option value="Støtteperson (§ 75)">Støtteperson (§ 75)</option>
+                <option value="Andet">Andet</option>
+              </select>
+            </div>
           </div>
-          <div class="quote-field">
-            <label for="q-email">E-mail <span class="req">*</span></label>
-            <input type="email" id="q-email" name="email" required maxlength="120" placeholder="din@email.dk" autocomplete="email">
-          </div>
-          <div class="quote-field">
-            <label for="q-service">Vælg service <span class="req">*</span></label>
-            <select id="q-service" name="service" required>
-              <option value="">Vælg en service…</option>
-              <option value="Fremmedtolkning">Fremmedtolkning</option>
-              <option value="Telefontolkning">Telefontolkning</option>
-              <option value="Videotolkning">Videotolkning</option>
-              <option value="Skriftlig oversættelse">Skriftlig oversættelse</option>
-              <option value="Social Mentor">Social Mentor</option>
-              <option value="Familiekonsulent">Familiekonsulent</option>
-              <option value="Støtteperson (§ 75)">Støtteperson (§ 75)</option>
-              <option value="Andet">Andet</option>
-            </select>
-          </div>
-          <div class="quote-field">
-            <label for="q-noter">Bemærkninger / noter</label>
-            <textarea id="q-noter" name="noter" rows="5" maxlength="2000" placeholder="Beskriv opgaven, omfang, sprog og andre relevante detaljer"></textarea>
-          </div>
-          <div class="quote-field">
-            <label for="q-deadline">Evt. deadline</label>
-            <input type="date" id="q-deadline" name="deadline">
+          <div class="quote-row">
+            <div class="quote-field">
+              <label for="q-noter">Bemærkninger / noter</label>
+              <textarea id="q-noter" name="noter" rows="5" maxlength="2000" placeholder="Beskriv opgaven, omfang, sprog og andre relevante detaljer"></textarea>
+            </div>
+            <div class="quote-field">
+              <label for="q-deadline">Evt. deadline</label>
+              <input type="date" id="q-deadline" name="deadline">
+            </div>
           </div>
 
           <div class="quote-field">
