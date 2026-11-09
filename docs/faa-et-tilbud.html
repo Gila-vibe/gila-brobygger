@@ -50,18 +50,18 @@
     </section>
     <div class="container content-layout">
       <article class="prose">
-        <div class="quote-form" aria-label="Skabelon til tilbudshenvendelse">
+        <div class="quote-form" aria-label="Skabelon til tilbudshenvendelse" id="quote-form">
           <div class="quote-field">
             <label for="q-navn">Navn <span class="req">*</span></label>
-            <input type="text" id="q-navn" name="navn" required maxlength="100" placeholder="Dit navn">
+            <input type="text" id="q-navn" name="navn" required maxlength="100" placeholder="Dit fulde navn" autocomplete="name">
           </div>
           <div class="quote-field">
             <label for="q-virksomhed">Virksomhedsnavn eller CVR-nummer</label>
-            <input type="text" id="q-virksomhed" name="virksomhed" maxlength="100" placeholder="Virksomhed eller CVR">
+            <input type="text" id="q-virksomhed" name="virksomhed" maxlength="100" placeholder="Virksomhed eller CVR-nummer">
           </div>
           <div class="quote-field">
             <label for="q-email">E-mail <span class="req">*</span></label>
-            <input type="email" id="q-email" name="email" required maxlength="120" placeholder="din@email.dk">
+            <input type="email" id="q-email" name="email" required maxlength="120" placeholder="din@email.dk" autocomplete="email">
           </div>
           <div class="quote-field">
             <label for="q-service">Vælg service <span class="req">*</span></label>
@@ -79,24 +79,39 @@
           </div>
           <div class="quote-field">
             <label for="q-noter">Bemærkninger / noter</label>
-            <textarea id="q-noter" name="noter" rows="4" maxlength="1000" placeholder="Beskriv opgaven kort"></textarea>
+            <textarea id="q-noter" name="noter" rows="5" maxlength="2000" placeholder="Beskriv opgaven, omfang, sprog og andre relevante detaljer"></textarea>
           </div>
           <div class="quote-field">
             <label for="q-deadline">Evt. deadline</label>
-            <input type="text" id="q-deadline" name="deadline" maxlength="60" placeholder="f.eks. 2026-12-01">
+            <input type="date" id="q-deadline" name="deadline">
           </div>
-          <p class="quote-file-note"><strong>📎 Upload af filer:</strong> Ikke muligt via hjemmesiden. Vedhæft filer direkte i din e-mail-klient, når beskeden åbnes.</p>
+
+          <div class="quote-field">
+            <label>Vedhæft filer (valgfrit)</label>
+            <div class="upload-area" id="upload-area" role="button" tabindex="0" aria-label="Træk filer hertil eller klik for at vælge">
+              <div class="upload-icon" aria-hidden="true">📎</div>
+              <p class="upload-text">Træk filer hertil eller <strong>klik for at vælge</strong></p>
+              <p class="upload-hint">PDF, DOC, DOCX, JPG, PNG · Maks. 10 MB pr. fil · Flere filer tilladt</p>
+              <input type="file" id="q-files" name="files" multiple accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,.txt" hidden>
+            </div>
+            <ul class="file-list" id="file-list" aria-live="polite"></ul>
+          </div>
+
           <div class="quote-actions">
-            <button type="button" class="button button-primary" id="q-send">Send e-mail med skabelon</button>
+            <button type="button" class="button button-primary" id="q-send">
+              <span class="btn-icon" aria-hidden="true">✉</span>
+              <span class="btn-text">Send forespørgsel</span>
+              <span class="btn-spinner" hidden aria-hidden="true"></span>
+            </button>
             <button type="button" class="button button-secondary" id="q-copy">Kopier skabelon</button>
             <span class="quote-feedback" id="q-feedback" aria-live="polite"></span>
           </div>
         </div>
 
-        <div class="notice">
-          <p><strong>Bemærk:</strong> Skabelonen åbner din egen e-mail-klient med en forberedt besked. Ingen oplysninger sendes til eller gemmes af hjemmesiden. Undgå at skrive CPR-numre, helseoplysninger eller detaljer om en familiesag.</p>
+        <div class="notice notice-accent">
+          <p><strong>Beskyttelse af dine oplysninger:</strong> Vi behandler dine oplysninger fortroligt og anvender dem udelukkende til at besvare din henvendelse og udarbejde et tilbud. Undlad venligst at vedhæfte CPR-numre eller andre følsomme personoplysninger.</p>
         </div>
-      </article>
+      </article>      </article>
       <aside class="contact-card">
         <span class="service-icon" aria-hidden="true">✉</span>
         <h2>Kontakt</h2>

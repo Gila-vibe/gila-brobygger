@@ -124,6 +124,140 @@
     if (!sendBtn) return;
 
     var CONTACT = 'kontakt@gila-brobygger.dk';
+    var MAX_FILE_SIZE = 10 * 1024 * 1024; // 10 MB
+    var ALLOWED_TYPES = ['application/pdf', 'application/msword',
+      'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+      'image/jpeg', 'image/png', 'text/plain'];
+    var ALLOWED_EXT = ['.pdf', '.doc', '.docx', '.jpg', '.jpeg', '.png', '.txt'];
+    var selectedFiles = [];
+    var isSubmitting = false;
+
+    function fieldValue(id) {
+      var el = document.getElementById(id);
+      return el ? String(el.value || '').trim() : '';
+    }
+
+    function formatSize(bytes) {
+      if (bytes < 1024) return bytes + ' B';
+      if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
+      return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
+    }
+
+    function getFileIcon(name) {
+      var ext = name.slice(name.lastIndexOf('.')).toLowerCase();
+      if (ext === '.pdf') return '📄';
+      if (ext === '.doc' || ext === '.docx') return '📝';
+      if (ext === '.jpg' || ext === '.jpeg' || ext === '.png') return '🖼';
+      if (ext === '.txt') return '📃';
+      return '📎';
+    }
+
+    function renderFileList() {
+      var list = document.getElementById('file-list');
+      if (!list) return;
+      list.innerHTML = '';
+      selectedFiles.forEach(function (file, index) {
+        var li = document.createElement('li');
+        li.className = 'file-item';
+        var icon = document.createElement('span');
+        icon.className = 'file-icon';
+        icon.textContent = getFileIcon(file.name);
+        icon.setAttribute('aria-hidden', 'true');
+        var info = document.createElement('span');
+        info.className = 'file-info';
+        var nameSpan = document.createElement('span');
+        nameSpan.className = 'file-name';
+        nameSpan.textContent = file.name;
+        var sizeSpan = document.createElement('span');
+        sizeSpan.className = 'file-size';
+        sizeSpan.textContent = formatSize(file.size);
+        info.appendChild(nameSpan);
+        info.appendChild(sizeSpan);
+        var removeBtn = document.createElement('button');
+        removeBtn.type = 'button';
+        removeBtn.className = 'file-remove';
+        removeBtn.setAttribute('aria-label', 'Fjern ' + file.name);
+        removeBtn.textContent = '×';
+        removeBtn.addEventListener('click', function () {
+          selectedFiles.splice(index, 1);
+          renderFileList();
+        });
+        li.appendChild(icon);
+        li.appendChild(info);
+        li.appendChild(removeBtn);
+        list.appendChild(li);
+      });
+    }
+
+    function validateFile(file) {
+      var ext = file.name.slice(file.name.lastIndexOf('.')).toLowerCase();
+      if (ALLOWED_EXT.indexOf(ext) === -1) {
+        return 'Filtypen ' + ext + ' er ikke tilladt.';
+      }
+      if (file.size > MAX_FILE_SIZE) {
+        return file.name + ' er for stor (maks. 10 MB).';
+      }
+      return null;
+    }
+
+    function addFiles(files) {
+      var errors = [];
+      Array.prototype.forEach.call(files, function (file) {
+        var err = validateFile(file);
+        if (err) {
+          errors.push(err);
+          return;
+        }
+        // avoid duplicates
+        var exists = selectedFiles.some(function (f) {
+          return f.name === file.name && f.size === file.size;
+        });
+        if (!exists) {
+          selectedFiles.push(file);
+        }
+      });
+      renderFileList();
+      if (errors.length) {
+        if (feedback) feedback.textContent = errors.join(' ');
+      }
+    }
+
+    // Drag-and-drop + click to select
+    var uploadArea = document.getElementById('upload-area');
+    var fileInput = document.getElementById('q-files');
+    if (uploadArea && fileInput) {
+      uploadArea.addEventListener('click', function () { fileInput.click(); });
+      uploadArea.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          fileInput.click();
+        }
+      });
+      fileInput.addEventListener('change', function () {
+        if (fileInput.files && fileInput.files.length) {
+          addFiles(fileInput.files);
+          fileInput.value = '';
+        }
+      });
+      uploadArea.addEventListener('dragover', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        uploadArea.classList.add('drag-over');
+      });
+      uploadArea.addEventListener('dragleave', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        uploadArea.classList.remove('drag-over');
+      });
+      uploadArea.addEventListener('drop', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        uploadArea.classList.remove('drag-over');
+        if (e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files.length) {
+          addFiles(e.dataTransfer.files);
+        }
+      });
+    }
 
     function fieldValue(id) {
       var el = document.getElementById(id);
@@ -144,47 +278,111 @@
         'Service: ' + (service || '-'),
         'Bemærkninger/noter: ' + (noter || '-'),
         'Evt. deadline: ' + (deadline || '-'),
-        '',
-        '---',
-        'Sendt via gila-brobygger.dk (skabelon).',
       ];
+      if (selectedFiles.length) {
+        lines.push('');
+        lines.push('Vedhæftede filer (skal vedhæftes manuelt i e-mail-klienten):');
+        selectedFiles.forEach(function (f) {
+          lines.push('  - ' + f.name + ' (' + formatSize(f.size) + ')');
+        });
+      }
+      lines.push('');
+      lines.push('---');
+      lines.push('Sendt via gila-brobygger.dk (tilbudsskabelon).');
       return lines.join('\n');
     }
 
     function buildSubject() {
       var service = fieldValue('q-service');
-      return 'Tilbudshenvendelse' + (service ? ' – ' + service : '');
+      var navn = fieldValue('q-navn');
+      return 'Tilbudshenvendelse' + (service ? ' – ' + service : '') + (navn ? ' (' + navn + ')' : '');
+    }
+
+    function setLoading(loading) {
+      var icon = sendBtn.querySelector('.btn-icon');
+      var text = sendBtn.querySelector('.btn-text');
+      var spinner = sendBtn.querySelector('.btn-spinner');
+      if (loading) {
+        sendBtn.disabled = true;
+        if (icon) icon.hidden = true;
+        if (text) text.textContent = 'Åbner e-mail-klient…';
+        if (spinner) spinner.hidden = false;
+      } else {
+        sendBtn.disabled = false;
+        if (icon) icon.hidden = false;
+        if (text) text.textContent = 'Send forespørgsel';
+        if (spinner) spinner.hidden = true;
+      }
+    }
+
+    function showError(msg) {
+      if (feedback) {
+        feedback.textContent = msg;
+        feedback.style.color = '#b91c1c';
+      }
+    }
+
+    function showSuccess(msg) {
+      if (feedback) {
+        feedback.textContent = msg;
+        feedback.style.color = 'var(--green-700)';
+      }
     }
 
     sendBtn.addEventListener('click', function () {
+      if (isSubmitting) return;
       var navn = fieldValue('q-navn');
       var email = fieldValue('q-email');
       var service = fieldValue('q-service');
-      if (!navn || !email || !service) {
-        if (feedback) feedback.textContent = 'Udfyld venligst de obligatoriske felter (*).';
-        return;
+      // validate
+      if (!navn) { showError('Udfyld venligst navn (obligatorisk).'); return; }
+      if (!email) { showError('Udfyld venligst e-mail (obligatorisk).'); return; }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        showError('Indtast en gyldig e-mailadresse.'); return;
       }
-      var subject = encodeURIComponent(buildSubject());
-      var body = encodeURIComponent(buildBody());
-      window.location.href = 'mailto:' + CONTACT + '?subject=' + subject + '&body=' + body;
-      if (feedback) feedback.textContent = 'E-mail-klienten åbnes med en forberedt besked.';
+      if (!service) { showError('Vælg venligst en service (obligatorisk).'); return; }
+
+      isSubmitting = true;
+      setLoading(true);
+      showSuccess('');
+
+      setTimeout(function () {
+        var subject = encodeURIComponent(buildSubject());
+        var body = encodeURIComponent(buildBody());
+        window.location.href = 'mailto:' + CONTACT + '?subject=' + subject + '&body=' + body;
+        showSuccess('Din e-mail-klient åbnes med en forberedt besked. Vedhæft eventuelle filer der og send.');
+        setLoading(false);
+        isSubmitting = false;
+      }, 600);
     });
 
     if (copyBtn) {
       copyBtn.addEventListener('click', function () {
         var text = buildBody();
         var done = function () {
-          if (feedback) feedback.textContent = 'Skabelon kopieret!';
-          setTimeout(function () { if (feedback) feedback.textContent = ''; }, 2000);
+          showSuccess('Skabelon kopieret til udklipsholder!');
+          setTimeout(function () { if (feedback) feedback.textContent = ''; }, 2500);
         };
         if (navigator.clipboard && navigator.clipboard.writeText) {
-          navigator.clipboard.writeText(text).then(done).catch(function () {
-            fallbackCopy(text, done);
-          });
+          navigator.clipboard.writeText(text).then(done).catch(function () { fallbackCopy(text, done); });
         } else {
           fallbackCopy(text, done);
         }
       });
+    }
+
+    function fallbackCopy(value, done) {
+      try {
+        var ta = document.createElement('textarea');
+        ta.value = value;
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        done();
+      } catch (e) { /* ignore */ }
     }
   })();
 
