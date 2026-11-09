@@ -131,10 +131,48 @@
     var ALLOWED_EXT = ['.pdf', '.doc', '.docx', '.jpg', '.jpeg', '.png', '.txt'];
     var selectedFiles = [];
     var isSubmitting = false;
+    var bookingSection = document.getElementById('booking-section');
+    var startInput = document.getElementById('q-start');
+    var endInput = document.getElementById('q-end');
+    var bookingServices = ['Fremmedtolkning', 'Telefontolkning', 'Videotolkning'];
 
     function fieldValue(id) {
       var el = document.getElementById(id);
       return el ? String(el.value || '').trim() : '';
+    }
+
+    function updateBookingSection() {
+      if (!bookingSection || !startInput || !endInput) return;
+      var selected = fieldValue('q-service');
+      var needsBooking = bookingServices.indexOf(selected) !== -1;
+      bookingSection.hidden = !needsBooking;
+      startInput.disabled = !needsBooking;
+      endInput.disabled = !needsBooking;
+      startInput.required = needsBooking;
+      endInput.required = needsBooking;
+      if (!needsBooking) {
+        startInput.value = '';
+        endInput.value = '';
+      }
+    }
+
+    function validateBookingTime() {
+      if (!bookingSection || bookingSection.hidden) return true;
+      if (!startInput.value || !endInput.value) {
+        showError('Vælg venligst både start- og sluttidspunkt.');
+        return false;
+      }
+      var startDate = new Date(startInput.value);
+      var endDate = new Date(endInput.value);
+      if (isNaN(startDate.getTime()) || isNaN(endDate.getTime())) {
+        showError('Kontrollér de valgte datoer og tidspunkter.');
+        return false;
+      }
+      if (endDate <= startDate) {
+        showError('Sluttidspunktet skal være senere end starttidspunktet.');
+        return false;
+      }
+      return true;
     }
 
     function formatSize(bytes) {
@@ -276,9 +314,13 @@
         'Virksomhedsnavn/CVR: ' + (virk || '-'),
         'E-mail: ' + (email || '-'),
         'Service: ' + (service || '-'),
-        'Bemærkninger/noter: ' + (noter || '-'),
-        'Evt. deadline: ' + (deadline || '-'),
       ];
+      if (bookingSection && !bookingSection.hidden) {
+        lines.push('Fra (start): ' + (fieldValue('q-start') || '-'));
+        lines.push('Til (slut): ' + (fieldValue('q-end') || '-'));
+      }
+      lines.push('Bemærkninger/noter: ' + (noter || '-'));
+      lines.push('Evt. deadline: ' + (deadline || '-'));
       if (selectedFiles.length) {
         lines.push('');
         lines.push('Vedhæftede filer (skal vedhæftes manuelt i e-mail-klienten):');
@@ -329,6 +371,16 @@
       }
     }
 
+    // Booking section toggle on service change
+    var serviceSelect = document.getElementById('q-service');
+    if (serviceSelect) {
+      serviceSelect.addEventListener('change', function () {
+        updateBookingSection();
+        if (feedback) feedback.textContent = '';
+      });
+    }
+    updateBookingSection();
+
     sendBtn.addEventListener('click', function () {
       if (isSubmitting) return;
       var navn = fieldValue('q-navn');
@@ -341,6 +393,7 @@
         showError('Indtast en gyldig e-mailadresse.'); return;
       }
       if (!service) { showError('Vælg venligst en service (obligatorisk).'); return; }
+      if (!validateBookingTime()) return;
 
       isSubmitting = true;
       setLoading(true);

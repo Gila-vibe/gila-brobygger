@@ -436,6 +436,50 @@ strong { color: var(--green-900); font-weight: 700; }
   padding-top: var(--space-2);
   border-top: 1px solid var(--line-soft);
 }
+
+/* Booking section (shown for interpreting services) */
+.booking-section {
+  margin: var(--space-2) 0;
+  padding: var(--space-5);
+  border: 1px solid var(--green-200);
+  border-radius: var(--radius);
+  background: var(--green-050);
+}
+.booking-section[hidden] { display: none; }
+.booking-section h2 {
+  margin-top: 0;
+  margin-bottom: var(--space-2);
+  color: var(--green-900);
+  font-size: 1.3rem;
+}
+.booking-section > p { margin-bottom: var(--space-4); color: var(--ink-soft); font-size: var(--text-sm); }
+.booking-note {
+  margin-top: var(--space-3);
+  margin-bottom: 0;
+  font-size: var(--text-xs);
+  color: var(--muted);
+  font-style: italic;
+}
+.booking-section input[type="datetime-local"] {
+  width: 100%;
+  min-height: 46px;
+  padding: 10px 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--white);
+  font: inherit;
+  font-size: var(--text-base);
+}
+.booking-section input[type="datetime-local"]:focus {
+  border-color: var(--green-600);
+  box-shadow: 0 0 0 3px var(--green-100);
+  outline: none;
+}
+.booking-section input[type="datetime-local"]:disabled {
+  background: var(--surface-soft);
+  color: var(--muted);
+  cursor: not-allowed;
+}
 .quote-actions .button { min-height: 46px; }
 .quote-feedback {
   flex-basis: 100%;
