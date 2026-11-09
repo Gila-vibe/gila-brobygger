@@ -175,7 +175,10 @@ class SiteChecker:
             return str(path)
 
     def html_pages(self) -> list[Path]:
-        return sorted(self.docs.glob("*.html"))
+        return sorted(
+            path for path in self.docs.glob("*.html")
+            if not (path.name.startswith("google") and path.name.endswith(".html"))
+        )
 
     def ensure_file(self, path: Path, label: str) -> bool:
         if not path.exists():
