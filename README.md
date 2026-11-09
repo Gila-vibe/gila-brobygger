@@ -12,7 +12,7 @@ Danish organisation offering interpretation, written translation, mentoring and 
 
 | Area | Status |
 |---|---|
-| Website implementation | Rebuilt (15 pages, shared design system) |
+| Website implementation | Rebuilt (16 pages, shared design system) |
 | Harness (automated checks) | Implemented |
 | Local quality checks | Passing – see [docs/QUALITY_SCORE.md](docs/QUALITY_SCORE.md) |
 | Browser smoke test | Performed locally (desktop + mobile) |

@@ -46,7 +46,7 @@ documentation, and a practical Harness Engineering framework with automated chec
 - [x] Create `harness/config/site.json`, `check_site.py`, `check_secrets.py`, `check_docs.py` and
   `harness/reports/`.
 - [x] Update `.github/workflows/quality.yml` to run the root harness on push and pull request.
-- [x] Run all checks: site 15 pages / 0 errors / 0 warnings; secrets 54 files / 0; docs 28
+- [x] Run all checks: site 16 pages / 0 errors / 0 warnings; secrets 54 files / 0; docs 28
   documents / 0.
 - [x] Browser smoke test: all 15 pages, desktop 1280 px, mobile 375 px and 320 px, navigation,
   skip link, chatbot, console and network panel.

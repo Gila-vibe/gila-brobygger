@@ -46,7 +46,7 @@ its chatbot or its privacy notice.
 
 | ID | Date raised | Scope | Owner sign-off | Legal/DPO review | Conditions / notes |
 |---|---|---|---|---|---|
-| A-01 | 2026-11-08 | Publish the rebuilt website (15 pages) and deploy via GitHub Pages | **Pending** | Not required for static content, unless data processing changes | Requires O-40 and O-41 in `docs/OWNER_REVIEW.md`; deployment must be verified online afterwards |
+| A-01 | 2026-11-08 | Publish the rebuilt website (16 pages) and deploy via GitHub Pages | **Pending** | Not required for static content, unless data processing changes | Requires O-40 and O-41 in `docs/OWNER_REVIEW.md`; deployment must be verified online afterwards |
 | A-02 | 2026-11-08 | Contact details: `kontakt@gila-brobygger.dk`, `+45 31 84 70 40` | **Pending** | No | O-01, O-02; confirm mailbox and phone are active and may be public |
 | A-03 | 2026-11-08 | Personal/professional claims on `om.html` and `projekter.html` | **Pending** | No | O-04 to O-15; each claim confirmed, changed or removed |
 | A-04 | 2026-11-08 | Service list and descriptions (six services) | **Pending** | No | O-16 to O-22; no prices are currently published |
@@ -63,6 +63,7 @@ its chatbot or its privacy notice.
 | A-15 | 2026-11-08 | E-mail authentication (SPF, DKIM, DMARC) | **Pending** | No | O-44; owner/mail-provider action |
 | A-16 | 2026-11-08 | Add service page 'Støtteperson (§ 75)' (stoetteperson.html) | **Approved by owner request** | No | Owner explicitly requested this service; added 2026-11-08; legal scope (Barnets Lov § 75) to be confirmed (O-14) |
 | A-17 | 2026-11-08 | Quote request template (mailto-based) on kontakt.html | **Approved by owner request** | Recommended | Owner requested a quote form; implemented as mailto template (no data collection, no backend, no file upload). Legal review of the disclaimer wording recommended. |
+| A-18 | 2026-11-08 | Separate 'Få et tilbud' page (faa-et-tilbud.html) | **Approved by owner request** | Recommended | Split from kontakt.html into its own page; quote template moved there. |
 
 ## 4b. Deployment record (factual, not an approval)
 

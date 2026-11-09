@@ -56,6 +56,7 @@ Tilgængelighed. Every page is reachable in at most two clicks from the homepage
 | `stoetteperson.html` | Støtteperson (§ 75) \| Gila Brobygger | Explain support-person role under Barnets Lov § 75 | Tasks, approach, sensitive-data warning |
 | `projekter.html` | Projekter og initiativer \| Gila Brobygger | Show activity areas; placeholder for future projects | Four work areas, clearly marked placeholder |
 | `kontakt.html` | Kontakt \| Gila Brobygger | Convert to e-mail or phone | E-mail CTA, phone, what to write about, sensitive-data warning |
+| `faa-et-tilbud.html` | Få et tilbud \| Gila Brobygger | Structured quote request | Quote form fields, mailto template, file-upload note, sensitive-data warning |
 | `privatliv.html` | Privatliv \| Gila Brobygger | Explain data handling | No cookies/tracking/forms, hosting, chatbot, rights |
 | `tilgaengelighed.html` | Tilgængelighed \| Gila Brobygger | State accessibility commitment and gaps | WCAG 2.1 AA target, measures, known limitations |
 | `404.html` | Siden blev ikke fundet \| Gila Brobygger | Recover lost visitors | Explanation, links to home and contact, `noindex` |

@@ -4,6 +4,7 @@
   "publish_dir": "docs",
   "entry_point": "index.html",
   "required_pages": [
+    "faa-et-tilbud.html",
     "familiekonsulent.html",
     "fremmedtolkning.html",
     "index.html",
