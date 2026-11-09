@@ -1,195 +1,714 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="da">
+
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Få et tilbud | Gila Brobygger</title>
-  <meta name="description" content="Send en struktureret henvendelse til Gila Brobygger – udfyld skabelonen og åbn din e-mail-klient med en forberedt besked.">
-  <meta name="theme-color" content="#246b45">
-  <link rel="canonical" href="https://gila-brobygger.dk/faa-et-tilbud.html">
-  <meta property="og:type" content="website">
-  <meta property="og:locale" content="da_DK">
-  <meta property="og:site_name" content="Gila Brobygger">
-  <meta property="og:title" content="Få et tilbud | Gila Brobygger">
-  <meta property="og:description" content="Send en struktureret henvendelse til Gila Brobygger – udfyld skabelonen og åbn din e-mail-klient med en forberedt besked.">
-  <meta property="og:url" content="https://gila-brobygger.dk/faa-et-tilbud.html">
-  <meta property="og:image" content="https://gila-brobygger.dk/assets/images/gila-portrait.jpg">
-  <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="assets/css/styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Send en forespørgsel om tolkning, oversættelse og social støtte.">
+  <title>Send en forespørgsel</title>
+
+  <style>
+    :root {
+      --primary: #174b43;
+      --primary-dark: #10372f;
+      --accent: #c58b60;
+      --background: #f5f6f2;
+      --surface: #ffffff;
+      --text: #26352f;
+      --muted: #748078;
+      --border: #dfe5df;
+      --error: #c0392b;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, -apple-system, BlinkMacSystemFont,
+        "Segoe UI", sans-serif;
+      background: var(--background);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .page {
+      min-height: 100vh;
+      padding: 55px 20px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 760px;
+    }
+
+    .intro {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .eyebrow {
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      font-family: Georgia, serif;
+      font-size: clamp(30px, 5vw, 43px);
+      line-height: 1.2;
+      color: var(--primary);
+      margin: 12px 0;
+    }
+
+    .intro p {
+      color: var(--muted);
+      max-width: 510px;
+      margin: auto;
+    }
+
+    .form-card {
+      background: var(--surface);
+      padding: clamp(22px, 5vw, 42px);
+      border-radius: 18px;
+      border: 1px solid var(--border);
+      box-shadow: 0 15px 45px rgba(23, 75, 67, .07);
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px 18px;
+    }
+
+    .field {
+      min-width: 0;
+    }
+
+    .full {
+      grid-column: 1 / -1;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .required {
+      color: var(--error);
+    }
+
+    input,
+    select,
+    textarea {
+      display: block;
+      width: 100%;
+      padding: 13px 14px;
+      font: inherit;
+      font-size: 14px;
+      color: var(--text);
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      outline: none;
+      transition: border .2s, box-shadow .2s;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(23, 75, 67, .10);
+    }
+
+    textarea {
+      min-height: 125px;
+      resize: vertical;
+    }
+
+    ::placeholder {
+      color: #a3aaa5;
+    }
+
+    .help {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 7px;
+    }
+
+    .language-note {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 6px;
+    }
+
+    .upload-area {
+      border: 2px dashed #cbd7cf;
+      border-radius: 12px;
+      padding: 26px 15px;
+      text-align: center;
+      background: #fafcf9;
+      cursor: pointer;
+      transition: .2s;
+    }
+
+    .upload-area:hover,
+    .upload-area.dragover {
+      border-color: var(--primary);
+      background: #f0f6f1;
+    }
+
+    .upload-icon {
+      font-size: 27px;
+      margin-bottom: 5px;
+    }
+
+    .upload-area strong {
+      color: var(--primary);
+    }
+
+    .upload-area p {
+      margin: 5px 0;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    #files {
+      display: none;
+    }
+
+    .file-list {
+      margin-top: 10px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .file-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      background: #f3f6f2;
+      padding: 9px 12px;
+      border-radius: 8px;
+      font-size: 13px;
+      overflow-wrap: anywhere;
+    }
+
+    .remove-file {
+      border: 0;
+      color: var(--error);
+      background: transparent;
+      cursor: pointer;
+      font-size: 20px;
+      padding: 2px 8px;
+    }
+
+    .privacy {
+      background: #f3f6f2;
+      border-left: 3px solid var(--accent);
+      padding: 15px;
+      border-radius: 5px;
+      font-size: 12px;
+      color: #5e6b62;
+      margin-top: 25px;
+    }
+
+    .privacy strong {
+      display: block;
+      color: var(--primary);
+      margin-bottom: 4px;
+    }
+
+    .actions {
+      display: flex;
+      gap: 12px;
+      margin-top: 25px;
+    }
+
+    button {
+      font: inherit;
+      cursor: pointer;
+      border-radius: 9px;
+      padding: 14px 20px;
+      font-weight: 700;
+      transition: .2s;
+    }
+
+    .submit-btn {
+      flex: 1;
+      background: var(--primary);
+      color: white;
+      border: 1px solid var(--primary);
+    }
+
+    .submit-btn:hover {
+      background: var(--primary-dark);
+      transform: translateY(-1px);
+    }
+
+    .copy-btn {
+      background: white;
+      color: var(--primary);
+      border: 1px solid var(--primary);
+    }
+
+    .copy-btn:hover {
+      background: #f0f6f1;
+    }
+
+    button:disabled {
+      opacity: .6;
+      cursor: not-allowed;
+    }
+
+    .message {
+      display: none;
+      padding: 13px;
+      border-radius: 8px;
+      margin-top: 18px;
+      font-size: 14px;
+    }
+
+    .message.success {
+      display: block;
+      color: #17633d;
+      background: #eaf6ed;
+    }
+
+    .message.error {
+      display: block;
+      color: #a32e25;
+      background: #fff0ee;
+    }
+
+    .footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 22px;
+    }
+
+    @media(max-width: 600px) {
+      .page {
+        padding: 30px 14px;
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+      }
+
+      .full {
+        grid-column: auto;
+      }
+
+      .actions {
+        flex-direction: column;
+      }
+
+      .submit-btn,
+      .copy-btn {
+        width: 100%;
+      }
+    }
+  </style>
 </head>
+
 <body>
-  <a class="skip-link" href="#main">Gå til indhold</a>
 
-  <header class="site-header">
-    <div class="container nav-wrap">
-      <a class="brand" href="index.html" aria-label="Gila Brobygger – forsiden">
-        <img src="assets/images/gila-brobygger-logo-transparent.png" alt="Gila Brobygger" width="213" height="56">
-      </a>
-      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
-        <span class="sr-only">Åbn menu</span><span aria-hidden="true">☰</span>
-      </button>
-      <nav id="site-nav" class="site-nav" aria-label="Hovednavigation">
-        <a href="index.html">Forside</a>
-        <a href="om.html">Om</a>
-        <a href="tjenester.html">Tjenester</a>
-        <a href="projekter.html">Projekter</a>
-        <a href="kontakt.html">Kontakt</a>
-        <a href="faa-et-tilbud.html" aria-current="page">Få et tilbud</a>
-        <a class="nav-cta" href="kontakt.html">Skriv til os</a>
-      </nav>
-    </div>
-  </header>
+  <main class="page">
+    <div class="container">
 
-  <main id="main">
-    <section class="page-hero">
-      <div class="container narrow">
-        <p class="eyebrow">Gila Brobygger · Tilbud</p>
-        <h1>Få et tilbud</h1>
-        <p class="lead">Brug skabelonen herunder til at sende en struktureret henvendelse. Udfyld felterne og tryk "Send e-mail med skabelon" – så åbnes din e-mail-klient med en forberedt besked, som du kan sende. Ingen data indsamles af hjemmesiden.</p>
-      </div>
-    </section>
-    <div class="container content-layout">
-      <article class="prose">
-        <div class="quote-form" aria-label="Skabelon til tilbudshenvendelse" id="quote-form">
-          <div class="quote-row">
-            <div class="quote-field">
-              <label for="q-navn">Navn <span class="req">*</span></label>
-              <input type="text" id="q-navn" name="navn" required maxlength="100" placeholder="Dit fulde navn" autocomplete="name">
+      <header class="intro">
+        <span class="eyebrow">Kontakt os</span>
+        <h1>Send en forespørgsel</h1>
+        <p>
+          Fortæl os, hvad du har brug for.
+          Vi vender tilbage hurtigst muligt med et svar eller et tilbud.
+        </p>
+      </header>
+
+      <section class="form-card">
+
+        <form id="requestForm">
+
+          <div class="form-grid">
+
+            <div class="field">
+              <label for="name">Navn <span class="required">*</span></label>
+              <input id="name" name="name" type="text" placeholder="Dit fulde navn" autocomplete="name" required>
             </div>
-            <div class="quote-field">
-              <label for="q-virksomhed">Virksomhedsnavn eller CVR-nummer</label>
-              <input type="text" id="q-virksomhed" name="virksomhed" maxlength="100" placeholder="Virksomhed eller CVR-nummer">
+
+            <div class="field">
+              <label for="company">Virksomhedsnavn eller CVR-nummer</label>
+              <input id="company" name="company" type="text" placeholder="Virksomhed eller CVR-nummer">
             </div>
-          </div>
-          <div class="quote-row">
-            <div class="quote-field">
-              <label for="q-email">E-mail <span class="req">*</span></label>
-              <input type="email" id="q-email" name="email" required maxlength="120" placeholder="din@email.dk" autocomplete="email">
+
+            <div class="field full">
+              <label for="email">E-mail <span class="required">*</span></label>
+              <input id="email" name="email" type="email" placeholder="din@email.dk" autocomplete="email" required>
             </div>
-            <div class="quote-field">
-              <label for="q-service">Vælg service <span class="req">*</span></label>
-              <select id="q-service" name="service" required>
-                <option value="">Vælg en service…</option>
-                <option value="Fremmedtolkning">Fremmedtolkning</option>
-                <option value="Telefontolkning">Telefontolkning</option>
-                <option value="Videotolkning">Videotolkning</option>
-                <option value="Skriftlig oversættelse">Skriftlig oversættelse</option>
-                <option value="Social Mentor">Social Mentor</option>
-                <option value="Familiekonsulent">Familiekonsulent</option>
-                <option value="Støtteperson (§ 75)">Støtteperson (§ 75)</option>
-                <option value="Andet">Andet</option>
+
+            <div class="field full">
+              <label for="service">Vælg service <span class="required">*</span></label>
+              <select id="service" name="service" required>
+                <option value="">Vælg en service...</option>
+                <option>Fremmedtolkning</option>
+                <option>Telefontolkning</option>
+                <option>Videotolkning</option>
+                <option>Skriftlig oversættelse</option>
+                <option>Social Mentor</option>
+                <option>Familiekonsulent</option>
+                <option>Støtteperson (§ 75)</option>
+                <option>Andet</option>
               </select>
             </div>
-          </div>
-          <div class="quote-row">
-            <div class="quote-field">
-              <label for="q-noter">Bemærkninger / noter</label>
-              <textarea id="q-noter" name="noter" rows="5" maxlength="2000" placeholder="Beskriv opgaven, omfang, sprog og andre relevante detaljer"></textarea>
+
+            <div class="field">
+              <label for="languageFrom">
+                Sprog fra <span class="required">*</span>
+              </label>
+              <select id="languageFrom" name="languageFrom" required>
+                <option value="">Vælg kildesprog...</option>
+                <option>Tigrinya</option>
+                <option>Amharisk</option>
+                <option>Arabisk</option>
+                <option>Ukrainsk</option>
+                <option>Russisk</option>
+                <option>Dansk</option>
+                <option>Engelsk</option>
+                <option>Swahili</option>
+              </select>
             </div>
-            <div class="quote-field">
-              <label for="q-deadline">Evt. deadline</label>
-              <input type="date" id="q-deadline" name="deadline">
+
+            <div class="field">
+              <label for="languageTo">
+                Sprog til <span class="required">*</span>
+              </label>
+              <select id="languageTo" name="languageTo" required>
+                <option value="">Vælg målsprog...</option>
+                <option>Tigrinya</option>
+                <option>Amharisk</option>
+                <option>Arabisk</option>
+                <option>Ukrainsk</option>
+                <option>Russisk</option>
+                <option>Dansk</option>
+                <option>Engelsk</option>
+                <option>Swahili</option>
+              </select>
             </div>
+
+            <div class="field full">
+              <div class="language-note">
+                Vælg det sprog, der skal oversættes fra og til.
+              </div>
+            </div>
+
+            <div class="field full">
+              <label for="notes">Bemærkninger / noter</label>
+              <textarea id="notes" name="notes" placeholder="Beskriv kort, hvad du har brug for..."></textarea>
+            </div>
+
+            <div class="field full">
+              <label for="deadline">Evt. deadline</label>
+              <input id="deadline" name="deadline" type="date">
+              <span class="help">Vælg en dato, hvis din forespørgsel haster.</span>
+            </div>
+
+            <div class="field full">
+              <label>Vedhæft filer (valgfrit)</label>
+
+              <div class="upload-area" id="dropArea" role="button" tabindex="0"
+                aria-label="Vælg eller træk filer hertil">
+                <div class="upload-icon">📎</div>
+                <strong>Træk filer hertil eller klik for at vælge</strong>
+                <p>PDF, DOC, DOCX, JPG, PNG · Maks. 10 MB pr. fil · Flere filer tilladt</p>
+              </div>
+
+              <input id="files" name="files" type="file" multiple accept=".pdf,.doc,.docx,.jpg,.jpeg,.png">
+
+              <div class="file-list" id="fileList"></div>
+            </div>
+
           </div>
 
-          <div class="quote-field">
-            <label>Vedhæft filer (valgfrit)</label>
-            <div class="upload-area" id="upload-area" role="button" tabindex="0" aria-label="Træk filer hertil eller klik for at vælge">
-              <div class="upload-icon" aria-hidden="true">📎</div>
-              <p class="upload-text">Træk filer hertil eller <strong>klik for at vælge</strong></p>
-              <p class="upload-hint">PDF, DOC, DOCX, JPG, PNG · Maks. 10 MB pr. fil · Flere filer tilladt</p>
-              <input type="file" id="q-files" name="files" multiple accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,.txt" hidden>
-            </div>
-            <ul class="file-list" id="file-list" aria-live="polite"></ul>
+          <div class="privacy">
+            <strong>Beskyttelse af dine oplysninger</strong>
+            Vi behandler dine oplysninger fortroligt og anvender dem udelukkende
+            til at besvare din henvendelse og udarbejde et tilbud.
+            Undlad venligst at vedhæfte CPR-numre eller andre følsomme personoplysninger.
           </div>
 
-          <div class="quote-actions">
-            <button type="button" class="button button-primary" id="q-send">
-              <span class="btn-icon" aria-hidden="true">✉</span>
-              <span class="btn-text">Send forespørgsel</span>
-              <span class="btn-spinner" hidden aria-hidden="true"></span>
+          <div id="formMessage" class="message" role="status" aria-live="polite"></div>
+
+          <div class="actions">
+            <button type="submit" class="submit-btn" id="submitBtn">
+              Send forespørgsel →
             </button>
-            <button type="button" class="button button-secondary" id="q-copy">Kopier skabelon</button>
-            <span class="quote-feedback" id="q-feedback" aria-live="polite"></span>
+            <button type="button" class="copy-btn" id="copyBtn">
+              Kopier skabelon
+            </button>
           </div>
-        </div>
 
-        <div class="notice notice-accent">
-          <p><strong>Beskyttelse af dine oplysninger:</strong> Vi behandler dine oplysninger fortroligt og anvender dem udelukkende til at besvare din henvendelse og udarbejde et tilbud. Undlad venligst at vedhæfte CPR-numre eller andre følsomme personoplysninger.</p>
-        </div>
-      </article>      </article>
-      <aside class="contact-card">
-        <span class="service-icon" aria-hidden="true">✉</span>
-        <h2>Kontakt</h2>
-        <p>Foretrækker du at skrive direkte? Brug e-mail eller telefon.</p>
-        <a class="button button-primary button-full" href="mailto:kontakt@gila-brobygger.dk?subject=Henvendelse%20fra%20hjemmesiden">Skriv til Gila Brobygger</a>
-        <p class="email-note">E-mail: <a href="mailto:kontakt@gila-brobygger.dk">kontakt@gila-brobygger.dk</a><br>Telefon: <a href="tel:+4531847040">+45 31 84 70 40</a></p>
-      </aside>
+        </form>
+      </section>
+
+      <footer class="footer">
+        Vi bestræber os på at besvare din henvendelse hurtigst muligt.
+      </footer>
+
     </div>
-    <section class="contact-band">
-      <div class="container contact-band-inner">
-        <div>
-          <p class="eyebrow">Kontakt</p>
-          <h2>Har du brug for en samtale?</h2>
-          <p>Skriv eller ring, og fortæl kort, hvad du har brug for.</p>
-        </div>
-        <a class="button button-primary" href="kontakt.html">Kontakt Gila Brobygger</a>
-      </div>
-    </section>
-
   </main>
 
-  <footer class="site-footer">
-    <div class="container">
-      <div class="footer-grid">
-        <div>
-          <a class="brand" href="index.html" aria-label="Gila Brobygger – forsiden">
-            <span>Gila <strong>Brobygger</strong></span>
-          </a>
-          <p class="footer-about">Tolkning, oversættelse, mentorforløb og familiekonsulentbistand – med respekt, klarhed og kulturel forståelse.</p>
-          <p class="footer-about" style="margin-top: 8px;">Enkeltmandsvirksomhed · 6500 Vojens</p>
-          <p class="footer-about" style="margin-top: 4px; font-size: .82rem;">Åbningstider: man–tor 08:00–16:00, fre 08:00–15:00</p>
-        </div>
-        <nav aria-label="Footer navigation">
-          <h2 class="footer-title">Sider</h2>
-          <div class="footer-links">
-            <a href="om.html">Om</a>
-            <a href="tjenester.html">Tjenester</a>
-            <a href="projekter.html">Projekter</a>
-            <a href="kontakt.html">Kontakt</a>
-            <a href="faa-et-tilbud.html">Få et tilbud</a>
-          </div>
-        </nav>
-        <div>
-          <h2 class="footer-title">Kontakt</h2>
-          <div class="footer-links">
-            <a href="mailto:kontakt@gila-brobygger.dk">kontakt@gila-brobygger.dk</a>
-            <a href="tel:+4531847040">+45 31 84 70 40</a>
-            <a href="privatliv.html">Privatliv</a>
-            <a href="tilgaengelighed.html">Tilgængelighed</a>
-          </div>
-          <div class="footer-social" aria-label="Sociale medier (links kommer snart)">
-            <span class="footer-social-icon" aria-hidden="true" title="Facebook – link kommer snart">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-7.5h2.5l.5-3h-3V8.5c0-.9.3-1.5 1.6-1.5H16.5V4.3c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4v2.3H8v3h2.3V21h3.2z"/></svg>
-            </span>
-            <span class="footer-social-icon" aria-hidden="true" title="LinkedIn – link kommer snart">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M6.5 8.5A2 2 0 1 0 6.5 4.5 2 2 0 0 0 6.5 8.5zM5 10h3v9H5v-9zm5 0h2.8v1.3h.04c.4-.7 1.3-1.5 2.8-1.5 3 0 3.5 2 3.5 4.5V19h-3v-4.2c0-1-.02-2.3-1.4-2.3-1.4 0-1.6 1.1-1.6 2.2V19h-3v-9z"/></svg>
-            </span>
-            <span class="footer-social-icon" aria-hidden="true" title="Instagram – link kommer snart">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 3a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6zm5.5-.9a1.1 1.1 0 1 1 0 2.2 1.1 1.1 0 0 1 0-2.2z"/></svg>
-            </span>
-            <span style="font-size: .75rem; color: #a9c0b1; margin-left: 4px;">(links kommer snart)</span>
-          </div>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <p>© <span data-year>2026</span> Gila Brobygger. Alle rettigheder forbeholdes.</p>
-        <p>Statisk website · ingen cookies · ingen tracking</p>
-      </div>
-    </div>
-  </footer>
+  <script>
+    const form = document.getElementById("requestForm");
+    const fileInput = document.getElementById("files");
+    const dropArea = document.getElementById("dropArea");
+    const fileList = document.getElementById("fileList");
+    const message = document.getElementById("formMessage");
+    const submitBtn = document.getElementById("submitBtn");
+    const copyBtn = document.getElementById("copyBtn");
 
+    const languageFrom = document.getElementById("languageFrom");
+    const languageTo = document.getElementById("languageTo");
 
-  <script src="assets/js/main.js" defer></script>
+    const MAX_SIZE = 10 * 1024 * 1024;
+    const allowedExtensions = ["pdf", "doc", "docx", "jpg", "jpeg", "png"];
+
+    let selectedFiles = [];
+
+    function showMessage(text, type) {
+      message.textContent = text;
+      message.className = "message " + type;
+    }
+
+    function validateLanguages() {
+      if (
+        languageFrom.value &&
+        languageTo.value &&
+        languageFrom.value === languageTo.value
+      ) {
+        languageTo.setCustomValidity(
+          "Vælg venligst et andet målsprog."
+        );
+      } else {
+        languageTo.setCustomValidity("");
+      }
+    }
+
+    languageFrom.addEventListener("change", validateLanguages);
+    languageTo.addEventListener("change", validateLanguages);
+
+    function updateInputFiles() {
+      const transfer = new DataTransfer();
+
+      selectedFiles.forEach(file => {
+        transfer.items.add(file);
+      });
+
+      fileInput.files = transfer.files;
+      renderFiles();
+    }
+
+    function addFiles(files) {
+      const incoming = Array.from(files);
+      let rejected = false;
+
+      for (const file of incoming) {
+        const extension = file.name.split(".").pop().toLowerCase();
+
+        if (!allowedExtensions.includes(extension)) {
+          rejected = true;
+          showMessage("Filtypen for " + file.name + " er ikke tilladt.", "error");
+          continue;
+        }
+
+        if (file.size > MAX_SIZE) {
+          rejected = true;
+          showMessage(file.name + " overstiger grænsen på 10 MB.", "error");
+          continue;
+        }
+
+        if (selectedFiles.some(f =>
+          f.name === file.name && f.size === file.size
+        )) continue;
+
+        selectedFiles.push(file);
+      }
+
+      updateInputFiles();
+
+      if (!rejected) {
+        showMessage("Filerne er tilføjet.", "success");
+      }
+    }
+
+    function renderFiles() {
+      fileList.innerHTML = "";
+
+      selectedFiles.forEach((file, index) => {
+        const item = document.createElement("div");
+        item.className = "file-item";
+
+        const label = document.createElement("span");
+        label.textContent =
+          file.name + " (" + (file.size / 1024 / 1024).toFixed(2) + " MB)";
+
+        const remove = document.createElement("button");
+        remove.type = "button";
+        remove.className = "remove-file";
+        remove.textContent = "×";
+        remove.setAttribute("aria-label", "Fjern " + file.name);
+
+        remove.addEventListener("click", () => {
+          selectedFiles.splice(index, 1);
+          updateInputFiles();
+        });
+
+        item.append(label, remove);
+        fileList.appendChild(item);
+      });
+    }
+
+    dropArea.addEventListener("click", () => fileInput.click());
+
+    dropArea.addEventListener("keydown", e => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        fileInput.click();
+      }
+    });
+
+    fileInput.addEventListener("change", () => {
+      addFiles(fileInput.files);
+      fileInput.value = "";
+    });
+
+    ["dragenter", "dragover"].forEach(event => {
+      dropArea.addEventListener(event, e => {
+        e.preventDefault();
+        dropArea.classList.add("dragover");
+      });
+    });
+
+    ["dragleave", "drop"].forEach(event => {
+      dropArea.addEventListener(event, e => {
+        e.preventDefault();
+        dropArea.classList.remove("dragover");
+      });
+    });
+
+    dropArea.addEventListener("drop", e => {
+      addFiles(e.dataTransfer.files);
+    });
+
+    function getFormText() {
+      const data = new FormData(form);
+
+      return [
+        "FORESPØRGSEL",
+        "Navn: " + (data.get("name") || ""),
+        "Virksomhed/CVR: " + (data.get("company") || "Ikke oplyst"),
+        "E-mail: " + (data.get("email") || ""),
+        "Service: " + (data.get("service") || ""),
+        "Sprog fra: " + (data.get("languageFrom") || ""),
+        "Sprog til: " + (data.get("languageTo") || ""),
+        "Bemærkninger: " + (data.get("notes") || "Ingen"),
+        "Deadline: " + (data.get("deadline") || "Ikke oplyst"),
+        "Vedhæftede filer: " +
+        (selectedFiles.map(f => f.name).join(", ") || "Ingen")
+      ].join("\n");
+    }
+
+    copyBtn.addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText(getFormText());
+        showMessage("Forespørgslen er kopieret til udklipsholderen.", "success");
+      } catch {
+        showMessage(
+          "Kunne ikke kopiere. Prøv igen i en sikker browserforbindelse.",
+          "error"
+        );
+      }
+    });
+
+    // Replace this with your actual Formspree endpoint.
+    const FORM_ENDPOINT = "https://formspree.io/f/maeelgok";
+
+    form.addEventListener("submit", async e => {
+      e.preventDefault();
+
+      validateLanguages();
+
+      if (!form.reportValidity()) return;
+
+      if (FORM_ENDPOINT === "YOUR_FORMSPREE_ENDPOINT") {
+        showMessage(
+          "Formularen er klar, men skal forbindes til en modtagerservice, før den kan sende forespørgsler.",
+          "error"
+        );
+        return;
+      }
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = "Sender...";
+
+      try {
+        const payload = new FormData(form);
+
+        // Ensure all selected attachments are included.
+        payload.delete("files");
+        selectedFiles.forEach(file => {
+          payload.append("files", file, file.name);
+        });
+
+        const response = await fetch(FORM_ENDPOINT, {
+          method: "POST",
+          body: payload,
+          headers: { "Accept": "application/json" }
+        });
+
+        if (!response.ok) {
+          throw new Error("Submission failed");
+        }
+
+        showMessage("Tak! Din forespørgsel er sendt.", "success");
+
+        form.reset();
+        selectedFiles = [];
+        updateInputFiles();
+        validateLanguages();
+
+      } catch (error) {
+        showMessage(
+          "Der opstod en fejl ved afsendelsen. Prøv igen senere.",
+          "error"
+        );
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = "Send forespørgsel →";
+      }
+    });
+
+    // Prevent selecting a past deadline.
+    const today = new Date();
+    const localDate = new Date(
+      today.getTime() - today.getTimezoneOffset() * 60000
+    ).toISOString().split("T")[0];
+
+    document.getElementById("deadline").min = localDate;
+  </script>
+
 </body>
+
 </html>
