@@ -240,7 +240,7 @@ strong { color: var(--green-900); font-weight: 700; }
 .site-nav a {
   position: relative;
   color: var(--ink-soft);
-  font-size: 1.05rem;
+  font-size: 1.10rem;
   font-weight: 600;
   text-decoration: none;
   padding-block: 6px;
