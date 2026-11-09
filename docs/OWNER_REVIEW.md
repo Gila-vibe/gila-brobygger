@@ -115,6 +115,12 @@ The owner decides which; the maintainer must not soften a claim into something m
 **None of the above have been published.** They are recorded here for verification. Values that are
 clearly placeholders (CVR 00000000) have not been added to the website.
 
+## 7d. Quote request template (new)
+
+| ID | Item | Question / action | Status |
+|---|---|---|---|
+| O-55 | "Få et tilbud" skabelon på kontakt.html | En struktureret mailto-skabelon (Navn, Virksomhed/CVR, E-mail, Service, Noter, Deadline) der åbner brugerens e-mail-klient. Ingen data indsamles. Bekræft formulering og felter. | CONFIRMED (owner requested) |
+
 ## 8. Items the maintainer must not decide alone
 
 - Any change to the organisation's name, legal form or brand identity.

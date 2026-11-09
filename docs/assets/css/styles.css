@@ -357,6 +357,39 @@ strong { color: var(--green-900); font-weight: 700; }
 .button-full { width: 100%; }
 
 .text-link { font-weight: 700; text-decoration: none; color: var(--green-700); }
+
+/* Quote request template (mailto-based, no data collection) */
+.quote-form {
+  display: grid;
+  gap: var(--space-4);
+  max-width: 640px;
+  margin: var(--space-4) 0 var(--space-6);
+  padding: var(--space-6);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface-soft);
+}
+.quote-field { display: grid; gap: var(--space-2); }
+.quote-field label { font-weight: 700; font-size: var(--text-sm); color: var(--green-900); }
+.quote-field input,
+.quote-field select,
+.quote-field textarea {
+  padding: 10px 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  font: inherit;
+  font-size: var(--text-base);
+  background: var(--white);
+  transition: border-color var(--dur-fast) var(--ease-out), box-shadow var(--dur-fast) var(--ease-out);
+}
+.quote-field input:focus,
+.quote-field select:focus,
+.quote-field textarea:focus {
+  border-color: var(--green-600);
+  box-shadow: 0 0 0 3px var(--green-100);
+  outline: none;
+}
+.quote-actions { display: flex; flex-wrap: wrap; gap: var(--space-3); align-items: center; }
 .text-link span { padding-left: var(--space-1); transition: transform var(--dur-fast) var(--ease-out); display: inline-block; }
 .text-link:hover span { transform: translateX(3px); }
 

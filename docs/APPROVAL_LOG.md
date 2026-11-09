@@ -62,6 +62,7 @@ its chatbot or its privacy notice.
 | A-14 | 2026-11-08 | GitHub security: 2FA, branch protection, access review | **Pending** | No | O-43; owner action, not verifiable from the repository |
 | A-15 | 2026-11-08 | E-mail authentication (SPF, DKIM, DMARC) | **Pending** | No | O-44; owner/mail-provider action |
 | A-16 | 2026-11-08 | Add service page 'Støtteperson (§ 75)' (stoetteperson.html) | **Approved by owner request** | No | Owner explicitly requested this service; added 2026-11-08; legal scope (Barnets Lov § 75) to be confirmed (O-14) |
+| A-17 | 2026-11-08 | Quote request template (mailto-based) on kontakt.html | **Approved by owner request** | Recommended | Owner requested a quote form; implemented as mailto template (no data collection, no backend, no file upload). Legal review of the disclaimer wording recommended. |
 
 ## 4b. Deployment record (factual, not an approval)
 

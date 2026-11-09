@@ -112,6 +112,83 @@
   }
 
   /* ----------------------------------------------------------------------
+     Quote request template (mailto-based, no data collection)
+     Builds a pre-filled e-mail from the quote fields and opens the
+     visitor's own e-mail client. Nothing is sent or stored by the site.
+     ---------------------------------------------------------------------- */
+
+  (function () {
+    var sendBtn = document.getElementById('q-send');
+    var copyBtn = document.getElementById('q-copy');
+    var feedback = document.getElementById('q-feedback');
+    if (!sendBtn) return;
+
+    var CONTACT = 'kontakt@gila-brobygger.dk';
+
+    function fieldValue(id) {
+      var el = document.getElementById(id);
+      return el ? String(el.value || '').trim() : '';
+    }
+
+    function buildBody() {
+      var navn = fieldValue('q-navn');
+      var virk = fieldValue('q-virksomhed');
+      var email = fieldValue('q-email');
+      var service = fieldValue('q-service');
+      var noter = fieldValue('q-noter');
+      var deadline = fieldValue('q-deadline');
+      var lines = [
+        'Navn: ' + (navn || '-'),
+        'Virksomhedsnavn/CVR: ' + (virk || '-'),
+        'E-mail: ' + (email || '-'),
+        'Service: ' + (service || '-'),
+        'Bemærkninger/noter: ' + (noter || '-'),
+        'Evt. deadline: ' + (deadline || '-'),
+        '',
+        '---',
+        'Sendt via gila-brobygger.dk (skabelon).',
+      ];
+      return lines.join('\n');
+    }
+
+    function buildSubject() {
+      var service = fieldValue('q-service');
+      return 'Tilbudshenvendelse' + (service ? ' – ' + service : '');
+    }
+
+    sendBtn.addEventListener('click', function () {
+      var navn = fieldValue('q-navn');
+      var email = fieldValue('q-email');
+      var service = fieldValue('q-service');
+      if (!navn || !email || !service) {
+        if (feedback) feedback.textContent = 'Udfyld venligst de obligatoriske felter (*).';
+        return;
+      }
+      var subject = encodeURIComponent(buildSubject());
+      var body = encodeURIComponent(buildBody());
+      window.location.href = 'mailto:' + CONTACT + '?subject=' + subject + '&body=' + body;
+      if (feedback) feedback.textContent = 'E-mail-klienten åbnes med en forberedt besked.';
+    });
+
+    if (copyBtn) {
+      copyBtn.addEventListener('click', function () {
+        var text = buildBody();
+        var done = function () {
+          if (feedback) feedback.textContent = 'Skabelon kopieret!';
+          setTimeout(function () { if (feedback) feedback.textContent = ''; }, 2000);
+        };
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(done).catch(function () {
+            fallbackCopy(text, done);
+          });
+        } else {
+          fallbackCopy(text, done);
+        }
+      });
+    }
+  })();
+
+  /* ----------------------------------------------------------------------
      Current year
      ---------------------------------------------------------------------- */
 
