@@ -402,11 +402,18 @@
       setTimeout(function () {
         var subject = encodeURIComponent(buildSubject());
         var body = encodeURIComponent(buildBody());
-        window.location.href = 'mailto:' + CONTACT + '?subject=' + subject + '&body=' + body;
-        showSuccess('Din e-mail-klient åbnes med en forberedt besked. Vedhæft eventuelle filer der og send.');
+        var mailtoUrl = 'mailto:' + CONTACT + '?subject=' + subject + '&body=' + body;
+        // Use a temporary link element for reliable cross-browser mailto triggering
+        var link = document.createElement('a');
+        link.href = mailtoUrl;
+        link.style.display = 'none';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        showSuccess('Din e-mail-klient åbnes med en forberedt besked. Vedhæft eventuelle filer der og send. Hvis intet sker, brug "Kopier skabelon"-knappen.');
         setLoading(false);
         isSubmitting = false;
-      }, 600);
+      }, 300);
     });
 
     if (copyBtn) {
