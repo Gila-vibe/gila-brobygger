@@ -125,7 +125,7 @@ clearly placeholders (CVR 00000000) have not been added to the website.
 
 | ID | Item | Question / action | Status |
 |---|---|---|---|
-| O-56 | Formspree form endpoint | Create a Formspree account and replace `REPLACE_WITH_YOUR_FORM_ID` in `faa-et-tilbud.html` with your actual form ID. | OPEN |
+| O-56 | Formspree form endpoint | Formspree form ID `maeelgok` configured. Endpoint: https://formspree.io/f/maeelgok. Recipient must be set to kontakt@gila-brobygger.dk in Formspree dashboard. | CONFIRMED |
 | O-57 | Formspree data processing | Formspree is a US-based third-party processor. Confirm DPA and legal basis with a legal adviser. | ⚖️ Pending legal review |
 | O-58 | File upload via Formspree | File uploads require a paid Formspree plan. Confirm if needed. | OPEN |
 
