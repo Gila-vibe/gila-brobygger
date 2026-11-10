@@ -52,9 +52,9 @@ Chatfunktionen er en automatisk guide med faste svar.
 - Beskederne forsvinder, når du genindlæser siden.
 - Chatten advarer mod at skrive CPR-nummer, helseoplysninger eller andre følsomme oplysninger.
 
-### 3.4 Ingen formularer, cookies eller tracking
+### 3.4 Formularer, cookies og tracking
 
-Hjemmesiden indsamler ikke oplysninger via formularer og sætter ingen cookies. Der bruges ingen
+Hjemmesiden har én formular (tilbudshenvendelse), der sender oplysninger via Formspree (tredjepartsprocessor). Formularen indsamler navn, e-mail, valgt service, noter og evt. deadline. Der sættes ingen cookies, og der bruges ingen analytics eller tracking. Der bruges ingen
 analytics-, annonce- eller tredjepartssporing, og der indlæses ingen eksterne scripts, fonte eller
 embeds.
 

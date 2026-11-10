@@ -489,6 +489,26 @@ strong { color: var(--green-900); font-weight: 700; }
   min-height: 1.2em;
 }
 
+/* Form feedback messages */
+.form-message {
+  padding: var(--space-4) var(--space-5);
+  border-radius: var(--radius-sm);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  margin-bottom: var(--space-4);
+}
+.form-message.error {
+  background: #fef2f2;
+  color: #b91c1c;
+  border: 1px solid #fecaca;
+}
+.form-message.success {
+  background: var(--green-050);
+  color: var(--green-800);
+  border: 1px solid var(--green-200);
+}
+.form-message[hidden] { display: none; }
+
 /* Upload area */
 .upload-area {
   display: grid;

@@ -64,6 +64,7 @@ its chatbot or its privacy notice.
 | A-16 | 2026-11-08 | Add service page 'Støtteperson (§ 75)' (stoetteperson.html) | **Approved by owner request** | No | Owner explicitly requested this service; added 2026-11-08; legal scope (Barnets Lov § 75) to be confirmed (O-14) |
 | A-17 | 2026-11-08 | Quote request template (mailto-based) on kontakt.html | **Approved by owner request** | Recommended | Owner requested a quote form; implemented as mailto template (no data collection, no backend, no file upload). Legal review of the disclaimer wording recommended. |
 | A-18 | 2026-11-08 | Separate 'Få et tilbud' page (faa-et-tilbud.html) | **Approved by owner request** | Recommended | Split from kontakt.html into its own page; quote template moved there. |
+| A-19 | 2026-11-09 | Formspree integration for quote form (faa-et-tilbud.html) | **Approved by owner request** | ⚖️ **Pending** | Owner requested working e-mail delivery. Implemented via Formspree (third-party processor). Requires DPA review, retention policy, and legal basis confirmation before launch. |
 
 ## 4b. Deployment record (factual, not an approval)
 

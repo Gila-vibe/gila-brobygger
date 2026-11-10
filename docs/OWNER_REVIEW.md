@@ -121,6 +121,14 @@ clearly placeholders (CVR 00000000) have not been added to the website.
 |---|---|---|---|
 | O-55 | "Få et tilbud" skabelon på kontakt.html | En struktureret mailto-skabelon (Navn, Virksomhed/CVR, E-mail, Service, Noter, Deadline) der åbner brugerens e-mail-klient. Ingen data indsamles. Bekræft formulering og felter. | CONFIRMED (owner requested) |
 
+## 7e. Formspree integration (new)
+
+| ID | Item | Question / action | Status |
+|---|---|---|---|
+| O-56 | Formspree form endpoint | Create a Formspree account and replace `REPLACE_WITH_YOUR_FORM_ID` in `faa-et-tilbud.html` with your actual form ID. | OPEN |
+| O-57 | Formspree data processing | Formspree is a US-based third-party processor. Confirm DPA and legal basis with a legal adviser. | ⚖️ Pending legal review |
+| O-58 | File upload via Formspree | File uploads require a paid Formspree plan. Confirm if needed. | OPEN |
+
 ## 8. Items the maintainer must not decide alone
 
 - Any change to the organisation's name, legal form or brand identity.

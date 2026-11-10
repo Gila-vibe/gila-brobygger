@@ -357,7 +357,15 @@
       }
     }
 
+    var formMessage = document.getElementById('formMessage');
+
     function showError(msg) {
+      if (formMessage) {
+        formMessage.textContent = msg;
+        formMessage.className = 'form-message error';
+        formMessage.hidden = false;
+        formMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
       if (feedback) {
         feedback.textContent = msg;
         feedback.style.color = '#b91c1c';
@@ -365,6 +373,12 @@
     }
 
     function showSuccess(msg) {
+      if (formMessage) {
+        formMessage.textContent = msg;
+        formMessage.className = 'form-message success';
+        formMessage.hidden = false;
+        formMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
       if (feedback) {
         feedback.textContent = msg;
         feedback.style.color = 'var(--green-700)';
@@ -400,19 +414,43 @@
       showSuccess('');
 
       setTimeout(function () {
-        var subject = encodeURIComponent(buildSubject());
-        var body = encodeURIComponent(buildBody());
-        var mailtoUrl = 'mailto:' + CONTACT + '?subject=' + subject + '&body=' + body;
-        // Use a temporary link element for reliable cross-browser mailto triggering
-        var link = document.createElement('a');
-        link.href = mailtoUrl;
-        link.style.display = 'none';
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-        showSuccess('Din e-mail-klient åbnes med en forberedt besked. Klik Send i din e-mail-app for at sende den til kontakt@gila-brobygger.dk. Vedhæft eventuelle filer der. Hvis intet sker, brug Kopier skabelon-knappen.');
-        setLoading(false);
-        isSubmitting = false;
+        var form = document.getElementById('requestForm');
+        var formData = new FormData(form);
+
+        // Add selected files to FormData
+        selectedFiles.forEach(function (file) {
+          formData.append('files', file);
+        });
+
+        var formAction = form.getAttribute('action');
+        fetch(formAction, {
+          method: 'POST',
+          body: formData,
+          headers: { 'Accept': 'application/json' }
+        })
+        .then(function (response) {
+          if (response.ok) {
+            form.reset();
+            selectedFiles = [];
+            renderFileList();
+            updateBookingSection();
+            showSuccess('Tak for din henvendelse! Vi har modtaget dine oplysninger og vender tilbage hurtigst muligt.');
+          } else {
+            response.json().then(function (data) {
+              var msg = (data.errors && data.errors.map(function (e) { return e.message; }).join(' ')) || 'Der opstod en fejl ved afsendelsen.';
+              showError(msg);
+            }).catch(function () {
+              showError('Din henvendelse kunne ikke sendes. Prøv igen eller kontakt os direkte på ' + CONTACT + '.');
+            });
+          }
+        })
+        .catch(function () {
+          showError('Din henvendelse kunne ikke sendes. Kontrollér din internetforbindelse, eller kontakt os direkte på ' + CONTACT + '.');
+        })
+        .finally(function () {
+          setLoading(false);
+          isSubmitting = false;
+        });
       }, 300);
     });
 

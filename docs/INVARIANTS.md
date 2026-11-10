@@ -35,7 +35,7 @@ legal/DPO review where relevant). Each invariant names how it is verified.
 | # | Invariant | Verified by |
 |---|---|---|
 | S1 | No secrets, credentials, tokens, keys, `.env` files or private documents in the repository. | `check_secrets.py` |
-| S2 | No forms that collect personal data; contact is `mailto:` / `tel:` only. | `check_site.py` |
+| S2 | No unapproved forms; contact is `mailto:` / `tel:` by default. Formspree forms are allowed only with owner approval and legal/DPO review (A-19). | `check_site.py` |
 | S3 | No analytics, tracking, advertising, pixels or non-essential cookies. | `check_site.py` |
 | S4 | No third-party scripts, stylesheets, fonts, iframes or embeds. | `check_site.py` |
 | S5 | The chatbot runs entirely in the browser, sends nothing and stores nothing. | Code review of `main.js` + browser network check |

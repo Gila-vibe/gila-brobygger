@@ -65,12 +65,14 @@
       <div class="container narrow">
         <p class="eyebrow">Gila Brobygger · Tilbud</p>
         <h1>Få et tilbud</h1>
-        <p class="lead">Brug skabelonen herunder til at sende en struktureret henvendelse. Udfyld felterne og tryk "Send e-mail med skabelon" – så åbnes din e-mail-klient med en forberedt besked, som du kan sende. Ingen data indsamles af hjemmesiden.</p>
+        <p class="lead">Brug skabelonen herunder til at sende en struktureret henvendelse direkte til Gila Brobygger. Udfyld felterne og tryk "Send forespørgsel". Oplysninger behandles fortroligt.</p>
       </div>
     </section>
     <div class="container content-layout">
       <article class="prose">
-        <div class="quote-form" aria-label="Skabelon til tilbudshenvendelse" id="quote-form">
+        <form class="quote-form" id="requestForm" aria-label="Skabelon til tilbudshenvendelse"
+          action="https://formspree.io/f/REPLACE_WITH_YOUR_FORM_ID" method="POST" enctype="multipart/form-data">
+          <input type="hidden" name="_subject" value="Ny tilbudsforespørgsel – Gila Brobygger">
           <div class="quote-row">
             <div class="quote-field">
               <label for="q-navn">Navn <span class="req">*</span></label>
@@ -141,8 +143,9 @@
             <ul class="file-list" id="file-list" aria-live="polite"></ul>
           </div>
 
+          <div id="formMessage" class="form-message" role="status" aria-live="polite" hidden></div>
           <div class="quote-actions">
-            <button type="button" class="button button-primary" id="q-send">
+            <button type="submit" class="button button-primary" id="q-send">
               <span class="btn-icon" aria-hidden="true">✉</span>
               <span class="btn-text">Send forespørgsel</span>
               <span class="btn-spinner" hidden aria-hidden="true"></span>
@@ -150,10 +153,10 @@
             <button type="button" class="button button-secondary" id="q-copy">Kopier skabelon</button>
             <span class="quote-feedback" id="q-feedback" aria-live="polite"></span>
           </div>
-        </div>
+        </form>
 
         <div class="notice notice-accent">
-          <p><strong>Beskyttelse af dine oplysninger:</strong> Vi behandler dine oplysninger fortroligt og anvender dem udelukkende til at besvare din henvendelse og udarbejde et tilbud. Undlad venligst at vedhæfte CPR-numre eller andre følsomme personoplysninger.</p>
+          <p><strong>Beskyttelse af dine oplysninger:</strong> Dine oplysninger sendes via Formspree (tredjepart) til Gila Brobygger og bruges udelukkende til at besvare din henvendelse og udarbejde et tilbud. Oplysninger opbevares i overensstemmelse med gældende lovgivning. Undlad venligst at vedhæfte CPR-numre eller andre følsomme personoplysninger.</p>
         </div>
       </article>
       <aside class="contact-card">

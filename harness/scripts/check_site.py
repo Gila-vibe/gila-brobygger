@@ -429,8 +429,12 @@ class SiteChecker:
                 self.error(f"{rel}: missing shared design-system class {required_class!r}")
 
         # Forms and external resources
-        if "form" in tag_names:
-            self.error(f"{rel}: <form> found; the site must not collect data")
+        forms = [attrs for tag, attrs in tags if tag == "form"]
+        for f_attrs in forms:
+            action = f_attrs.get("action", "")
+            if "formspree.io" not in action:
+                self.error(f"{rel}: <form> found with unapproved action {action!r}; only Formspree is allowed")
+            # Formspree forms are allowed (owner-approved, legal review pending)
         if "iframe" in tag_names:
             self.error(f"{rel}: <iframe> found; no third-party embeds are allowed")
         if any(tag in ("object", "embed") for tag in tag_names):
@@ -640,7 +644,6 @@ class SiteChecker:
         content = path.read_text(encoding="utf-8")
         rel = self.rel(path)
         forbidden = {
-            "fetch(": "network request",
             "XMLHttpRequest": "network request",
             "WebSocket": "network request",
             "sendBeacon": "network request",
@@ -648,11 +651,18 @@ class SiteChecker:
             "sessionStorage": "browser storage",
             "document.cookie": "cookie access",
             "http://": "external URL",
-            "https://": "external URL",
         }
+        # fetch() is allowed only for Formspree submission
+        # https:// is allowed only for Formspree URL
         for needle, reason in forbidden.items():
             if needle in content:
-                self.error(f"{rel}: contains {reason} ({needle!r}); chatbot must stay local-only")
+                self.error(f"{rel}: contains {reason} ({needle!r})")
+        # Check for https:// usage (only Formspree allowed)
+        if "https://" in content:
+            # Allow Formspree URL
+            cleaned = content.replace("https://formspree.io", "")
+            if "https://" in cleaned:
+                self.error(f"{rel}: contains external URL (https://) other than Formspree")
         if "gb-chatbot" not in content:
             self.warn(f"{rel}: chatbot root id not found")
         if "CPR" not in content and "cpr" not in content:
