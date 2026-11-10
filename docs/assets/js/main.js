@@ -434,7 +434,7 @@
             selectedFiles = [];
             renderFileList();
             updateBookingSection();
-            showSuccess('Tak for din henvendelse! Vi har modtaget dine oplysninger og vender tilbage hurtigst muligt.');
+            showSuccess('Tak for din henvendelse!\n\nDin forespørgsel er nu sendt til Gila Brobygger.\n\nVi har modtaget dine oplysninger og vender tilbage hurtigst muligt.\n\nBemærk: Din forespørgsel er ikke en bekræftet booking. Vi kontakter dig for at bekræfte aftalen.');
           } else {
             response.json().then(function (data) {
               var msg = (data.errors && data.errors.map(function (e) { return e.message; }).join(' ')) || 'Der opstod en fejl ved afsendelsen.';
