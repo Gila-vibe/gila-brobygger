@@ -367,8 +367,7 @@
         formMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
       }
       if (feedback) {
-        feedback.textContent = msg;
-        feedback.style.color = '#b91c1c';
+        feedback.textContent = '';
       }
     }
 
@@ -380,8 +379,7 @@
         formMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
       }
       if (feedback) {
-        feedback.textContent = msg;
-        feedback.style.color = 'var(--green-700)';
+        feedback.textContent = '';
       }
     }
 
