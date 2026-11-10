@@ -410,7 +410,7 @@
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
-        showSuccess('Din e-mail-klient åbnes med en forberedt besked. Vedhæft eventuelle filer der og send. Hvis intet sker, brug "Kopier skabelon"-knappen.');
+        showSuccess('Din e-mail-klient åbnes med en forberedt besked. Klik Send i din e-mail-app for at sende den til kontakt@gila-brobygger.dk. Vedhæft eventuelle filer der. Hvis intet sker, brug Kopier skabelon-knappen.');
         setLoading(false);
         isSubmitting = false;
       }, 300);
