@@ -1,137 +1,151 @@
-# AGENTS.md – instructions for AI agents and maintainers
+# AGENTS.md – Gila Brobygger
 
-This file is the entry point for anyone (human or AI) changing the Gila Brobygger project.
-Read it fully before editing. It is intentionally strict: this is a real organisation's public
-website, published under a real domain.
+Canonical instructions for this repository. Website-specific rules: `docs/AGENTS.md`
+(read this first). Static site + harness, no build, no dependencies.
 
-## 1. Scope
+## Quick commands (run from repo root)
 
-The project covers the **whole Gila Brobygger organisation**, not only the family consultant
-service. All pages, services, activities, documents, infrastructure and future development are in
-scope. Treat interpretation, translation, mentoring, family support and organisational content as
-equal parts of one coherent digital presence.
+```bash
+python3 harness/scripts/check_site.py
+python3 harness/scripts/check_site.py --report harness/reports/latest.json
+python3 harness/scripts/check_secrets.py
+python3 harness/scripts/check_docs.py
+cd docs && python3 -m http.server 8000   # local preview
+```
 
-The website lives in `docs/` and is published by GitHub Pages from branch `main`, directory
-`/docs`, at `https://gila-brobygger.dk`.
+CI runs all three checks on push/PR (`.github/workflows/quality.yml`, Python 3.12).
 
-## 2. Read first
+## Layout
 
-Before a substantial change, read:
+- Site is published from `docs/` (GitHub Pages, branch `main`, dir `/docs`,
+  domain `gila-brobygger.dk`). `docs/index.html` is the entry point.
+- Static only: hand-written HTML, one CSS (`docs/assets/css/styles.css`), one JS
+  (`docs/assets/js/main.js`). No build, bundler, package manager or framework.
+- `docs/*.md`, `plans/`, `docs/decisions/` are engineering docs excluded from
+  publish by `docs/_config.yml` (`exclude: *.md, plans, decisions,
+  gila-brobygger`; `plugins: []`). Keep that file intact.
+- `archive/` is legacy material: excluded from publish and checks, do not delete.
+  The original photo in `archive/legacy-assets/` has EXIF/GPS and must never be
+  copied into `docs/`.
+- `docs/gila-brobygger/` is an ignored, empty nested repo; leave it untouched.
 
-1. `PROJECT.md` – organisation, goals, verified facts and open questions
-2. `docs/ORGANISATION.md` – services, activities and experience
-3. `docs/WEBSITE_SPEC.md` – information architecture and page requirements
-4. `docs/BRAND.md` – visual identity, voice and tone
-5. `docs/INVARIANTS.md` – non-negotiable rules
-6. `docs/SECURITY.md` – privacy and security rules
-7. `docs/TESTING.md` – what must be tested
+## Read first (substantial changes)
 
-Also read the specific page and shared assets you are about to change. For content work, read
-`docs/OWNER_REVIEW.md` so you do not "fix" something that is waiting for an owner decision.
+`PROJECT.md`, `docs/ORGANISATION.md`, `docs/WEBSITE_SPEC.md`, `docs/BRAND.md`,
+`docs/INVARIANTS.md`, `docs/SECURITY.md`, `docs/TESTING.md`. For content work
+also `docs/OWNER_REVIEW.md`.
 
-## 3. Non-negotiable content rules
+## Content rules (non-negotiable)
 
-- All public website copy is in **Danish**.
-- Do **not** invent or "improve" facts. No invented qualifications, approvals, certifications,
-  partnerships, testimonials, client names, results, statistics, prices, opening hours, addresses,
-  response times, guarantees or legal status.
-- Only publish information that is in this repository and traceable to the owner or to an
-  existing page. When something is uncertain, write it in `docs/OWNER_REVIEW.md` and, if it must
-  appear on the site, mark it clearly as a placeholder.
-- Use respectful, plain, non-stigmatising language about children, families, migrants and
-  interpreters. Never imply that a family is "difficult", "failed" or "unintegrated".
-- Do not publish case stories, client information or anything that could identify a family.
-- Keep the contact details exactly as supplied (`kontakt@gila-brobygger.dk`, `+45 31 84 70 40`)
-  until the owner confirms a change.
-- Never claim GDPR compliance, DPO appointment or legal approval. Those are separate reviews.
+- Public copy is Danish; documentation may be English.
+- Do not invent facts, qualifications, approvals, partners, testimonials, prices,
+  addresses, response times, guarantees or legal status. Uncertain items go in
+  `docs/OWNER_REVIEW.md`; mark placeholders clearly if they must appear.
+- Respectful, non-stigmatising language; no case stories or client-identifying info.
+- Contact details are fixed until the owner confirms: `kontakt@gila-brobygger.dk`,
+  `+45 31 84 70 40` / `tel:+4531847040`.
+- Never claim GDPR compliance, DPO appointment or legal approval.
 
-## 4. Non-negotiable technical rules
+## Technical rules (non-negotiable)
 
-- Static site only: semantic HTML, one shared CSS file, minimal JavaScript.
-- No build process, bundler, package manager or framework unless approved and documented.
-- No external fonts, CDNs, embeds, iframes, analytics, pixels, cookies or third-party scripts.
-  The site must work offline after download and must not send visitor data anywhere.
-- No forms that collect personal data. Contact is via `mailto:` and `tel:` only.
-- All local links and asset paths must be relative and must resolve inside `docs/`.
-- `docs/index.html` must exist; `docs/CNAME` must contain exactly `gila-brobygger.dk`.
-- Never commit secrets, `.env` files, tokens, keys, passwords, private documents or client data.
-- Keep `docs/_config.yml` excluding `*.md` so engineering documentation is not published.
-- Accessibility is a requirement, not a nice-to-have: one `<h1>` per page, skip link, landmarks,
-  labelled controls, alt text, visible focus, keyboard-operable navigation, no colour-only meaning.
-- Do not weaken a check to make it pass. Fix the cause, or document a time-boxed exception in
+- All local links/assets must be relative (no leading `/`) and resolve inside
+  `docs/`. `check_site.py` errors otherwise.
+- No external fonts, CDNs, embeds, iframes, analytics, pixels, cookies or
+  third-party scripts at runtime. `check_site.py` and the JS scan enforce this.
+- Forms: only the Formspree quote form (`docs/faa-et-tilbud.html`) is permitted;
+  any other `<form>` errors. `main.js` may use `fetch`/`https` only for Formspree;
+  no `localStorage`, `sessionStorage`, `XMLHttpRequest`, `WebSocket`, `sendBeacon`,
+  `document.cookie` or other `http://`/`https://` URLs. Formspree is a third-party
+  processor with legal/DPO review pending (decision 0007).
+- `docs/CNAME` must contain exactly `gila-brobygger.dk`; `docs/_config.yml` must
+  exclude `*.md`.
+- Never commit secrets, `.env`, tokens, keys, passwords, private docs or client data.
+- Accessibility is required: one `<h1>`, skip link to `#main`, landmarks, labelled
+  controls, alt text, visible focus, keyboard nav, no colour-only meaning.
+- Do not weaken a check. Fix the cause or document a time-boxed exception in
   `docs/APPROVAL_LOG.md` with owner sign-off.
 
-## 5. Task workflow
+## Page shell / metadata (enforced by check_site.py)
 
-1. **Understand** – state the goal, inspect the relevant files, list risks and acceptance criteria.
-2. **Plan** – for anything non-trivial, update `plans/ACTIVE.md` with steps and gates.
-3. **Implement** – make the smallest complete change, consistent with existing patterns.
-4. **Validate** – run all three checks:
-   ```bash
-   python3 harness/scripts/check_site.py
-   python3 harness/scripts/check_secrets.py
-   python3 harness/scripts/check_docs.py
-   ```
-5. **Smoke test** – serve `docs/` locally and check desktop + mobile, navigation, skip link,
-   keyboard focus, contact links and the chatbot. Verify no third-party requests in the network tab.
-6. **Review** – re-read the diff, check for duplicated or contradictory documentation, and update
-   the documents whose facts or behaviour changed.
-7. **Report** – list changed files, commands actually run, results, and anything not verified.
+Every HTML page needs: `<!doctype html>`, `<html lang="da">`, charset utf-8,
+viewport `width=device-width` (no zoom lock), unique `<title>` (≤70 chars,
+contains "Gila Brobygger"), meta description (≤165), exactly one non-empty `<h1>`,
+`<main id="main">`, `<header>`, `<footer>`, `<nav>`, skip link to `#main`,
+shared stylesheet + deferred shared script, favicon, canonical URL, Open Graph tags
+(`og:type/title/description/url/image`) except `noindex` pages, and classes
+`site-header`, `site-nav`, `site-footer`. Inline scripts are allowed only as valid
+JSON-LD. No positive `tabindex`. No placeholder text or placeholder contact details.
+Each page must include the contact `mailto:`/`tel:` links and the nav/footer links
+defined in `harness/config/site.json`.
+
+## Adding a page
+
+1. Create `docs/<page>.html` from the shared shell.
+2. Add to `harness/config/site.json` (`required_pages` or `noindex_pages`).
+3. Add to `docs/sitemap.xml` unless noindex.
+4. Update `docs/WEBSITE_SPEC.md` (and `README.md` if inventory changes) and nav/footer.
+5. Run all three checks.
+
+`check_site.py` requires the set of HTML pages to exactly match `site.json`; `check_docs.py`
+requires every configured page to appear in `WEBSITE_SPEC.md`. `sitemap.xml` must match
+`required_pages` exactly.
+
+## Sync-sensitive values
+
+- Contact details are sourced from `harness/config/site.json`; `check_docs.py` scans
+  all `*.md` (root, `docs/`, `plans/`, `docs/decisions/`, `harness/reports/`) for
+  e-mails/phones and errors on any mismatch. Update config and docs together.
+- `docs/CNAME` must equal the configured domain; `docs/robots.txt` must reference
+  `Sitemap: https://gila-brobygger.dk/sitemap.xml` and contain `User-agent:`.
+- JPEGs in `docs/assets/images/` must not contain EXIF/GPS metadata.
+
+## Approval gates
+
+Stop and ask the owner before: publishing/deploying a significant change; changing
+identity, brand, services or significant claims; deleting important content/infra;
+introducing paid services/subscriptions; changing hosting, domain, DNS, e-mail routing
+or GitHub Pages config.
+
+Request legal/DPO review before: collecting/processing personal or sensitive data;
+publishing case info; adding forms or data collection; adding tracking/analytics/cookies;
+third-party sharing; defining retention/privacy arrangements.
+
+The chatbot is local-only (no network, no storage) but still needs a documented
+data-flow review before being treated as approved. Owner approval never replaces
+legal review.
+
+## Workflow
+
+1. Understand: goal, files, risks, acceptance criteria.
+2. Non-trivial work: update `plans/ACTIVE.md`.
+3. Implement the smallest complete change, consistent with existing patterns.
+4. Validate: run all three checks.
+5. Smoke test: serve `docs/`, check desktop + mobile nav, skip link, visible focus,
+   contact links, chatbot (open, answer, Escape, focus return), no console errors,
+   no third-party requests.
+6. Review the diff; update affected docs.
+7. Report changed files, commands actually run, results and anything unverified.
    Never claim a check passed if it was not run.
 
-## 6. Approval gates
+## Definition of done
 
-Stop and ask the owner **before**:
+Checks pass; links/anchors/assets resolve; accessibility basics preserved; affected
+docs updated; missing approvals listed; verified behaviour distinguished from
+assumptions.
 
-- publishing or deploying a significant change;
-- changing organisational identity, name, brand positioning or visual identity;
-- adding, removing or renaming a service;
-- publishing a significant claim (experience, approvals, partnerships, results, prices);
-- deleting important content, pages or infrastructure;
-- introducing paid services, subscriptions or financial commitments;
-- changing hosting, domain, DNS, email routing or the GitHub Pages configuration.
+## Where to record
 
-Request **legal/DPO review** before:
-
-- collecting or processing personal or sensitive personal data;
-- publishing client or family case information;
-- adding forms, chat features or any data-collection mechanism;
-- adding tracking, analytics or non-essential cookies;
-- sharing data with a third party;
-- defining privacy, retention or data-processing arrangements.
-
-A chatbot that runs entirely in the browser, stores nothing and sends nothing is still a feature
-that needs a documented data-flow review before it is treated as approved.
-
-Owner approval never replaces legal review, and legal review never replaces owner approval.
-
-## 7. Definition of done
-
-A task is done only when:
-
-- the change is implemented and consistent with the design system;
-- `check_site.py`, `check_secrets.py` and `check_docs.py` pass;
-- links, anchors and assets resolve;
-- accessibility basics are preserved;
-- documentation affected by the change is updated;
-- approvals that are still missing are explicitly listed;
-- the report distinguishes verified behaviour from assumptions.
-
-## 8. Where to record things
-
-| Information | Location |
+| Info | Location |
 |---|---|
-| Organisation facts and unknowns | `docs/ORGANISATION.md`, `docs/OWNER_REVIEW.md` |
-| Design and content rules | `docs/WEBSITE_SPEC.md`, `docs/BRAND.md` |
-| Runtime architecture and checks | `docs/HARNESS.md` |
-| Test evidence and manual checks | `docs/TESTING.md`, `harness/reports/` |
-| Approvals and reviews | `docs/APPROVAL_LOG.md` |
-| Decisions with lasting consequences | `docs/decisions/` |
+| Organisation facts/unknowns | `docs/ORGANISATION.md`, `docs/OWNER_REVIEW.md` |
+| Design/content rules | `docs/WEBSITE_SPEC.md`, `docs/BRAND.md` |
+| Runtime/checks | `docs/HARNESS.md` |
+| Tests/manual checks | `docs/TESTING.md`, `harness/reports/` |
+| Approvals/reviews | `docs/APPROVAL_LOG.md` |
+| Lasting decisions | `docs/decisions/` |
 | Current work | `plans/ACTIVE.md` |
 
-## 9. Legacy material
+## Legacy
 
-`archive/` preserves earlier versions and unused assets. It is intentionally excluded from the
-published site and from the quality checks. Do not delete it without owner approval; its purpose
-is traceability. The original photo in `archive/legacy-assets/` contains EXIF/GPS metadata and
-must never be copied into `docs/`.
+`archive/` preserves earlier versions/unused assets for traceability. Do not delete
+without owner approval. Never copy the original photo (EXIF/GPS) into `docs/`.
