@@ -1,3 +1,8 @@
+---
+name: gila-brobygger-site
+description: Use when editing, adding or reviewing pages on the Gila Brobygger static website.
+---
+
 # Gila Brobygger – agent skill
 
 Working in the repository for **Gila Brobygger** (Danish interpretation, written translation,
