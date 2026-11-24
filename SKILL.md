@@ -1,8 +1,3 @@
----
-name: gila-brobygger
-description: Work on the Gila Brobygger website repository (static site at gila-brobygger.dk, publishing source in docs/). Use when asked to edit or review website pages/content in docs/, engineering documentation, or the validation harness (check_site.py, check_secrets.py, check_docs.py), or when asked about project status, checks, launch gates or approvals.
----
-
 # Gila Brobygger – agent skill
 
 Working in the repository for **Gila Brobygger** (Danish interpretation, written translation,
